@@ -1,0 +1,23 @@
+# JMB 2022 -- Taken from https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository
+name: Tâches
+description: Une tâche de l'application
+title: "[TK]: "
+labels: ["TK"]
+body:
+  - type: input
+    id: tk
+    attributes:
+      label: Tâche
+      description: "Description de la tâche :"
+    validations:
+      required: true
+  - type: textarea
+    id: acceptation
+    attributes:
+      label: Critères d'acceptation
+      description: Comment sera évaluée la satisfaction de cette tâche, jeux de tests si disponibles, ....
+  - type: textarea
+    id: details
+    attributes:
+      label: Détails
+      description: Donner des détails si possible.
