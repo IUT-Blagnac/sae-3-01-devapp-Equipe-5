@@ -1,0 +1,5 @@
+url: "chirpstack.iut-blagnac.fr"
+port: 1883
+keepalive: 60
+dataFile: "data.json"
+topic: "AM107/by-room/+/data"
