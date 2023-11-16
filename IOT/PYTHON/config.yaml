@@ -3,3 +3,17 @@ port: 1883
 keepalive: 60
 dataFile: "data.json"
 topic: "AM107/by-room/+/data"
+selectedData: ["temperature","humidity","co2","activity","tvoc","illumination","infrared","infrared_and_visible","pressure"]
+thresholds:
+  temperature : 26
+  humidity : 80
+  co2 : 10000
+  activity : 100
+  tvoc : 500
+  illumination : 100
+  infrared : 100
+  infrared_and_visible : 100
+  pressure : 1100
+
+
+
