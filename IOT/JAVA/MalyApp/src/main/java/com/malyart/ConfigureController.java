@@ -3,6 +3,7 @@ package com.malyart;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -23,7 +23,7 @@ public class ConfigureController {
     @FXML
     private Button buttonConfirmer;
     @FXML
-    private ComboBox<String> comboBox;
+    private TextField topicsField;
     @FXML
     private TextField urlField;
     @FXML
@@ -51,13 +51,12 @@ public class ConfigureController {
     @FXML
     private TextField pressureTextField;
 
+    File fileOldConfigFile = new File("src/test/configuration.csv");
+    File fileNewConfigFile = new File("src/test/configuration.yaml");
+
     @FXML
     public void initialize() {
-        // Ajouter des éléments à la ComboBox
-        comboBox.getItems().addAll("*", "B004", "B005", "B006", "B007");
 
-        // Sélectionner un élément par défaut
-        comboBox.getSelectionModel().select(0);
 
         File configExists = new File("src/test/configuration.csv");
 
@@ -93,9 +92,9 @@ public class ConfigureController {
                         alertFileField.setText(valeur);
                     } else if (ligne.startsWith("topics: ")) {
                         valeur = ligne.replace("topics: ", "");
-                        valeur = valeur.replace("[\"AM107/by-room/", "");
-                        valeur = valeur.replace("/data\"]", "");
-                        comboBox.getSelectionModel().select(valeur);
+                        valeur = valeur.replace("[\"", "");
+                        valeur = valeur.replace("\"]", "");
+                        topicsField.setText(valeur);
                     } else if (ligne.startsWith("  temperature : ")) {
                         valeur = ligne.replace("  temperature : ", "");
                         temperatureTextField.setText(valeur);
@@ -133,11 +132,6 @@ public class ConfigureController {
         }
     }
 
-    // @FXML
-    // private void actionConfirmer() throws IOException {
-    // Main.setRoot("primary");
-    // }
-
     @FXML
     private void actionQuitter() throws IOException {
         Stage stage = (Stage) buttonQuitter.getScene().getWindow();
@@ -154,7 +148,7 @@ public class ConfigureController {
         String portConfig = portField.getText();
         String alertFileConfig = alertFileField.getText();
         String dataFileConfig = dataFileField.getText();
-        String salleConfig = comboBox.getValue();
+        String salleConfig = topicsField.getText();
         String temperatureConfig = temperatureTextField.getText();
         String humidityConfig = humidityTextField.getText();
         String co2Config = co2TextField.getText();
@@ -162,16 +156,13 @@ public class ConfigureController {
         String tvocConfig = tvocTextField.getText();
         String illuminationConfig = illuminationTextField.getText();
         String infraredConfig = infraredTextField.getText();
-        String infrared_and_visibleConfig = humidityTextField.getText();
+        String infrared_and_visibleConfig = infrared_and_visibleTextField.getText();
         String pressureConfig = pressureTextField.getText();
 
         // Manque une/des information(s)
         if (urlConfig.isEmpty() || portConfig.isEmpty() || alertFileConfig.isEmpty() || dataFileConfig.isEmpty() ||
-                salleConfig.isEmpty() || temperatureConfig.isEmpty() || humidityConfig.isEmpty()
-                || co2Config.isEmpty()
-                ||
-                activityConfig.isEmpty() || tvocConfig.isEmpty() || illuminationConfig.isEmpty()
-                || infraredConfig.isEmpty() ||
+                salleConfig.isEmpty() || temperatureConfig.isEmpty() || humidityConfig.isEmpty() || co2Config.isEmpty() ||
+                activityConfig.isEmpty() || tvocConfig.isEmpty() || illuminationConfig.isEmpty() || infraredConfig.isEmpty() ||
                 infrared_and_visibleConfig.isEmpty() || pressureConfig.isEmpty()) {
 
             Alert missedAlert = new Alert(AlertType.ERROR);
@@ -216,7 +207,7 @@ public class ConfigureController {
 
             // selectedData
             writer.write(
-                    "selectedData: [\"temperature\",\"humidity\",\"co2\",\"activity\",\"tvoc\",\"illumination\",\"infrared\",\"infrared_and_visible\",\"pressure\"]");
+                    "selectedData: [\"temperature\",\"humidity\",\"co2\",\"activity\",\"tvoc\",\"illumination\",\"infrared\",\"infrared_and_visible\",\"pressure\"]\n");
 
             // frequency
             writer.write("frequency : 30\n");
@@ -256,6 +247,15 @@ public class ConfigureController {
             e.printStackTrace();
         }
 
+        // Créer le fichier configuation en yaml
+        if (!fileNewConfigFile.exists()) {
+            Files.copy(fileOldConfigFile.toPath(), fileNewConfigFile.toPath());
+        } else {
+            Files.delete(fileNewConfigFile.toPath());
+            Files.copy(fileOldConfigFile.toPath(), fileNewConfigFile.toPath());
+        }
+        
+
         if (!urlConfig.isEmpty() && !portConfig.isEmpty() && !alertFileConfig.isEmpty() && !dataFileConfig.isEmpty() &&
                 !salleConfig.isEmpty() && !temperatureConfig.isEmpty() && !humidityConfig.isEmpty()
                 && !co2Config.isEmpty() &&
@@ -266,41 +266,5 @@ public class ConfigureController {
         }
 
     }
-
-    // File configExists = new File(csvFilePath);
-
-    // String ligne;
-
-    // try
-
-    // {
-
-    // InputStream ips = new FileInputStream(configExists);
-    // InputStreamReader ipsr = new InputStreamReader(ips);
-    // BufferedReader br = new BufferedReader(ipsr);
-
-    // while ((ligne = br.readLine()) != null) {
-    // String valeur = "";
-    // // Suite de condition permettant d'extraire des lignes grace a leurs debut
-    // if (ligne.startsWith("url: ")) {
-    // valeur = ligne.replace("url: ", "");
-    // valeur = valeur.replace("ligne", valeur);
-    // urlField.setText(valeur);
-
-    // } else if (ligne.startsWith("port: ")) {
-    // valeur = ligne.replace("port: ", "");
-    // portField.setText(valeur);
-
-    // }
-    // }
-
-    // urlField.setText(pressureConfig);
-
-    // br.close();
-    // }catch(
-    // Exception e)
-    // {
-    // System.out.println(e.toString());
-    // }
 
 }
