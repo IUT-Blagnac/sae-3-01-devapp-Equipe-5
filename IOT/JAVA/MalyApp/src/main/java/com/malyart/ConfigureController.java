@@ -93,6 +93,7 @@ public class ConfigureController {
                     } else if (ligne.startsWith("topics: ")) {
                         valeur = ligne.replace("topics: ", "");
                         valeur = valeur.replace("[\"", "");
+                        valeur = valeur.replace("\",\"", ",");
                         valeur = valeur.replace("\"]", "");
                         topicsField.setText(valeur);
                     } else if (ligne.startsWith("  temperature : ")) {
@@ -201,9 +202,17 @@ public class ConfigureController {
             writer.write("\"\n");
 
             // topics
-            writer.write("topics: [\"AM107/by-room/");
-            writer.write(String.format("%s", salleConfig));
-            writer.write("/data\"]\n");
+            String[] topics = salleConfig.split(",");
+            writer.write("topics: [");
+            for (int i = 0; i < topics.length; i++) {
+                //remove spaces
+                topics[i] = topics[i].trim();
+                writer.write(String.format("\"%s\"", topics[i]));
+                if (i < topics.length - 1) {
+                    writer.write(",");
+                }
+            }
+            writer.write("]\n");
 
             // selectedData
             writer.write(
