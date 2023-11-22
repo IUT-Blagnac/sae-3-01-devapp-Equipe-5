@@ -2,7 +2,8 @@ url: "chirpstack.iut-blagnac.fr"
 port: 1883
 keepalive: 60
 dataFile: "data.csv"
-topic: "AM107/by-room/+/data"
+alertFile: "alert.csv"
+topics: ["AM107/by-room/+/data"]
 selectedData: ["temperature","humidity","co2","activity","tvoc","illumination","infrared","infrared_and_visible","pressure"]
 frequency : 30
 thresholds:
@@ -15,3 +16,5 @@ thresholds:
   infrared : 100
   infrared_and_visible : 100
   pressure : 1100
+
+
