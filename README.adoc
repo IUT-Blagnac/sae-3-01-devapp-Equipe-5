@@ -71,12 +71,16 @@ De plus ce fichier `README.adoc` devra être à jour des informations suivantes 
 - Version courante : https://github.com/IUT-Blagnac/sae3-01-template/releases/tag/v0.1.2[v0.1.2]
 - Lien vers la doc technique
 - Lien vers la doc utilisateur
-- Liste des (ou lien vers les) User Stories (ToDo/Ongoing/Done) et % restant : https://github.com/IUT-Blagnac/sae-3-01-devapp-Equipe-5/issues?q=is%3Aopen+is%3Aissue+label%3A%22User+Story%22
+- Liste des (ou lien vers les) User Stories (ToDo/Ongoing/Done) et % restant : https://github.com/IUT-Blagnac/sae-3-01-devapp-Equipe-5/issues?q=is%3Aopen+is%3Aissue+label%3A%22User+Story%22[User Stories]
 - Tests unitaires et plans de test
 - Indicateurs de qualité du code (dette technique)
-- ... tout autre élément que vous jugerez utiles pour démontrer la qualité de votre application
 
-=== Évaluations hebdomadaires
+== Partie IoT & Java
+- Lien vers le code Python : https://github.com/IUT-Blagnac/sae-3-01-devapp-Equipe-5/blob/master/IOT/PYTHON/sae-iot.py[SAE-Python.py]
+- Lien vers la documentation du programme Python : https://github.com/IUT-Blagnac/sae-3-01-devapp-Equipe-5/blob/master/IOT/PYTHON/README.adoc[Documentation-Python.adoc]
+
+
+== Évaluations hebdomadaires
 
 NOTE: Les notes ci-dessous sont mises à jour directement par les enseignants responsables de la compétence 5.
 
