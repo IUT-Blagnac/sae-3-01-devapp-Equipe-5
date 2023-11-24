@@ -69,8 +69,8 @@ Utilisez pour cela les fonctionnalités de GitHub pour les https://docs.github.c
 De plus ce fichier `README.adoc` devra être à jour des informations suivantes :
 
 - Version courante : https://github.com/IUT-Blagnac/sae3-01-template/releases/tag/v0.1.2[v0.1.2]
-- Lien vers la doc technique
-- Lien vers la doc utilisateur
+- Lien vers la doc technique https://github.com/IUT-Blagnac/sae-3-01-devapp-Equipe-5/blob/master/Documentation/Technique/Web_DocTechnique.adoc[Doc technique]
+- Lien vers la doc utilisateur https://github.com/IUT-Blagnac/sae-3-01-devapp-Equipe-5/blob/master/Documentation/Utilisateur/Web_DocUtil.adoc[Doc utilisateur]
 - Liste des (ou lien vers les) User Stories (ToDo/Ongoing/Done) et % restant : https://github.com/IUT-Blagnac/sae-3-01-devapp-Equipe-5/issues?q=is%3Aopen+is%3Aissue+label%3A%22User+Story%22[User Stories]
 - Tests unitaires et plans de test
 - Indicateurs de qualité du code (dette technique)
