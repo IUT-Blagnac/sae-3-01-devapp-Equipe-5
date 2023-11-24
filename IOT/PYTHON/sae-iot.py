@@ -3,6 +3,9 @@ import yaml
 import paho.mqtt.client as mqtt
 import time
 import json
+import time
+import signal
+import sys
 
 # Lecture du fichier de configuration
 with open("configuration.yaml", "r") as file:
@@ -108,11 +111,33 @@ def on_message(client, userdata, msg):
     affichage_Moyenne(room)
     print("")
 
-
-
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 
 client.connect(config["url"], config["port"], config["keepalive"])
-client.loop_forever()
+
+running_time = config["running_time"]*60  # temps d'éxécution transformé en minutes
+rest_duration = config["rest_duration"]*60  # temps de repos transformé en minutes
+
+def handle_execution(signum, frame):
+    print("Exécution pendant {} secondes...".format(running_time))
+    start_time = time.time()
+    end_time = start_time + running_time
+
+    while time.time() < end_time:
+        client.loop(timeout=1.0, max_packets=1)
+
+    # Repos après la période d'exécution
+    signal.alarm(rest_duration)  # Définition de l'alarme pour la période de repos
+    print("Pause pendant {} secondes...".format(rest_duration))
+
+# Définition des signaux d'alarme pour les périodes d'exécution et de repos
+signal.signal(signal.SIGALRM, handle_execution)
+
+# Activation de l'alarme pour la première période d'exécution (2 secondes le temps que la connection se fasse)
+signal.alarm(2)
+
+# Boucle infinie pour attendre les signaux d'alarme
+while True:
+    signal.pause()  # Pause jusqu'à ce qu'un signal d'alarme se déclenche
