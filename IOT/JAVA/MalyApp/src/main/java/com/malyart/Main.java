@@ -17,9 +17,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("configure"), 900, 700);
         stage.setScene(scene);
+        stage.setTitle("MALYAPP");
         stage.show();
+        stage.setResizable(false);
     }
 
     static void setRoot(String fxml) throws IOException {

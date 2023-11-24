@@ -1,0 +1,44 @@
+= SAÉ 3.01 2023-2024 - Documentation Python - Équipe 5
+:toc:
+:toc-title: Table des matières
+:sectnums: 
+:sectnumlevels: 4
+
+== Introduction
+Notre application python permet de récupérer les données envoyées par les différents capteurs présents dans les entrepôts de stockage de MalyArt qui les utilise pour s'assurer que les conditions de stockage sont optimales pour les oeuves d'art qui y sont entreposées.
+
+L'objectif est de pouvoir afficher ces données sur une application JavaFX pour que les employés de MalyArt puissent les consulter facilement.  
+
+
+== Prérequis
+
+L'application nécessite plusieurs choses qu'il vous faudra installer au préalable : 
+
+- `Python 3` ou une version ultérieure. (https://www.python.org/downloads/)
+- `pip` pour installer les dépendances. (Inclus dans Python 3.4 et supérieur) 
+- `csv` pour lire les fichiers csv. (Bibliothèque Python)
+- `yaml` pour lire les fichiers yaml. (`pip install pyyaml`	)
+- `paho.mqtt.client` pour communiquer avec le broker MQTT. (`pip install paho-mqtt`)
+- `json` pour lire les fichiers json. (Bibliothèque Python)
+- `time` pour gérer le temps. (Bibliothèque Python)
+
+== Installation
+1. Téléchargez le fichier python à partir du lien suivant : https://github.com/IUT-Blagnac/sae-3-01-devapp-Equipe-5/blob/IOT/IOT/PYTHON/sae-iot.py[sae-iot.py]
+
+2. Téléchargez le fichier de configuration à partir du lien suivant : https://github.com/IUT-Blagnac/sae-3-01-devapp-Equipe-5/blob/IOT/IOT/PYTHON/configuration.yaml[configuration.yaml]
+
+3. Regroupez les deux fichiers dans un même dossier.
+
+image::./img/files.png[Image montant le dossier contenant les deux fichiers]
+
+== Utilisation
+Pour utiliser l'application, il vous suffit de lancer le fichier python comme ceci :
+//image of the command line
+[source,shell]
+----
+python3 sae-iot.py
+----
+
+image::./img/launch.png[Image montrant la commande de lancement de l'application]
+
+
