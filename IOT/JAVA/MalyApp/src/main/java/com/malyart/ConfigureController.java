@@ -57,7 +57,6 @@ public class ConfigureController {
     @FXML
     public void initialize() {
 
-
         File configExists = new File("src/test/configuration.csv");
 
         String ligne;
@@ -123,7 +122,7 @@ public class ConfigureController {
                     } else if (ligne.startsWith("  pressure : ")) {
                         valeur = ligne.replace("  pressure : ", "");
                         pressureTextField.setText(valeur);
-                    } 
+                    }
                 }
 
                 br.close();
@@ -162,8 +161,10 @@ public class ConfigureController {
 
         // Manque une/des information(s)
         if (urlConfig.isEmpty() || portConfig.isEmpty() || alertFileConfig.isEmpty() || dataFileConfig.isEmpty() ||
-                salleConfig.isEmpty() || temperatureConfig.isEmpty() || humidityConfig.isEmpty() || co2Config.isEmpty() ||
-                activityConfig.isEmpty() || tvocConfig.isEmpty() || illuminationConfig.isEmpty() || infraredConfig.isEmpty() ||
+                salleConfig.isEmpty() || temperatureConfig.isEmpty() || humidityConfig.isEmpty() || co2Config.isEmpty()
+                ||
+                activityConfig.isEmpty() || tvocConfig.isEmpty() || illuminationConfig.isEmpty()
+                || infraredConfig.isEmpty() ||
                 infrared_and_visibleConfig.isEmpty() || pressureConfig.isEmpty()) {
 
             Alert missedAlert = new Alert(AlertType.ERROR);
@@ -205,7 +206,7 @@ public class ConfigureController {
             String[] topics = salleConfig.split(",");
             writer.write("topics: [");
             for (int i = 0; i < topics.length; i++) {
-                //remove spaces
+                // remove spaces
                 topics[i] = topics[i].trim();
                 writer.write(String.format("\"%s\"", topics[i]));
                 if (i < topics.length - 1) {
@@ -263,7 +264,6 @@ public class ConfigureController {
             Files.delete(fileNewConfigFile.toPath());
             Files.copy(fileOldConfigFile.toPath(), fileNewConfigFile.toPath());
         }
-        
 
         if (!urlConfig.isEmpty() && !portConfig.isEmpty() && !alertFileConfig.isEmpty() && !dataFileConfig.isEmpty() &&
                 !salleConfig.isEmpty() && !temperatureConfig.isEmpty() && !humidityConfig.isEmpty()
@@ -271,7 +271,26 @@ public class ConfigureController {
                 !activityConfig.isEmpty() && !tvocConfig.isEmpty() && !illuminationConfig.isEmpty()
                 && !infraredConfig.isEmpty() &&
                 !infrared_and_visibleConfig.isEmpty() && !pressureConfig.isEmpty()) {
+
+            try {
+                // Chemin vers l'interpréteur Python et le script Python
+                String pythonInterpreter = "chemin/vers/python";
+                String pythonScript = "chemin/vers/votre_script.py";
+
+                ProcessBuilder processBuilder = new ProcessBuilder(pythonInterpreter, pythonScript);
+                Process process = processBuilder.start();
+
+                // Attendre que le processus se termine
+                int exitCode = process.waitFor();
+
+                // Afficher le code de sortie du processus
+                System.out.println("Le script Python s'est terminé avec le code de sortie : " + exitCode);
+
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
             Main.setRoot("primary");
+
         }
 
     }
