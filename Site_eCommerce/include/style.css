@@ -1,0 +1,27 @@
+*{ margin: 0; }
+.conteneur{ 
+    margin: 0 auto; max-width: 1170px; 
+}
+header { 
+    background: #da3dfe; padding: 5px; text-align: center; 
+}
+header  nav{ 
+    display: inline; 
+}
+header  a{ 
+    color: rgb(68, 9, 69); text-decoration: none; padding: 5px; 
+}
+header  nav  a:hover{ 
+    background: #f204f68d; 
+}
+.erreur{ 
+    background: #ff0000; padding: 5px; margin: 5px; 
+}
+.validation{ 
+    background: #669933; padding: 5px; margin: 5px; 
+}
+#logoMalyart{
+    position:absolute;
+    top:10px;
+    left:0px;
+  }
