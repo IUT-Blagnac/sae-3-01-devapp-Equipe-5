@@ -3,25 +3,42 @@
     margin: 0 auto; max-width: 1170px; 
 }
 header { 
-    background: #da3dfe; padding: 5px; text-align: center; 
+    background: #ffffff; padding: 5px; text-align: center; 
 }
 header  nav{ 
     display: inline; 
 }
 header  a{ 
-    color: rgb(68, 9, 69); text-decoration: none; padding: 5px; 
+    color: rgb(112, 1, 159); text-decoration: none; padding: 5px; 
 }
 header  nav  a:hover{ 
-    background: #f204f68d; 
-}
-.erreur{ 
-    background: #ff0000; padding: 5px; margin: 5px; 
-}
-.validation{ 
-    background: #669933; padding: 5px; margin: 5px; 
+    background: #ffd0ff; 
+    border-radius: 10px;
+    
 }
 #logoMalyart{
     position:absolute;
     top:10px;
     left:0px;
   }
+
+#searchbar{
+    padding:15px;
+    border-radius: 10px;
+  }
+
+  input[type=text] {
+     width: 30%;
+
+  }
+
+#searchbutton{
+    position: fixed;
+    padding: 4px;
+}
+#searchbutton:hover{
+    background: #ffd0ff; 
+    border-radius: 4px;
+}
+
+  
