@@ -23,12 +23,20 @@ L'application nécessite plusieurs choses qu'il vous faudra installer au préala
 image::IMAGE !!!
 
 == Utilisation
-Pour utiliser l'application, il vous suffit de lancer le fichier malyapp.jar :
+Pour lancer l'application, il vous suffit de lancer le fichier malyapp.jar :
 
 - Vous pouvez cliquez directement sur le fichier :
-image::./img/Jar.png[Image montrant le fichier de l'application]
+
+image::./img/Jar.png[Image montrant le jar de l'application]
 
 - Sinon avec la ligne de commande suivante dans un terminal (vérifiez que vous êtes dans le répertoire où il y a l'application) :
+----
+java -jar malyapp.jar
+----
+
+image::./img/launch.png
+
+Ensuite 
 
 
 
