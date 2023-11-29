@@ -16,11 +16,36 @@ header  nav  a:hover{
     border-radius: 10px;
     
 }
+
+footer {
+    background: #ffffff; padding: 5px; text-align: center; 
+}
+
+footer a{
+    color: rgb(112, 1, 159); text-decoration: none; padding: 5px; 
+}
+
+footer ML:hover{
+    background: #ffd0ff; 
+    border-radius: 10px;
+}
+
+footer .logo{
+    position: relative;
+}
+
+footer .logo:hover{
+    background: #ffd0ff; 
+    border-radius: 4px;
+}
+
 #logoMalyart{
     position:absolute;
     top:10px;
     left:0px;
-  }
+}
+
+
 
 #searchbar{
     padding:15px;
