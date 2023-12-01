@@ -1,7 +1,7 @@
 <footer>
-    <a href="#" id="ML"> Mentions légales </a>
+    <a href="./mentionsLegales.php" id="ML"> Mentions légales </a>
     <br><br>
-    <a href="#"> <img class='logo' src="logoInsta.png" width=20px> </a>
-    <a href="#"> <img class='logo' src="logoFace.png" width=20px > </a>
-    <a href="#"> <img class='logo' src="logoPin.png" width=20px > </a>
+    <a href="https://www.instagram.com"> <img class='logo' src="./include/logoInsta.png" width=20px> </a>
+    <a href="https://www.facebook.com"> <img class='logo' src="./include/logoFace.png" width=20px > </a>
+    <a href="https://www.pinterest.fr"> <img class='logo' src="./include/logoPin.png" width=20px > </a>
 </footer>
