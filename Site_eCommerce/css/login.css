@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display&display=swap");
+
+body {
+  font-family: "Playfair Display", serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+
+#maly {
+  font-size: 50px;
+  text-decoration: none;
+  color: #70019f;
+  text-align: center;
+  width: 300px;
+  display: block;
+  padding: 10px 20px;
+}
+
+h2 {
+  color: #70019f;
+}
+
+p {
+  font-size: small;
+}
+
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+input[type="text"],
+input[type="password"] {
+  border-radius: 20px;
+}
+
+input[type="submit"] {
+  background-color: #b300ff;
+  cursor: pointer;
+  border-radius: 20px;
+  color: white;
+}
+
+input[type="submit"]:hover {
+  background-color: #70019f;
+  color: white;
+}
+
+label {
+  margin-left: 5px;
+}
+
+.info {
+  all: unset;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 10px;
+}
