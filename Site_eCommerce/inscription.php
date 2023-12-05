@@ -1,3 +1,59 @@
+<?php
+if (isset($_GET['erreur'])) {
+  switch ($_GET['erreur']) {
+    case 'sql':
+      echo "<script language='JavaScript' type='text/javascript'>
+          alert('Erreur SQL');
+          </script>";
+      break;
+    case 'mdp':
+      echo "<script language='JavaScript' type='text/javascript'>
+          alert('Le mot de passe doit contenir au moins 8 caractères dont une majuscule, une minuscule et un chiffre');
+          </script>";
+      break;
+    case 'mail':
+      echo "<script language='JavaScript' type='text/javascript'>
+          alert('L\'adresse mail n\'est pas valide');
+          </script>";
+      break;
+    case 'tel':
+      echo "<script language='JavaScript' type='text/javascript'>
+          alert('Le numéro de téléphone n\'est pas valide');
+          </script>";
+      break;
+    case 'username':
+      echo "<script language='JavaScript' type='text/javascript'>
+          alert('Le nom d\'utilisateur est déjà utilisé');
+          </script>";
+      break;
+    case 'mailUsed':
+      echo "<script language='JavaScript' type='text/javascript'>
+          alert('L\'adresse mail est déjà utilisée');
+          </script>";
+      break;
+    case 'telUsed':
+      echo "<script language='JavaScript' type='text/javascript'>
+          alert('Le numéro de téléphone est déjà utilisé');
+          </script>";
+      break;
+    case 'usernameUsed':
+      echo "<script language='JavaScript' type='text/javascript'>
+          alert('Le nom d\'utilisateur est déjà utilisé');
+          </script>";
+    case 'dtN':
+      echo "<script language='JavaScript' type='text/javascript'>
+          alert('La date de naissance n\'est pas valide');
+          </script>";
+      break;
+    default:
+      echo "<script language='JavaScript' type='text/javascript'>
+          alert('Erreur inconnue, veuillez réessayer! ');
+          </script>";
+      break;
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,14 +61,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inscription</title>
-  <link rel="stylesheet" href="./css/register.css">
+  <link rel="stylesheet" href="./css/compte.css">
   <script src="./js/functions.js"></script>
 </head>
 
 <body>
-  <div class="Inscription">
-  <a href="index.php" id="maly"> MALYART </a>
-    <form action="traitementInscription.php" method="POST" id='form' onsubmit="return validateForm()">
+  <div class="global-container">
+    <a href="index.php" id="maly"> MALYART </a>
+    <form action="traitementInscription.php" method="POST" id='register-form' onsubmit="return validateForm()">
       <h1 class="center">Formulaire d'inscription</h1>
       <div class="fields">
         <div class="column">

@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display&display=swap");
+
+/*CSS de la page de LOGIN et d'inscription */
+
+body {
+  font-family: "Playfair Display", serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+.global-container {
+  margin-top: 0;
+  margin-bottom: 15px;
+  height: 100vh;
+}
+
+#login-form {
+  width: 300px;
+}
+
+#register-form {
+  width: 600px;
+}
+
+@media (max-width: 600px) {
+  #login-form {
+    width: 300px;
+  }
+  #register-form {
+    width: 300px;
+  }
+  #main {
+    width: 300px;
+  }
+  .fields {
+    flex-direction: column;
+  }
+}
+
+
+#maly {
+  font-size: 50px;
+  text-decoration: none;
+  color: #70019f;
+  text-align: center;
+  display: block;
+  padding: 10px 20px;
+}
+
+h2 {
+  color: #70019f;
+}
+
+p {
+  font-size: small;
+}
+
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+.remember-me {
+  all: unset;
+}
+.remember-me input {
+  width: 20%;
+}
+
+
+button {
+  background-color: #b300ff;
+  cursor: pointer;
+  border-radius: 20px;
+  color: white;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+button:hover {
+  background-color: #70019f;
+}
+
+.center {
+  width: 100%;
+  text-align: center;
+}
+p {
+  font-size: small;
+}
+
+.fields {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column {
+  flex: 1;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
