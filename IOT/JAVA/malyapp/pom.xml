@@ -45,7 +45,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>com.malyart.Main</mainClass>
+                    <mainClass>com.malyart.Main2</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -55,7 +55,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.malyart.Main</mainClass>
+                            <mainClass>com.malyart.Main2</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
