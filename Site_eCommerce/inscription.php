@@ -40,6 +40,7 @@ if (isset($_GET['erreur'])) {
       echo "<script language='JavaScript' type='text/javascript'>
           alert('Le nom d\'utilisateur est déjà utilisé');
           </script>";
+      break;
     case 'dtN':
       echo "<script language='JavaScript' type='text/javascript'>
           alert('La date de naissance n\'est pas valide');
@@ -51,6 +52,7 @@ if (isset($_GET['erreur'])) {
           </script>";
       break;
   }
+  
 }
 ?>
 
@@ -62,7 +64,7 @@ if (isset($_GET['erreur'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inscription</title>
   <link rel="stylesheet" href="./css/compte.css">
-  <script src="./js/functions.js"></script>
+  <script src="./js/register.js"></script>
 </head>
 
 <body>

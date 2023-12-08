@@ -18,7 +18,7 @@ function validateForm() {
     }
 
     if (!regexTelephone.test(tel)) {
-      alert("Invalid phone number. Please try again. Format : 06 12 34 56 78 ");
+      alert("Invalid phone number. Please try again. Format : 0612345678 OR +33612345678");
       document.getElementById("tel").value = "";
       return false;
     }
