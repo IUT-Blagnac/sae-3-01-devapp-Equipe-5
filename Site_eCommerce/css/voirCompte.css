@@ -1,0 +1,72 @@
+/* fichier css de la page compte.php */
+
+/* Style des champs*/
+.fields {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Chaque colonne occupe une partie égale de l'espace disponible */
+.column {
+  flex: 1;
+  padding: 0 10px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+/* Les colonnes commencent à la même hauteur*/
+.column:first-child {
+  align-self: flex-start;
+}
+
+/* Centre le texte horizontalement */
+.title {
+  margin: 0 auto;
+  width: 200px;
+}
+
+/* Style du bouton */
+.fields button {
+  background-color: #b300ff;
+  cursor: pointer;
+  border-radius: 20px;
+  color: white;
+  padding: 5px 20px;
+  margin: 10px auto; 
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-sizing: border-box;
+  display: block; 
+}
+
+/* Changement de couleur au survol du bouton */
+.fields button:hover {
+  background-color: #70019f;
+}
+
+/* Style des champs de saisie */
+.fields input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+/* Style du formulaire */
+.form {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Style du conteneur du bouton */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin: 0 auto; 
+}

@@ -1,5 +1,5 @@
 <?php
-require_once('include/Connect.inc.php');
+require_once('include/connect.inc.php');
 if (isset($_POST['login']) && isset($_POST['password'])) {
     $login = htmlentities($_POST['login']);
     $password = htmlentities($_POST['password']);
@@ -21,6 +21,7 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
     if ($request -> rowCount() == 1) { 
         session_start();
         $_SESSION['login'] = $login;
+        $_SESSION['id'] = $request->fetch()['idClient'];
         $_SESSION['logged'] = true;
         if(isset($_POST['remember'])) {
             setcookie("Login", $_POST['login'], time() + 3600);  
