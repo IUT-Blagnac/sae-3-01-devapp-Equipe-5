@@ -55,13 +55,13 @@ public class ConfigureController {
 
     Path fileOldConfig = Paths.get("configuration.csv");
 
-    File fileOldConfigFile = new File("Documents/Malyapp/configuration.csv");
-    File fileNewConfigFile = new File("Documents/Malyapp/configuration.yaml");
+    File fileOldConfigFile = new File("./configuration.csv");
+    File fileNewConfigFile = new File("./configuration.yaml");
 
     @FXML
     public void initialize() {
 
-        File configExists = new File("Documents/Malyapp/configuration.csv");
+        File configExists = new File("./configuration.csv");
 
         String ligne;
 
@@ -145,7 +145,7 @@ public class ConfigureController {
     @FXML
     private void getConfiguration() throws IOException {
 
-        String csvFilePath = "Documents/Malyapp/configuration.csv";
+        String csvFilePath = "./configuration.csv";
 
         // Les Données
         String urlConfig = urlField.getText();
