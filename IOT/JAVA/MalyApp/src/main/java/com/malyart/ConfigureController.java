@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -51,13 +53,15 @@ public class ConfigureController {
     @FXML
     private TextField pressureTextField;
 
-    File fileOldConfigFile = new File("src/test/configuration.csv");
-    File fileNewConfigFile = new File("src/test/configuration.yaml");
+    Path fileOldConfig = Paths.get("configuration.csv");
+
+    File fileOldConfigFile = new File("Documents/Malyapp/configuration.csv");
+    File fileNewConfigFile = new File("Documents/Malyapp/configuration.yaml");
 
     @FXML
     public void initialize() {
 
-        File configExists = new File("src/test/configuration.csv");
+        File configExists = new File("Documents/Malyapp/configuration.csv");
 
         String ligne;
 
@@ -141,7 +145,7 @@ public class ConfigureController {
     @FXML
     private void getConfiguration() throws IOException {
 
-        String csvFilePath = "src/test/configuration.csv";
+        String csvFilePath = "Documents/Malyapp/configuration.csv";
 
         // Les Données
         String urlConfig = urlField.getText();
