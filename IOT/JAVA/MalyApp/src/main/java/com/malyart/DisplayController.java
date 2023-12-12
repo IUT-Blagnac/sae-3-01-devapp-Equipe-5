@@ -58,7 +58,6 @@ public class DisplayController {
         String csvFilePath = "./data.csv";
         String targetRoom = selectedOption;
 
-        if (targetRoom != "+") {
             try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
                 List<String[]> records = reader.readAll();
 
@@ -92,55 +91,7 @@ public class DisplayController {
             } catch (IOException | NumberFormatException e) {
                 e.printStackTrace();
             }
-        } else {
-            // la moyenne de toutes les salles
-            try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
-                List<String[]> records = reader.readAll();
-
-                double temperature = 0;
-                double humidity = 0;
-                int co2 = 0;
-                int activity = 0;
-                int tvoc = 0;
-                int illumination = 0;
-                int infrared = 0;
-                int infraredAndVisible = 0;
-                double pressure = 0;
-
-                int count = 0;
-
-                for (String[] record : records) {
-                    if (record.length > 0) {
-                        // La première colonne correspond à la salle
-                        temperature += Double.parseDouble(record[2]);
-                        humidity += Double.parseDouble(record[3]);
-                        co2 += Integer.parseInt(record[4]);
-                        activity += Integer.parseInt(record[5]);
-                        tvoc += Integer.parseInt(record[6]);
-                        illumination += Integer.parseInt(record[7]);
-                        infrared += Integer.parseInt(record[8]);
-                        infraredAndVisible += Integer.parseInt(record[9]);
-                        pressure += Double.parseDouble(record[10]);
-
-                        count++;
-                    }
-                }
-
-                // Afficher les valeurs
-                temperatureTextArea.setText(String.valueOf(temperature / count));
-                humidityTextArea.setText(String.valueOf(humidity / count));
-                co2TextArea.setText(String.valueOf(co2 / count));
-                activityTextArea.setText(String.valueOf(activity / count));
-                tvocTextArea.setText(String.valueOf(tvoc / count));
-                illuminationTextArea.setText(String.valueOf(illumination / count));
-                infraredTextArea.setText(String.valueOf(infrared / count));
-                infrared_and_visibleTextArea.setText(String.valueOf(infraredAndVisible / count));
-                pressureTextArea.setText(String.valueOf(pressure / count));
-
-            } catch (IOException | NumberFormatException e) {
-                e.printStackTrace();
-            }
-        }
+        
     }
 
 }

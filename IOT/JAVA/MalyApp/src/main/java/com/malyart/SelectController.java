@@ -83,7 +83,7 @@ public class SelectController {
             missedAlert.setTitle("Error alert");
             missedAlert.setHeaderText("Choisissez une salle !");
 
-            missedAlert.showAndWait();;
+            missedAlert.showAndWait();
         } else {
             Main.openNewWindow("display");
         }

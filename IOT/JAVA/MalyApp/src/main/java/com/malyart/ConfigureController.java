@@ -170,8 +170,9 @@ public class ConfigureController {
 
         // Manque une/des information(s)
         if (urlConfig.isEmpty() || portConfig.isEmpty() || alertFileConfig.isEmpty() || dataFileConfig.isEmpty() ||
-                salleConfig.isEmpty() || restDurationConfig.isEmpty() || temperatureConfig.isEmpty() || humidityConfig.isEmpty() || co2Config.isEmpty() || 
-                activityConfig.isEmpty() || tvocConfig.isEmpty() || illuminationConfig.isEmpty() || 
+                salleConfig.isEmpty() || restDurationConfig.isEmpty() || temperatureConfig.isEmpty()
+                || humidityConfig.isEmpty() || co2Config.isEmpty() ||
+                activityConfig.isEmpty() || tvocConfig.isEmpty() || illuminationConfig.isEmpty() ||
                 infraredConfig.isEmpty() || infrared_and_visibleConfig.isEmpty() || pressureConfig.isEmpty()) {
 
             Alert missedAlert = new Alert(AlertType.ERROR);
@@ -277,9 +278,39 @@ public class ConfigureController {
         }
 
         if (!urlConfig.isEmpty() && !portConfig.isEmpty() && !alertFileConfig.isEmpty() && !dataFileConfig.isEmpty() &&
-                !salleConfig.isEmpty() && !restDurationConfig.isEmpty() && !temperatureConfig.isEmpty() && !humidityConfig.isEmpty() && 
-                !co2Config.isEmpty() && !activityConfig.isEmpty() && !tvocConfig.isEmpty() && !illuminationConfig.isEmpty() && 
+                !salleConfig.isEmpty() && !restDurationConfig.isEmpty() && !temperatureConfig.isEmpty()
+                && !humidityConfig.isEmpty() &&
+                !co2Config.isEmpty() && !activityConfig.isEmpty() && !tvocConfig.isEmpty()
+                && !illuminationConfig.isEmpty() &&
                 !infraredConfig.isEmpty() && !infrared_and_visibleConfig.isEmpty() && !pressureConfig.isEmpty()) {
+
+            try {
+                // Chemin vers l'interpréteur Python 3 et script Python
+
+                // Commande complète à exécuter
+                String command = "python3 ./sae-iot.py";
+
+                // Créer le processus
+                ProcessBuilder processBuilder = new ProcessBuilder(command.split("\\s+"));
+                processBuilder.redirectErrorStream(true);
+
+                // Exécuter la commande
+                Process process = processBuilder.start();
+
+                // Lire la sortie du processus
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    System.out.println(line);
+                }
+
+                // Attendre que le processus se termine
+                int exitCode = process.waitFor();
+                System.out.println("La commande s'est terminée avec le code de sortie : " + exitCode);
+
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
 
             Main.setRoot("select");
 
