@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -15,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -35,6 +34,8 @@ public class ConfigureController {
     @FXML
     private TextField alertFileField;
     @FXML
+    private ComboBox<String> restDurationComboBox;
+    @FXML
     private TextField temperatureTextField;
     @FXML
     private TextField humidityTextField;
@@ -53,13 +54,13 @@ public class ConfigureController {
     @FXML
     private TextField pressureTextField;
 
-    Path fileOldConfig = Paths.get("configuration.csv");
-
     File fileOldConfigFile = new File("./configuration.csv");
     File fileNewConfigFile = new File("./configuration.yaml");
 
     @FXML
     public void initialize() {
+
+        restDurationComboBox.getItems().addAll("10", "20", "30", "60");
 
         File configExists = new File("./configuration.csv");
 
@@ -99,6 +100,9 @@ public class ConfigureController {
                         valeur = valeur.replace("\",\"", ",");
                         valeur = valeur.replace("\"]", "");
                         topicsField.setText(valeur);
+                    } else if (ligne.startsWith("rest_duration  : ")) {
+                        valeur = ligne.replace("rest_duration  : ", "");
+                        restDurationComboBox.getSelectionModel().select(2);
                     } else if (ligne.startsWith("  temperature : ")) {
                         valeur = ligne.replace("  temperature : ", "");
                         temperatureTextField.setText(valeur);
@@ -153,6 +157,7 @@ public class ConfigureController {
         String alertFileConfig = alertFileField.getText();
         String dataFileConfig = dataFileField.getText();
         String salleConfig = topicsField.getText();
+        String restDurationConfig = restDurationComboBox.getValue();
         String temperatureConfig = temperatureTextField.getText();
         String humidityConfig = humidityTextField.getText();
         String co2Config = co2TextField.getText();
@@ -165,11 +170,9 @@ public class ConfigureController {
 
         // Manque une/des information(s)
         if (urlConfig.isEmpty() || portConfig.isEmpty() || alertFileConfig.isEmpty() || dataFileConfig.isEmpty() ||
-                salleConfig.isEmpty() || temperatureConfig.isEmpty() || humidityConfig.isEmpty() || co2Config.isEmpty()
-                ||
-                activityConfig.isEmpty() || tvocConfig.isEmpty() || illuminationConfig.isEmpty()
-                || infraredConfig.isEmpty() ||
-                infrared_and_visibleConfig.isEmpty() || pressureConfig.isEmpty()) {
+                salleConfig.isEmpty() || restDurationConfig.isEmpty() || temperatureConfig.isEmpty() || humidityConfig.isEmpty() || co2Config.isEmpty() || 
+                activityConfig.isEmpty() || tvocConfig.isEmpty() || illuminationConfig.isEmpty() || 
+                infraredConfig.isEmpty() || infrared_and_visibleConfig.isEmpty() || pressureConfig.isEmpty()) {
 
             Alert missedAlert = new Alert(AlertType.ERROR);
 
@@ -223,8 +226,12 @@ public class ConfigureController {
             writer.write(
                     "selectedData: [\"temperature\",\"humidity\",\"co2\",\"activity\",\"tvoc\",\"illumination\",\"infrared\",\"infrared_and_visible\",\"pressure\"]\n");
 
-            // frequency
-            writer.write("frequency : 30\n");
+            // rest_duration
+            writer.write("rest_duration  : ");
+            writer.write(String.format("%s\n", restDurationConfig));
+
+            // running_time
+            writer.write("running_time : 10\n");
 
             // thresholds
             writer.write("thresholds:\n");
@@ -270,30 +277,11 @@ public class ConfigureController {
         }
 
         if (!urlConfig.isEmpty() && !portConfig.isEmpty() && !alertFileConfig.isEmpty() && !dataFileConfig.isEmpty() &&
-                !salleConfig.isEmpty() && !temperatureConfig.isEmpty() && !humidityConfig.isEmpty()
-                && !co2Config.isEmpty() &&
-                !activityConfig.isEmpty() && !tvocConfig.isEmpty() && !illuminationConfig.isEmpty()
-                && !infraredConfig.isEmpty() &&
-                !infrared_and_visibleConfig.isEmpty() && !pressureConfig.isEmpty()) {
+                !salleConfig.isEmpty() && !restDurationConfig.isEmpty() && !temperatureConfig.isEmpty() && !humidityConfig.isEmpty() && 
+                !co2Config.isEmpty() && !activityConfig.isEmpty() && !tvocConfig.isEmpty() && !illuminationConfig.isEmpty() && 
+                !infraredConfig.isEmpty() && !infrared_and_visibleConfig.isEmpty() && !pressureConfig.isEmpty()) {
 
-            try {
-                // Chemin vers l'interpréteur Python et le script Python
-                String pythonInterpreter = "chemin/vers/python";
-                String pythonScript = "chemin/vers/votre_script.py";
-
-                ProcessBuilder processBuilder = new ProcessBuilder(pythonInterpreter, pythonScript);
-                Process process = processBuilder.start();
-
-                // Attendre que le processus se termine
-                int exitCode = process.waitFor();
-
-                // Afficher le code de sortie du processus
-                System.out.println("Le script Python s'est terminé avec le code de sortie : " + exitCode);
-
-            } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
-            }
-            Main.setRoot("primary");
+            Main.setRoot("select");
 
         }
 

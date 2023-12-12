@@ -28,6 +28,15 @@ public class Main extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
+    static void openNewWindow(String fxml) throws IOException {
+        Stage newStage = new Stage();
+        Scene newScene = new Scene(loadFXML(fxml), 900, 700);
+        newStage.setScene(newScene);
+        newStage.setTitle("MALYAPP");
+        newStage.show();
+        newStage.setResizable(false);
+    }
+
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
