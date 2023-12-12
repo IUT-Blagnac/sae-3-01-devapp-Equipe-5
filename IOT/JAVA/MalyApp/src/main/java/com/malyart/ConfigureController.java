@@ -284,9 +284,10 @@ public class ConfigureController {
                 && !illuminationConfig.isEmpty() &&
                 !infraredConfig.isEmpty() && !infrared_and_visibleConfig.isEmpty() && !pressureConfig.isEmpty()) {
 
-            try {
-                // Chemin vers l'interpréteur Python 3 et script Python
 
+            // Créer et démarrer le thread pour le script Python
+        Thread pythonThread = new Thread(() -> {
+            try {
                 // Commande complète à exécuter
                 String command = "python3 ./sae-iot.py";
 
@@ -311,7 +312,11 @@ public class ConfigureController {
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
+        });
 
+        // Démarrer le thread Python
+        pythonThread.start();
+                    
             Main.setRoot("select");
 
         }
