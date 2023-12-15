@@ -1,4 +1,3 @@
-
 //initial value of the total
 const quantityInputs = document.querySelectorAll('input[name="quantity"]');
 quantityInputs.forEach(function (input) {
@@ -75,19 +74,65 @@ function adjustQuantity(button, delta) {
 function updateTotal(input) {
   const form = input.closest(".myForm");
   const quantity = parseInt(form.querySelector('input[name="quantity"]').value);
-  const price = parseInt(form.querySelector('input[name="price"]').value);
-  const total = quantity * price;
+  const price = parseFloat(
+    form.querySelector('input[name="price"]').value.replace(",", ".")
+  );
+  const total = Math.round(quantity * price * 100) / 100;
 
   form.querySelector(".totalValue").innerText = total;
+
+  updateGlobalTotal();
+}
+
+function updateGlobalTotal() {
+  let globalTotal = 0;
+
+  const totals = document.querySelectorAll(".totalValue");
+  totals.forEach(function (total) {
+    globalTotal += parseFloat(total.innerText);
+  });
+
+  globalTotal = Math.round(globalTotal * 100) / 100;
+  //if total is 0, disable the submit button
+  if (globalTotal == 0) {
+    document.getElementById("commander").disabled = true;
+  } else {
+    document.getElementById("commander").disabled = false;
+  }
+  document.querySelector("#totalComplet").innerText =
+    "Total: " + globalTotal + " €";
 }
 
 function resetForm(button) {
   const form = button.closest(".myForm");
   form.reset();
-  updateTotal(form.querySelector('input[name="quantity"]'));
-
-  const originalFormValues = getFormValues(form);
+  if (form.querySelector('input[name="quantity"]')) {
+    updateTotal(form.querySelector('input[name="quantity"]'));
+    const originalFormValues = getFormValues(form);
+  }
 
   form.querySelector(".saveButton").style.display = "none";
   form.querySelector(".cancelButton").style.display = "none";
+}
+
+var input = document.getElementById("input");
+input.addEventListener("keyup", function (event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    document.getElementById("submit").click();
+  }
+});
+
+function confirmDelete() {
+  return confirm("Voulez-vous vraiment supprimer cet emplacement ?");
+}
+
+function toggleNewAddress() {
+  const newAddressDiv = document.getElementById("newAddressDiv");
+  const existingAddress = document.getElementById("existingAddress");
+  if (existingAddress.value === "") {
+      newAddressDiv.style.display = "block";
+  } else {
+      newAddressDiv.style.display = "none";
+  }
 }
