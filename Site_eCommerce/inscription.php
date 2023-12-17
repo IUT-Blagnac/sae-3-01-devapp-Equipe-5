@@ -52,7 +52,6 @@ if (isset($_GET['erreur'])) {
           </script>";
       break;
   }
-  
 }
 ?>
 
@@ -70,7 +69,7 @@ if (isset($_GET['erreur'])) {
 <body>
   <div class="global-container">
     <a href="index.php" id="maly"> MALYART </a>
-    <form action="traitementInscription.php" method="POST" id='register-form' onsubmit="return validateForm()">
+    <form action="traitementInscription.php<?php if (isset($_GET['redirect'])) echo "?redirect=" . $_GET['redirect']; ?>" method="POST" id='register-form' onsubmit="return validateForm()">
       <h1 class="center">Formulaire d'inscription</h1>
       <div class="fields">
         <div class="column">
@@ -91,25 +90,24 @@ if (isset($_GET['erreur'])) {
           <input type="date" id="dtN" name="dtN" required>
 
         </div>
-        <!-- PARTIE ADRESSES 
         <div class="column">
           <h3>Adresse </h3>
-          <label for="input8">Rue :</label>
-          <input type="text" id="input8" name="input8">
+          <label for="rue">Rue :</label>
+          <input type="text" id="rue" name="rue" required>
 
-          <label for="input9">Ville :</label>
-          <input type="text" id="input9" name="input9">
+          <label for="ville">Ville :</label>
+          <input type="text" id="ville" name="ville" required>
 
-          <label for="input10">Code postal</label>
-          <input type="number" id="input10" name="input10">
+          <label for="codePostal">Code postal</label>
+          <input type="number" id="codePostal" name="codePostal" required min="1" max="100000">
 
-          <label for="input11">Complément :</label>
-          <input type="text" id="input11" name="input11">
+          <label for="complement">Complément :</label>
+          <input type="text" id="complement" name="complement">
 
-          <label for="input12">Pays :</label>
-          <input type="text" id="input12" name="input12">
+          <label for="pays">Pays :</label>
+          <input type="text" id="pays" name="pays" value="France" required>
         </div>
-        -->
+
         <div class="column">
           <h3>Informations de connexion</h3>
           <label for="username">Nom d'utilisateur :</label>

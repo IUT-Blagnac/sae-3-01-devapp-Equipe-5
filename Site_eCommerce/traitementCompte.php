@@ -1,23 +1,25 @@
 <?php
 require_once('include/connect.inc.php');
+session_start();
 
-if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && isset($_POST['tel']) && isset($_POST['dtN']) && isset($_POST['username'])) {
-    // Récupération des données avec htmlentities 
+if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && isset($_POST['tel']) && isset($_POST['dtN']) && isset($_POST['username']) && isset($_POST['rue']) && isset($_POST['ville']) && isset($_POST['codeP']) && isset($_POST['pays']) ) {
+    // Rï¿½cupï¿½ration des donnï¿½es avec htmlentities 
     $nom = htmlentities($_POST['nom']);
     $prenom = htmlentities($_POST['prenom']);
     $mail = htmlentities($_POST['mail']);
     $tel = htmlentities($_POST['tel']);
     $dtN = htmlentities($_POST['dtN']);
     $username = htmlentities($_POST['username']);
+    $rue = htmlentities($_POST['rue']);
+    $ville = htmlentities($_POST['ville']);
+    $codeP = htmlentities($_POST['codeP']);
+    $pays = htmlentities($_POST['pays']);
+    
 
-    // Vérification de l'existence de champs facultatifs
-    $rue = isset($_POST['rue']) ? htmlentities($_POST['rue']) : null;
-    $ville = isset($_POST['ville']) ? htmlentities($_POST['ville']) : null;
-    $codeP = isset($_POST['codeP']) ? htmlentities($_POST['codeP']) : null;
+    // Vï¿½rification de l'existence de champs facultatifs
     $compl = isset($_POST['compl']) ? htmlentities($_POST['compl']) : null;
-    $pays = isset($_POST['pays']) ? htmlentities($_POST['pays']) : null;
 
-    // On vérifie que le nom d'utilisateur n'est pas déjà utilisé (s'il a changé)
+    // On vï¿½rifie que le nom d'utilisateur n'est pas dï¿½jï¿½ utilisï¿½ (s'il a changï¿½)
     $request = $conn->prepare('SELECT * FROM Clients WHERE pseudo = :username AND :idClient != idClient');
     $request->bindParam(':username', $username);
     $request->bindParam(':idClient', $_SESSION['id']);
@@ -28,7 +30,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && 
         die();
     }
     
-    // On vérifie que le numéro de téléphone n'est pas déjà utilisé
+    // On vï¿½rifie que le numï¿½ro de tï¿½lï¿½phone n'est pas dï¿½jï¿½ utilisï¿½
     $request = $conn->prepare('SELECT * FROM Clients WHERE tel = :tel AND :idClient != idClient');
     $request->bindParam(':tel', $tel);
     $request->bindParam(':idClient', $_SESSION['id']);
@@ -39,7 +41,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && 
         die();
     }
 
-    // On vérifie que l'adresse mail n'est pas déjà utilisée (si elle a changé)
+    // On vï¿½rifie que l'adresse mail n'est pas dï¿½jï¿½ utilisï¿½e (si elle a changï¿½)
     $request = $conn->prepare('SELECT * FROM Clients WHERE adresseMail = :mail AND :idClient != idClient ');
     $request->bindParam(':mail', $mail);
     $request->bindParam(':idClient', $_SESSION['id']);
@@ -50,26 +52,44 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && 
         die();
     }
 
-    // On vérifie que l'adresse mail est valide
+    // On vï¿½rifie que l'adresse mail est valide
     if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
         header('Location: compte.php?erreur=mail');
         die();
     }
 
-    // On vérifie que le numéro de téléphone est valide
+    // On vï¿½rifie que le numï¿½ro de tï¿½lï¿½phone est valide
     if ($tel != '' && !preg_match("#^(\+|00)?33[1-9]([-. ]?[0-9]{2}){4}$|0[1-9]([-. ]?[0-9]{2}){4}$#", $tel)) {
         header('Location: compte.php?erreur=tel');
         die();
     }
 
-    // On vérifie que la date de naissance est valide
+    // On vï¿½rifie que la date de naissance est valide
     if (!preg_match("#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#", $dtN)) {
         header('Location: compte.php?erreur=dtN');
         die();
     }
 
-    // Si tout est OK, on met à jour les informations dans la base de données
+    // Si tout est OK, on met ï¿½ jour les informations dans la base de donnï¿½es
    try {
+    $conn->beginTransaction();
+
+    // Mise ï¿½ jour de la table Adresses
+    $updateAddressQuery = 'UPDATE Adresses
+                          SET rue = :rue, ville = :ville, codePostal = :codeP, 
+                              complement = :compl, pays = :pays
+                          WHERE idAdresse = (SELECT adresse FROM Clients WHERE idClient = :userId)';
+
+    $request = $conn->prepare($updateAddressQuery);
+    $request->bindParam(':rue', $rue);
+    $request->bindParam(':ville', $ville);
+    $request->bindParam(':codeP', $codeP);
+    $request->bindParam(':compl', $compl);
+    $request->bindParam(':pays', $pays);
+    $request->bindParam(':userId', $_SESSION['id'], PDO::PARAM_INT);
+    $request->execute();
+
+    // Mise ï¿½ jour de la table Clients
     $updateQuery = 'UPDATE Clients 
                     SET nom = :nom, prenom = :prenom, adresseMail = :mail, 
                         tel = :tel, dateNaissance = :dtN, pseudo = :username 
@@ -84,30 +104,16 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && 
     $request->bindParam(':username', $username);
     $request->bindParam(':userId', $_SESSION['id'], PDO::PARAM_INT);
     $request->execute();
-} catch (PDOException $e) {
-    // En cas d'erreur, rediriger avec un message d'erreur
-    header('Location: compte.php?erreur=sql');
-    die();
-}
 
-try {    
-    $updateQuery = 'UPDATE Adresses
-                    SET rue = :rue, ville = :ville, codePostal = :codeP, 
-                        complement = :compl, pays = :pays
-                    WHERE idClient = :userId';      
-
-    $request = $conn->prepare($updateQuery);
-    $request->bindParam(':rue', $rue);
-    $request->bindParam(':ville', $ville);
-    $request->bindParam(':codeP', $codeP);
-    $request->bindParam(':compl', $compl);
-    $request->bindParam(':pays', $pays);
-    $request->bindParam(':userId', $_SESSION['id'], PDO::PARAM_INT);
-    $request->execute();
-} catch (PDOException $e) {
-    // En cas d'erreur, rediriger avec un message d'erreur
-    header('Location: compte.php?erreur=sql1');
-    die();
-}
+        // Si aucune exception n'est levï¿½e, valide la transaction
+        $conn->commit();
+        $test=$_SESSION['id'];
+        header('Location: compte.php?user='.$test);
+    } catch (PDOException $e) {
+        // En cas d'erreur, annuler la transaction et rediriger avec un message d'erreur
+        $conn->rollBack();
+        header('Location: compte.php?erreur=sql');
+        die();
+    }
 }
 ?>
