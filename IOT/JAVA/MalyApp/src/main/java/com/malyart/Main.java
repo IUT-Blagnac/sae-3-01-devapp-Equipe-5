@@ -17,7 +17,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("configure"), 900, 700);
+        scene = new Scene(loadFXML("select"), 900, 700);
         stage.setScene(scene);
         stage.setTitle("MALYAPP");
         stage.show();
@@ -26,6 +26,15 @@ public class Main extends Application {
 
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
+    }
+
+    static void openNewWindow(String fxml) throws IOException {
+        Stage newStage = new Stage();
+        Scene newScene = new Scene(loadFXML(fxml), 900, 700);
+        newStage.setScene(newScene);
+        newStage.setTitle("MALYAPP");
+        newStage.show();
+        newStage.setResizable(false);
     }
 
     private static Parent loadFXML(String fxml) throws IOException {

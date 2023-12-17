@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -33,6 +35,8 @@ public class ConfigureController {
     @FXML
     private TextField alertFileField;
     @FXML
+    private ComboBox<String> restDurationComboBox;
+    @FXML
     private TextField temperatureTextField;
     @FXML
     private TextField humidityTextField;
@@ -51,13 +55,16 @@ public class ConfigureController {
     @FXML
     private TextField pressureTextField;
 
-    File fileOldConfigFile = new File("src/test/configuration.csv");
-    File fileNewConfigFile = new File("src/test/configuration.yaml");
+    File fileOldConfigFile = new File("./configuration.csv");
+    File fileNewConfigFile = new File("./configuration.yaml");
+    String SIGNAL_FILE = "./signal.txt";
 
     @FXML
     public void initialize() {
 
-        File configExists = new File("src/test/configuration.csv");
+        restDurationComboBox.getItems().addAll("10", "20", "30", "60");
+
+        File configExists = new File("./configuration.csv");
 
         String ligne;
 
@@ -95,6 +102,9 @@ public class ConfigureController {
                         valeur = valeur.replace("\",\"", ",");
                         valeur = valeur.replace("\"]", "");
                         topicsField.setText(valeur);
+                    } else if (ligne.startsWith("rest_duration  : ")) {
+                        valeur = ligne.replace("rest_duration  : ", "");
+                        restDurationComboBox.getSelectionModel().select(2);
                     } else if (ligne.startsWith("  temperature : ")) {
                         valeur = ligne.replace("  temperature : ", "");
                         temperatureTextField.setText(valeur);
@@ -141,7 +151,7 @@ public class ConfigureController {
     @FXML
     private void getConfiguration() throws IOException {
 
-        String csvFilePath = "src/test/configuration.csv";
+        String csvFilePath = "./configuration.csv";
 
         // Les Données
         String urlConfig = urlField.getText();
@@ -149,6 +159,7 @@ public class ConfigureController {
         String alertFileConfig = alertFileField.getText();
         String dataFileConfig = dataFileField.getText();
         String salleConfig = topicsField.getText();
+        String restDurationConfig = restDurationComboBox.getValue();
         String temperatureConfig = temperatureTextField.getText();
         String humidityConfig = humidityTextField.getText();
         String co2Config = co2TextField.getText();
@@ -161,11 +172,10 @@ public class ConfigureController {
 
         // Manque une/des information(s)
         if (urlConfig.isEmpty() || portConfig.isEmpty() || alertFileConfig.isEmpty() || dataFileConfig.isEmpty() ||
-                salleConfig.isEmpty() || temperatureConfig.isEmpty() || humidityConfig.isEmpty() || co2Config.isEmpty()
-                ||
-                activityConfig.isEmpty() || tvocConfig.isEmpty() || illuminationConfig.isEmpty()
-                || infraredConfig.isEmpty() ||
-                infrared_and_visibleConfig.isEmpty() || pressureConfig.isEmpty()) {
+                salleConfig.isEmpty() || restDurationConfig.isEmpty() || temperatureConfig.isEmpty()
+                || humidityConfig.isEmpty() || co2Config.isEmpty() ||
+                activityConfig.isEmpty() || tvocConfig.isEmpty() || illuminationConfig.isEmpty() ||
+                infraredConfig.isEmpty() || infrared_and_visibleConfig.isEmpty() || pressureConfig.isEmpty()) {
 
             Alert missedAlert = new Alert(AlertType.ERROR);
 
@@ -219,8 +229,12 @@ public class ConfigureController {
             writer.write(
                     "selectedData: [\"temperature\",\"humidity\",\"co2\",\"activity\",\"tvoc\",\"illumination\",\"infrared\",\"infrared_and_visible\",\"pressure\"]\n");
 
-            // frequency
-            writer.write("frequency : 30\n");
+            // rest_duration
+            writer.write("rest_duration  : ");
+            writer.write(String.format("%s\n", restDurationConfig));
+
+            // running_time
+            writer.write("running_time : 10\n");
 
             // thresholds
             writer.write("thresholds:\n");
@@ -266,30 +280,58 @@ public class ConfigureController {
         }
 
         if (!urlConfig.isEmpty() && !portConfig.isEmpty() && !alertFileConfig.isEmpty() && !dataFileConfig.isEmpty() &&
-                !salleConfig.isEmpty() && !temperatureConfig.isEmpty() && !humidityConfig.isEmpty()
-                && !co2Config.isEmpty() &&
-                !activityConfig.isEmpty() && !tvocConfig.isEmpty() && !illuminationConfig.isEmpty()
-                && !infraredConfig.isEmpty() &&
-                !infrared_and_visibleConfig.isEmpty() && !pressureConfig.isEmpty()) {
+                !salleConfig.isEmpty() && !restDurationConfig.isEmpty() && !temperatureConfig.isEmpty()
+                && !humidityConfig.isEmpty() &&
+                !co2Config.isEmpty() && !activityConfig.isEmpty() && !tvocConfig.isEmpty()
+                && !illuminationConfig.isEmpty() &&
+                !infraredConfig.isEmpty() && !infrared_and_visibleConfig.isEmpty() && !pressureConfig.isEmpty()) {
 
-            try {
-                // Chemin vers l'interpréteur Python et le script Python
-                String pythonInterpreter = "chemin/vers/python";
-                String pythonScript = "chemin/vers/votre_script.py";
+            // Ajouter un hook de fermeture pour s'assurer que le script Python se termine
+            // lorsque l'application se ferme
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                System.out.println("Fermeture de l'application. Envoi du signal d'arrêt au script Python.");
 
-                ProcessBuilder processBuilder = new ProcessBuilder(pythonInterpreter, pythonScript);
-                Process process = processBuilder.start();
+                // Créer le fichier signal pour indiquer au script Python de se terminer
+                try {
+                    Files.createFile(Paths.get(SIGNAL_FILE));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }));
 
-                // Attendre que le processus se termine
-                int exitCode = process.waitFor();
+            // Créer et démarrer le thread pour le script Python
+            Thread pythonThread = new Thread(() -> {
+                try {
+                    // Commande complète à exécuter
+                    String command = "python3 ./sae-iot.py";
 
-                // Afficher le code de sortie du processus
-                System.out.println("Le script Python s'est terminé avec le code de sortie : " + exitCode);
+                    // Créer le processus
+                    ProcessBuilder processBuilder = new ProcessBuilder(command.split("\\s+"));
+                    processBuilder.redirectErrorStream(true);
 
-            } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
-            }
-            Main.setRoot("primary");
+                    // Exécuter la commande
+                    Process process = processBuilder.start();
+
+                    // Lire la sortie du processus
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        System.out.println(line);
+                    }
+
+                    // Attendre que le processus se termine
+                    int exitCode = process.waitFor();
+                    System.out.println("La commande s'est terminée avec le code de sortie : " + exitCode);
+
+                } catch (IOException | InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            // Démarrer le thread Python
+            pythonThread.start();
+
+            Main.setRoot("select");
 
         }
 
