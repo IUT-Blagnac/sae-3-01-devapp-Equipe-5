@@ -2,11 +2,7 @@
 session_start();
 
 require_once('include/connect.inc.php');
-
-if (!isset($_SESSION["login"])) {
-    header('Location: login.php');
-    exit();
-}
+require_once('include/loginCheck.php');
 
 if (isset($_GET['erreur'])) {
   switch ($_GET['erreur']) {
@@ -57,11 +53,20 @@ if (isset($_GET['erreur'])) {
       break;
   }
 }
-
-$request = $conn->prepare('SELECT * FROM Clients, Adresses WHERE idClient = :idClient');
+$request = $conn->prepare('SELECT * FROM Clients WHERE idClient = :idClient');
 $request->bindParam(':idClient', $_SESSION['id']);
 $request->execute();
 $userInfo = $request->fetch(PDO::FETCH_ASSOC);
+
+// Si l'utilisateur a une adresse, utiliser la jointure
+if ($userInfo && $userInfo['adresse'] !== null) {
+    $request = $conn->prepare('SELECT * FROM Clients, Adresses WHERE idClient = :idClient and Clients.adresse = Adresses.idAdresse');
+    $request->bindParam(':idClient', $_SESSION['id']);
+    $request->execute();
+    $userInfo = $request->fetch(PDO::FETCH_ASSOC);
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -102,20 +107,28 @@ $userInfo = $request->fetch(PDO::FETCH_ASSOC);
                 </div>
             
                 <div class="column">
+                    <?php
+                        $rue = isset($userInfo['rue']) ? $userInfo['rue'] : '';
+                        $ville = isset($userInfo['ville']) ? $userInfo['ville'] : '';
+                        $codePostal = isset($userInfo['codePostal']) ? $userInfo['codePostal'] : '';
+                        $complement = isset($userInfo['complement']) ? $userInfo['complement'] : '';
+                        $pays = isset($userInfo['pays']) ? $userInfo['pays'] : '';
+                    ?>
+
                     <label for="rue">Rue :</label> <br>
-                    <input type="text" id="rue" name="rue" value="<?php echo $userInfo['rue']; ?>" <br>
+                    <input type="text" id="rue" name="rue" value="<?php echo $rue; ?>" <br>
                 
                     <label for="ville">Ville :</label> <br>
-                    <input type="text" id="ville" name="ville" value="<?php echo $userInfo['ville']; ?>" <br>
+                    <input type="text" id="ville" name="ville" value="<?php echo $ville; ?>" <br>
                 
                     <label for="codeP">Code postal :</label> <br>
-                    <input type="text" id="codeP" name="codeP" value="<?php echo $userInfo['codePostal']; ?>" <br>
+                    <input type="text" id="codeP" name="codeP" value="<?php echo $codePostal; ?>" <br>
                 
                     <label for="compl">Complément :</label> <br>
-                    <input type="text" id="compl" name="compl" value="<?php echo $userInfo['complement']; ?>" <br>
+                    <input type="text" id="compl" name="compl" value="<?php echo $complement; ?>" <br>
                 
                     <label for="pays">Pays :</label> <br>
-                    <input type="text" id="pays" name="pays" value="<?php echo $userInfo['pays']; ?>" <br>
+                    <input type="text" id="pays" name="pays" value="<?php echo $pays; ?>" <br>
                 
                     <label for="username">Nom d'utilisateur :</label> <br>
                     <input type="text" id="username" name="username" value="<?php echo $userInfo['pseudo']; ?>" required> <br>
@@ -124,6 +137,26 @@ $userInfo = $request->fetch(PDO::FETCH_ASSOC);
                 </form>
             </div>
         </div>
+        <h2>Historique des commandes : </h2> <br><br><br>
+        
+        <?php
+            $request = $conn->prepare('SELECT * FROM Commande WHERE idClient = :idClient ORDER BY date DESC');
+            $request->bindParam(':idClient', $_SESSION['id']);
+            $request->execute();
+            $commandeInfo = $request->fetchAll(PDO::FETCH_ASSOC);
+
+            if(count($commandeInfo) > 0) {
+                foreach ($commandeInfo as $commande) {
+                echo '<div class="historique">';
+                echo '<a href="commander.php?numCommande=' . $commande['numero'] . '">Numéro de commande : ' . $commande['numero'] . '</a><br>';
+                echo " Date de commande : " . $commande['date'] . "<br>";
+                echo " Statut : " . $commande['statut'] . "<br>";
+                echo "</div>";
+            }
+        } else {
+            echo "Vous n'avez pas encore passé de commandes.";
+            }
+            ?>
     </div>
 
 
