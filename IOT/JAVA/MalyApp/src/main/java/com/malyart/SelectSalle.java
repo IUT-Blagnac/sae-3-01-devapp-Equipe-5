@@ -1,14 +1,14 @@
 package com.malyart;
 
-public class DataModel {
-    private static DataModel instance = new DataModel();
+public class SelectSalle {
+    private static SelectSalle instance = new SelectSalle();
 
     private String selectedOption;
 
-    private DataModel() {
+    private SelectSalle() {
     }
 
-    public static DataModel getInstance() {
+    public static SelectSalle getInstance() {
         return instance;
     }
 

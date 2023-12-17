@@ -65,13 +65,14 @@ public class SelectController {
 
         // Ajouter un écouteur sur la ChoiceBox pour mettre à jour le modèle partagé
         listSalle.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            DataModel.getInstance().setSelectedOption(newValue);
+            SelectSalle.getInstance().setSelectedOption(newValue);
         });
 
     }
 
     @FXML
     private void switchToConfigure() throws IOException {
+        
         Main.setRoot("configure");
     }
 

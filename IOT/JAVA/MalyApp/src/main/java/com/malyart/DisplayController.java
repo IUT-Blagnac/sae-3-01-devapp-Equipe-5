@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 public class DisplayController {
 
     // Récupérer la valeur depuis le modèle partagé et l'afficher dans un Label
-    private String selectedOption = DataModel.getInstance().getSelectedOption();
+    private String selectedOption = SelectSalle.getInstance().getSelectedOption();
 
     @FXML
     private Label labelSalle;
@@ -59,20 +59,20 @@ public class DisplayController {
         String targetRoom = selectedOption;
 
             try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
-                List<String[]> records = reader.readAll();
+                List<String[]> dataLignes = reader.readAll();
 
-                for (String[] record : records) {
-                    if (record.length > 0 && record[0].equals(targetRoom)) {
+                for (String[] dataLigne : dataLignes) {
+                    if (dataLigne.length > 0 && dataLigne[0].equals(targetRoom)) {
                         // La première colonne correspond à la salle
-                        double temperature = Double.parseDouble(record[2]);
-                        double humidity = Double.parseDouble(record[3]);
-                        int co2 = Integer.parseInt(record[4]);
-                        int activity = Integer.parseInt(record[5]);
-                        int tvoc = Integer.parseInt(record[6]);
-                        int illumination = Integer.parseInt(record[7]);
-                        int infrared = Integer.parseInt(record[8]);
-                        int infraredAndVisible = Integer.parseInt(record[9]);
-                        double pressure = Double.parseDouble(record[10]);
+                        double temperature = Double.parseDouble(dataLigne[2]);
+                        double humidity = Double.parseDouble(dataLigne[3]);
+                        int co2 = Integer.parseInt(dataLigne[4]);
+                        int activity = Integer.parseInt(dataLigne[5]);
+                        int tvoc = Integer.parseInt(dataLigne[6]);
+                        int illumination = Integer.parseInt(dataLigne[7]);
+                        int infrared = Integer.parseInt(dataLigne[8]);
+                        int infraredAndVisible = Integer.parseInt(dataLigne[9]);
+                        double pressure = Double.parseDouble(dataLigne[10]);
 
                         // Afficher les valeurs
                         temperatureTextArea.setText(String.valueOf(temperature));
