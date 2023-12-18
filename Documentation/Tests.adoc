@@ -1,0 +1,44 @@
+# Tests du site web de MalyArt
+
+## 1) Inscription
+
+### a) Champ non rempli
+
+Lorsqu'un champ n'est pas rempli (à l'exception du complément de l'adresse) et que l'on veut valider le formulaire, le message suivant apparaît :
+
+### b) Adresse mail incorrecte
+
+Lorsque l'utilisateur veut créer son compte avec une adresse mail ne respectant pas le format d'une adresse mail (regex utilisée : `^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]{2,}[.][a-zA-Z]{2,4}$`), 
+le pop-up suivant apparaît et l'utilisateur doit saisir une adresse mail valide :
+
+### c) Numéro de téléphone incorrect
+
+Lorsque l'utilisateur veut créer son compte avec une adresse mail ne respectant pas le bon format (regex utilisée : `^(?:\+33|0)[1-9]([0-9]{1,8})$`),
+le pop-up suivant apparaît et l'utilisateur doit saisir un numéro de téléphone valide :
+
+### d) Format de mot de passe invalide
+
+Lorsque l'utilisateur veut créer son compte avec un mot de passe ne respectant pas le bon format (8 caractères minimum, dont une majuscule, une minuscule et un chiffre),
+le pop-up suivant apparaît et l'utilisateur doit saisir un mot de passe valide :
+
+### e) Mot de passe non correspondant
+
+Lorsque l'utilisateur saisit un mot de passe différent lors de la confirmation du mot de passe, le pop-up suivant apparaît et l'utilisateur doit saisir le même mot de passe que celui qu'il a donné en premier lieu :
+
+### f) Mail, téléphone ou nom d'utilisateur déjà existant
+
+
+Lorsque l'utilisateur essaie de créer un compte en utilisant une adresse e-mail, un numéro de téléphone ou un nom d'utilisateur déjà associé à un autre compte, un pop-up s'affiche. 
+L'utilisateur est alors invité à remplacer le champ concerné par une valeur non encore utilisée. (L'affichage du pop-up s'adapte en fonction du champ à remplacer)
+
+### g) Inscription validée
+
+Lorsqu'aucun problème n'est rencontré, le pop-up suivant d'affiche et l'utilisateur est alors redirigé vers la page de connexion au site.
+
+## 2) Connexion
+
+
+
+## 3) Modification des informations du compte
+
+
