@@ -4,41 +4,74 @@
 
 ### a) Champ non rempli
 
-Lorsqu'un champ n'est pas rempli (à l'exception du complément de l'adresse) et que l'on veut valider le formulaire, le message suivant apparaît :
+Lorsqu'un champ n'est pas rempli (à l'exception du complément de l'adresse) et que l'on veut valider le formulaire, 
+le message suivant apparaît :
+
+image::champ_vide.png[champ vide]
 
 ### b) Adresse mail incorrecte
 
 Lorsque l'utilisateur veut créer son compte avec une adresse mail ne respectant pas le format d'une adresse mail (regex utilisée : `^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]{2,}[.][a-zA-Z]{2,4}$`), 
 le pop-up suivant apparaît et l'utilisateur doit saisir une adresse mail valide :
 
+image::adresse_mail_invalide.png[adresse mail invalide]
+
 ### c) Numéro de téléphone incorrect
 
 Lorsque l'utilisateur veut créer son compte avec une adresse mail ne respectant pas le bon format (regex utilisée : `^(?:\+33|0)[1-9]([0-9]{1,8})$`),
 le pop-up suivant apparaît et l'utilisateur doit saisir un numéro de téléphone valide :
+
+image::tel_invalide.png[téléphone invalide]
 
 ### d) Format de mot de passe invalide
 
 Lorsque l'utilisateur veut créer son compte avec un mot de passe ne respectant pas le bon format (8 caractères minimum, dont une majuscule, une minuscule et un chiffre),
 le pop-up suivant apparaît et l'utilisateur doit saisir un mot de passe valide :
 
+image::mdp_invalide.png[mot de passe invalide]
+
 ### e) Mot de passe non correspondant
 
 Lorsque l'utilisateur saisit un mot de passe différent lors de la confirmation du mot de passe, le pop-up suivant apparaît et l'utilisateur doit saisir le même mot de passe que celui qu'il a donné en premier lieu :
 
-### f) Mail, téléphone ou nom d'utilisateur déjà existant
+image::mdp_corresp.png[Les mots de passe ne correspondent pas]
 
+### f) Mail, téléphone ou nom d'utilisateur déjà existant
 
 Lorsque l'utilisateur essaie de créer un compte en utilisant une adresse e-mail, un numéro de téléphone ou un nom d'utilisateur déjà associé à un autre compte, un pop-up s'affiche. 
 L'utilisateur est alors invité à remplacer le champ concerné par une valeur non encore utilisée. (L'affichage du pop-up s'adapte en fonction du champ à remplacer)
+
+image::popup_doublon.png[Information déjà utilisée]
 
 ### g) Inscription validée
 
 Lorsqu'aucun problème n'est rencontré, le pop-up suivant d'affiche et l'utilisateur est alors redirigé vers la page de connexion au site.
 
+image::popup_inscription_réussie.png[Inscription réussie]
+
 ## 2) Connexion
 
+Lorsque l'utilisateur souhaite se connecter mais oublie de renseigner son nom d'utilisateur ou son mot de passe, le même type d'erreur apparaît que lorsqu'un champ n'est pas rempli lors de l'inscription. L'utilisateur 
+ne peut donc pas se connecter.
 
+Lorsque l'utilisateur n'utlise pas le bon nom d'utilisateur et/ou mot de passe, le pop-up suivant apparaît et l'utilisateur est invité à réessayer de se connecter :
+
+image::login_error.png[Erreur de connexion]
+
+Si l'utilisateur rentre les bons identifiants, il sera redirigé vers l'accueil s'il arrive depuis celui-ci. S'il est redirigé vers la page de connexion après avoir cliqué sur panier, il reviendra sur cette page après 
+s'être connecté. Le fonctionnement est semblable si l'utilisateur arrive sur la page de connexion après avoir cliqué sur le bouton compte.
+En cochant le bouton "se souvenir de moi", le nom d'utilisateur est sauvegardé pour la prochaine connexion : 
+
+image::remind_me.png[Se souvenir de moi]
 
 ## 3) Modification des informations du compte
+
+Si l'utilisateur tente de valider le formulaire permettant de modifier les informations de son compte sans avoir rempli tous les champs obligatoires (tous les champs sont obligatoires sauf le complément de l'adresse),
+le même message indiquant qu'un champ n'est pas rempli apparaîtra.
+
+Si l'adresse mail, le nom d'utilisateur ou le numéro de téléphone est modifié et que la nouvelle valeur est déjà utilisée pour un autre compte, le pop-up d'erreur suivant apparaîtra et l'utilisateur devra remplir le champ
+concerné avec une nouvelle valeur :
+
+image::popup_doublon_compte.png[Valeur déjà utilisée]
 
 
