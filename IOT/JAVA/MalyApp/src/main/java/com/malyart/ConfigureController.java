@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -285,51 +284,6 @@ public class ConfigureController {
                 !co2Config.isEmpty() && !activityConfig.isEmpty() && !tvocConfig.isEmpty()
                 && !illuminationConfig.isEmpty() &&
                 !infraredConfig.isEmpty() && !infrared_and_visibleConfig.isEmpty() && !pressureConfig.isEmpty()) {
-
-            // Ajouter un hook de fermeture pour s'assurer que le script Python se termine
-            // lorsque l'application se ferme
-            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-                System.out.println("Fermeture de l'application. Envoi du signal d'arrêt au script Python.");
-
-                // Créer le fichier signal pour indiquer au script Python de se terminer
-                try {
-                    Files.createFile(Paths.get(SIGNAL_FILE));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }));
-
-            // Créer et démarrer le thread pour le script Python
-            Thread pythonThread = new Thread(() -> {
-                try {
-                    // Commande complète à exécuter
-                    String command = "python3 ./sae-iot.py";
-
-                    // Créer le processus
-                    ProcessBuilder processBuilder = new ProcessBuilder(command.split("\\s+"));
-                    processBuilder.redirectErrorStream(true);
-
-                    // Exécuter la commande
-                    Process process = processBuilder.start();
-
-                    // Lire la sortie du processus
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        System.out.println(line);
-                    }
-
-                    // Attendre que le processus se termine
-                    int exitCode = process.waitFor();
-                    System.out.println("La commande s'est terminée avec le code de sortie : " + exitCode);
-
-                } catch (IOException | InterruptedException e) {
-                    e.printStackTrace();
-                }
-            });
-
-            // Démarrer le thread Python
-            pythonThread.start();
 
             Main.setRoot("select");
 

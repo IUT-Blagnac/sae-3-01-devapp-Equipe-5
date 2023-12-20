@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
 
 public class SelectController {
@@ -24,6 +25,10 @@ public class SelectController {
     private Button buttonConfigure;
     @FXML
     private ChoiceBox<String> listSalle;
+    @FXML
+    private ToggleButton toggleButtonLaunchScript;
+
+    private static Thread pythonThread;
 
     @FXML
     private void initialize() {
@@ -59,6 +64,16 @@ public class SelectController {
 
             br.close();
 
+            toggleButtonLaunchScript.setOnAction(event -> {
+                if (toggleButtonLaunchScript.isSelected()) {
+                    // Button is selected, start the Python thread
+                    startPythonThread();
+                } else {
+                    // Button is not selected, stop the Python thread
+                    stopPythonThread();
+                }
+            });
+
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -70,9 +85,39 @@ public class SelectController {
 
     }
 
+    private void startPythonThread() {
+        pythonThread = new Thread(() -> {
+            try {
+                // Commande complète à exécuter
+                String command = "python3 ./sae-iot.py";
+
+                // Créer le processus
+                ProcessBuilder processBuilder = new ProcessBuilder(command.split("\\s+"));
+                processBuilder.redirectErrorStream(true);
+                Process pythonProcess = processBuilder.start();
+
+                // Wait for the Python process to finish
+                pythonProcess.waitFor();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        // Start the Python thread
+        pythonThread.start();
+    }
+
+    private void stopPythonThread() {
+        if (pythonThread != null && pythonThread.isAlive()) {
+            // Interrupt the Python thread
+            pythonThread.interrupt();
+        }
+    }
+
     @FXML
     private void switchToConfigure() throws IOException {
-        
+
         Main.setRoot("configure");
     }
 
