@@ -23,7 +23,7 @@ L'entreprise a donc besoin d'un site web offrant une vitrine de ses produits, ai
 
 Le site est disponible à l'adresse : http://193.54.227.208/~saephp05/index.php 
 
-== Navigation sur le site
+== Navigation sur le site (client)
 
 === Accueil 
 
@@ -50,6 +50,43 @@ Pour créer son compte, l'utilisateur doit remplir tous les champs (seul le cham
 
 Arrivé sur la page présentant les articles, l'utilisateur peut choisir de trier les produits par prix croissant ou décroissant via le menu déroulant à gauche. 
 Cliquer sur un produit permet d'afficher ses détails. 
+Pour ajouter le produit au panier, appuyez sur le bouton "ajouter au panier" sous l'image du produit. Cliquez ensuite sur "OK" sur le pop-up de confirmation. Vous êtes maintenant sur la page de gestion du panier.
+
+=== Gestion du panier
+
+Pour augmenter ou diminuer la quantité d'un produit dans votre panier, utilisez les boutons "+" et "-" du produit concerné. Vous pouvez aussi directement taper le nombre dans la case de la quantité. Confirmez avec le bouton "save" ou annulez avec le bouton "cancel". Appuyer sur l'icône de poubelle permet de supprimer un produit de son panier (après confirmation via le pop-up). 
+Les prix totaux et sous-totaux sont mis à jour et indiqués sur la page.
+Cliquer sur le nom d'un produit permet de revenir aux détails de celui-ci.
+Validez la commande avec le bouton en bas à droite de la page.
+Le panier est aussi accessible si l'utilisateur est connecté depuis le menu situé en haut à droite. 
+
+=== Valider la commande
+
+Choisissez ou ajoutez une adresse de livraison via le menu déroulant. Si vous avez choisi d'ajouter une nouvelle adresse, remplissez les champs qui sont apparus (seul le champ complément est facultatif) et confirmez avec le bouton  
+Pour payer un produit avec une carte de crédit, remplissez les champs nécessaires (à gauche). De la même manière, pour payer avec Paypal, remplissez les champs correspondants (à droite). Une fois toutes les informations correctes, confirmez les informations avec le bouton "Payer".
+
+=== Modifier les informations du compte
+
+Une fois connecté, l'utilisateur peut accéder aux informations de son compte via le bouton "compte" accessible depuis le menu en haut à gauche.
+Il peut modifier ces informations et les valider avec le bouton "confirmer" sous le formulaire (attention cependant, aucun champ ne peut etre vide excepté le complément, le numéro de téléphone, le mail et le nom d'utilisateur doivent être uniques et les champs doivent respecter certains formats).
+
+=== Historique des commandes
+
+Sous les informations de son compte, le client peut visualiser son historique des commandes. Il peut voir : le numéro identifiant sa commande, la date de commande ainsi que son statut. 
+
+=== Laisser un avis
+
+== Utilisation du site (administrateur)
+
+=== Supprimer un avis
+
+=== Laisser un avis
+
+=== Ajouter un produit
+
+=== Modifier un produit
+
+
 
 
 
