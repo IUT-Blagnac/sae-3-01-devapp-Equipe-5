@@ -76,16 +76,24 @@ Sous les informations de son compte, le client peut visualiser son historique de
 
 === Laisser un avis
 
+Une fois qu'un client a acheté un produit sur le site, il peut laisser un avis sur celui-ci. L'avis est accompagné d'une note de 1 à 5 étoiles et le client peut aussi ajouter une photo à son avis.
+
 == Utilisation du site (administrateur)
 
 === Supprimer un avis
 
+
+
 === Laisser un avis
+
 
 === Ajouter un produit
 
+Pour ajouter un nouvel article sur le site, l'administrateur choisit le type de produit qu'il veut ajouter (produit simple, composition ou produit d'une composition) via le bouton correspondant. Il remplit ensuite les champs et choisit la bonne catégorie de produit et une image. Cliquer sur "ajouter" valide l'ajout.
+
 === Modifier un produit
 
+Un administrateur du site peut modifier les informations d'un produit en cliquant sur le bouton "modifier l'article". Ensuite, il peut remplacer les champs qu'il souhaite modifier ou changer l'image. Cliquer sur "modifier" confirme les changements. 
 
 
 
