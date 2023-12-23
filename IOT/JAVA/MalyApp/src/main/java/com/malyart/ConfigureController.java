@@ -9,13 +9,14 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
+
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class ConfigureController {
 
@@ -143,8 +144,7 @@ public class ConfigureController {
 
     @FXML
     private void actionQuitter() throws IOException {
-        Stage stage = (Stage) buttonQuitter.getScene().getWindow();
-        stage.close();
+        Platform.exit();
     }
 
     @FXML

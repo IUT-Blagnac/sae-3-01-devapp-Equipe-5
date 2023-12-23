@@ -7,13 +7,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ToggleButton;
-import javafx.stage.Stage;
 
 public class SelectController {
 
@@ -29,6 +29,7 @@ public class SelectController {
     private ToggleButton toggleButtonLaunchScript;
 
     private static Thread pythonThread;
+    private static Process pythonProcess;
 
     @FXML
     private void initialize() {
@@ -94,7 +95,7 @@ public class SelectController {
                 // Créer le processus
                 ProcessBuilder processBuilder = new ProcessBuilder(command.split("\\s+"));
                 processBuilder.redirectErrorStream(true);
-                Process pythonProcess = processBuilder.start();
+                pythonProcess = processBuilder.start();
 
                 // Wait for the Python process to finish
                 pythonProcess.waitFor();
@@ -110,14 +111,16 @@ public class SelectController {
 
     private void stopPythonThread() {
         if (pythonThread != null && pythonThread.isAlive()) {
-            // Interrupt the Python thread
-            pythonThread.interrupt();
+            // Stop the Python script gracefully
+            if (pythonProcess != null) {
+                pythonProcess.destroy();
+            }
         }
     }
 
     @FXML
     private void switchToConfigure() throws IOException {
-
+        stopPythonThread();
         Main.setRoot("configure");
     }
 
@@ -137,7 +140,7 @@ public class SelectController {
 
     @FXML
     private void actionQuitter() throws IOException {
-        Stage stage = (Stage) buttonQuitter.getScene().getWindow();
-        stage.close();
+        stopPythonThread();
+        Platform.exit();
     }
 }

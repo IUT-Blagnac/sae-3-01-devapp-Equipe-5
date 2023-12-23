@@ -19,7 +19,8 @@ public class DisplayController {
 
     // Récupérer la valeur depuis le modèle partagé et l'afficher dans un Label
     private String selectedOption = SelectSalle.getInstance().getSelectedOption();
-    private String csvFilePath = "./data.csv";
+    private String csvData = "./data.csv";
+    private String csvAlert = "./alert.csv";
     private String targetRoom = selectedOption; 
 
 
@@ -77,7 +78,7 @@ public class DisplayController {
             Valeurs[i] = 0.0;
         }
 
-        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
+        try (CSVReader reader = new CSVReader(new FileReader(csvData))) {
             List<String[]> dataLignes = reader.readAll();
 
             for (String[] dataLigne : dataLignes) {
@@ -94,7 +95,6 @@ public class DisplayController {
                 }
             }
 
-            // Mettre à jour UI sur le thread JavaFX en utilisant l'expression lambda
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
@@ -113,6 +113,68 @@ public class DisplayController {
 
         } catch (IOException | NumberFormatException | CsvException e) {
             e.printStackTrace();
+        }
+
+        try (CSVReader reader = new CSVReader(new FileReader(csvAlert))) {
+            List<String[]> dataLignes = reader.readAll();
+
+            for (String[] dataLigne : dataLignes) {
+                if (dataLigne.length > 0 && dataLigne[0].equals(targetRoom)) {
+                    if (dataLigne[2] != null) {
+                        // Remet tout en noir puis change la couleur des éléments qui dépassent les limites
+                        Platform.runLater(() -> updateColor(""));
+                        Platform.runLater(() -> updateColor(dataLigne[2]));
+                    } else {
+                        // Remet tout en noir
+                         Platform.runLater(() -> updateColor(""));
+                    }
+                }
+            }
+        } catch (IOException | NumberFormatException | CsvException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void updateColor(String alert) {
+        // Remet tout en noir
+        temperatureTextArea.setStyle("-fx-text-fill: black;");
+        humidityTextArea.setStyle("-fx-text-fill: black;");
+        co2TextArea.setStyle("-fx-text-fill: black;");
+        activityTextArea.setStyle("-fx-text-fill: black;");
+        tvocTextArea.setStyle("-fx-text-fill: black;");
+        illuminationTextArea.setStyle("-fx-text-fill: black;");
+        infraredTextArea.setStyle("-fx-text-fill: black;");
+        infrared_and_visibleTextArea.setStyle("-fx-text-fill: black;");
+        pressureTextArea.setStyle("-fx-text-fill: black;");
+    
+        // Change la couleur des éléments qui dépassent les limites
+        if (alert.contains("temperature")) {
+            temperatureTextArea.setStyle("-fx-text-fill: red;");
+        } 
+        if (alert.contains("humidity")) {
+            humidityTextArea.setStyle("-fx-text-fill: red;");
+        }
+        if (alert.contains("co2")) {
+            co2TextArea.setStyle("-fx-text-fill: red;");
+        }
+        if (alert.contains("activity")) {
+            activityTextArea.setStyle("-fx-text-fill: red;");
+        }
+        if (alert.contains("tvoc")) {
+            tvocTextArea.setStyle("-fx-text-fill: red;");
+        }
+        if (alert.contains("illumination")) {
+            illuminationTextArea.setStyle("-fx-text-fill: red;");
+        }
+        if (alert.contains("infrared ")) {
+            infraredTextArea.setStyle("-fx-text-fill: red;");
+        }
+        if (alert.contains("infrared_and_visible")) {
+            infrared_and_visibleTextArea.setStyle("-fx-text-fill: red;");
+        }
+        if (alert.contains("pressure")) {
+            pressureTextArea.setStyle("-fx-text-fill: red;");
         }
     }
 
