@@ -58,7 +58,11 @@ public class SelectController {
 
                     // Diviser la chaîne en éléments individuels
                     String[] elements = valeur.split(",");
-                    listSalle.getItems().addAll(elements);
+                    for (String element : elements) {
+                        if (!element.equals("+")) {
+                            listSalle.getItems().add(element);
+                        }
+                    }
 
                 }
             }

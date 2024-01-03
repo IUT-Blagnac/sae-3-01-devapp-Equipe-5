@@ -17,18 +17,16 @@ import java.util.TimerTask;
 
 public class DisplayController {
 
-    // Récupérer la valeur depuis le modèle partagé et l'afficher dans un Label
     private String selectedOption = SelectSalle.getInstance().getSelectedOption();
+    private String targetRoom = selectedOption; 
     private String csvData = "./data.csv";
     private String csvAlert = "./alert.csv";
-    private String targetRoom = selectedOption; 
-
-
-    // Renommez mutableValues en Valeurs
     private double[] Valeurs = new double[9];
 
     @FXML
     private Label labelSalle;
+    @FXML
+    private Button buttonCharts;
     @FXML
     private Button buttonQuitter;
     @FXML
@@ -54,7 +52,7 @@ public class DisplayController {
     private Timer refreshTimer;
 
     @FXML
-    public void initialize() throws CsvException {
+    public void initialize() {
         labelSalle.setText(targetRoom);
 
         // Initialiser Timer et TimerTask
@@ -71,7 +69,6 @@ public class DisplayController {
     }
 
     private void refreshData() {
-
         
         // Réinitialiser Valeurs
         for (int i = 0; i < Valeurs.length; i++) {
@@ -176,6 +173,11 @@ public class DisplayController {
         if (alert.contains("pressure")) {
             pressureTextArea.setStyle("-fx-text-fill: red;");
         }
+    }
+
+    @FXML
+    private void openChartsVersion() throws IOException {
+        Main.changeScene("displayData");
     }
 
     @FXML

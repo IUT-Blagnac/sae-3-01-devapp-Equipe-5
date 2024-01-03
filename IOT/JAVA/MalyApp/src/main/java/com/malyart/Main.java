@@ -14,6 +14,7 @@ import java.io.IOException;
 public class Main extends Application {
 
     private static Scene scene;
+    private static Scene newScene;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -28,9 +29,13 @@ public class Main extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
+    static void changeScene(String fxml) throws IOException {
+        newScene.setRoot(loadFXML(fxml));
+    }
+
     static void openNewWindow(String fxml) throws IOException {
         Stage newStage = new Stage();
-        Scene newScene = new Scene(loadFXML(fxml), 900, 700);
+        newScene = new Scene(loadFXML(fxml), 900, 700);
         newStage.setScene(newScene);
         newStage.setTitle("MALYAPP");
         newStage.show();
