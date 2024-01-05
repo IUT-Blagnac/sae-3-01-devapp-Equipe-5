@@ -1,0 +1,26 @@
+= SAÉ 3.01 2023-2024 - Documentation utilisateur Web - Équipe 5
+:toc:
+:toc-title: Table des matières
+:sectnums: 
+:sectnumlevels: 4
+
+== Présentation du projet
+=== Equipe
+
+Projet est réalisé par::
+
+- https://github.com/BernatSR[Bernat Soldevila]
+- https://github.com/DamienZoldyck[Damien Laboute]
+- https://github.com/EtienneSalauze[Etienne Salauze]
+- https://github.com/YashLeBg[MOHAMED SAID Y. Anli-Yachourti]
+
+Tuteur/tutrice enseignant(e) de l'équipe:: mailto:jean-michel.bruel@univ-tlse2.fr[JMB]
+
+=== Contexte
+Fondée lors de la crise sanitaire de 2020, MalyArt est une entreprise Toulousaine de vente de produits d'art ( peintures, tableaux, dessins et matériel de dessin ) en ligne. 
+
+L'entreprise a donc besoin d'un site web offrant une vitrine de ses produits, ainsi qu'un espace de vente en ligne. Cela affirmera sa présence sur le marché et lui permettra de se développer au niveau national.
+
+//Le reste de la page est à compléter plus tard//
+
+
