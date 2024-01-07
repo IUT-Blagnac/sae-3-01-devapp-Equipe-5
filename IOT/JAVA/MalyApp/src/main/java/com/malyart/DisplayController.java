@@ -144,34 +144,34 @@ public class DisplayController {
         infraredTextArea.setStyle("-fx-text-fill: black;");
         infrared_and_visibleTextArea.setStyle("-fx-text-fill: black;");
         pressureTextArea.setStyle("-fx-text-fill: black;");
-    
-        // Change la couleur des éléments qui dépassent les limites
+
+        // Change la couleur du fond du TextArea en rouge
         if (alert.contains("temperature")) {
-            temperatureTextArea.setStyle("-fx-text-fill: red;");
-        } 
+            temperatureTextArea.setStyle("-fx-control-inner-background: red;");
+        }
         if (alert.contains("humidity")) {
-            humidityTextArea.setStyle("-fx-text-fill: red;");
+            humidityTextArea.setStyle("-fx-control-inner-background: red;");
         }
         if (alert.contains("co2")) {
-            co2TextArea.setStyle("-fx-text-fill: red;");
+            co2TextArea.setStyle("-fx-control-inner-background: red;");
         }
         if (alert.contains("activity")) {
-            activityTextArea.setStyle("-fx-text-fill: red;");
+            activityTextArea.setStyle("-fx-control-inner-background: red;");
         }
         if (alert.contains("tvoc")) {
-            tvocTextArea.setStyle("-fx-text-fill: red;");
+            tvocTextArea.setStyle("-fx-control-inner-background: red;");
         }
         if (alert.contains("illumination")) {
-            illuminationTextArea.setStyle("-fx-text-fill: red;");
+            illuminationTextArea.setStyle("-fx-control-inner-background: red;");
         }
         if (alert.contains("infrared ")) {
-            infraredTextArea.setStyle("-fx-text-fill: red;");
+            infraredTextArea.setStyle("-fx-control-inner-background: red;");
         }
         if (alert.contains("infrared_and_visible")) {
-            infrared_and_visibleTextArea.setStyle("-fx-text-fill: red;");
+            infrared_and_visibleTextArea.setStyle("-fx-control-inner-background: red;");
         }
         if (alert.contains("pressure")) {
-            pressureTextArea.setStyle("-fx-text-fill: red;");
+            pressureTextArea.setStyle("-fx-control-inner-background: red;");
         }
     }
 
