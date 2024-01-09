@@ -1,0 +1,7 @@
+default:
+  extensions:
+    Behat\MinkExtension:
+      base_url: 'https://slavenarrativessae.000webhostapp.com/'
+      sessions:
+        default:
+          goutte: ~
