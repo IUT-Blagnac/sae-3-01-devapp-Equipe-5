@@ -12,3 +12,9 @@ Feature: MQTT Server Connection
     Given a connected MQTT client
     When the client subscribes to a topic
     Then the subscription is successful
+
+  Scenario: Successfully receiving and processing MQTT messages
+    Given a connected MQTT client subscribed to topics
+    When a message is published to a subscribed topic
+    Then the message is received and processed correctly
+
