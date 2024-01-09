@@ -45,6 +45,7 @@ behave
 
 WARNING: Il est obligatoire d'être connecté sur un réseau externe à l'IUT et exécuter le test sur un système d'exploitation autre que Windows.
 
+
 Cela devrait donner le rendu suivant :
 
 image::img/resultTestPy.png[Image résultat tests Python]

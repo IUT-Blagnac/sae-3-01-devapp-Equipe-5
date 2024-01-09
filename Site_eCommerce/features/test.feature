@@ -12,4 +12,7 @@ Feature: Website URL Check
     When I click on "Les mieux notés" link
     Then I should be on "http://193.54.227.208/~saephp05/produits.php?categorie=MieuxNotés" page
 
-
+  Scenario: Navigate to the Mentions Légales page
+    Given I am on the website "http://193.54.227.208/~saephp05/index.php"
+    When I click on the "Mentions légales" link
+    Then I should be on the page "http://193.54.227.208/~saephp04/mentionsLegales.php"

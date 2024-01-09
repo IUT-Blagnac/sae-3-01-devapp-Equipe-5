@@ -42,21 +42,21 @@ class FeatureContext extends MinkContext implements Context
     }
 
     /**
-     * @When I click on :url link
+     * @When I click on the :linkText link
      */
-    public function iClickOnLink($url)
+    public function iClickOnTheLink($linkText)
     {
-        $this->clickLink($url);
+        $this->clickLink($linkText);
     }
 
     /**
-     * @Then I should be on :url page
+     * @Then I should be on the page :url
      */
-    public function iShouldBeOnPage($url)
+    public function iShouldBeOnThePage($url)
     {
-        $expectedUrl = "http://193.54.227.208/~saephp05/produits.php?categorie=MieuxNotés";
-        if ($url !== $expectedUrl) {
-            throw new \Exception("L'URL de la page ne correspond pas à l'URL attendue '$expectedUrl'.");
+        $currentUrl = $this->getSession()->getCurrentUrl();
+        if ($currentUrl !== $url) {
+            throw new Exception("Expected to be on page '$url' but found '$currentUrl' instead.");
         }
     }
-}   
+}
