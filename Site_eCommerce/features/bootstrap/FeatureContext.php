@@ -40,4 +40,23 @@ class FeatureContext extends MinkContext implements Context
             throw new Exception("Website did not load successfully. Status code: $statusCode");
         }
     }
-}
+
+    /**
+     * @When I click on :url link
+     */
+    public function iClickOnLink($url)
+    {
+        $this->clickLink($url);
+    }
+
+    /**
+     * @Then I should be on :url page
+     */
+    public function iShouldBeOnPage($url)
+    {
+        $expectedUrl = "http://193.54.227.208/~saephp05/produits.php?categorie=MieuxNotés";
+        if ($url !== $expectedUrl) {
+            throw new \Exception("L'URL de la page ne correspond pas à l'URL attendue '$expectedUrl'.");
+        }
+    }
+}   
