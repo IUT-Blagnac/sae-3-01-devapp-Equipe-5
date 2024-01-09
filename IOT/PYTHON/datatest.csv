@@ -1,0 +1,3 @@
+room,time,temperature,humidity,co2,activity,tvoc,illumination,infrared,infrared_and_visible,pressure
+B106,1702308887.853246,21,60,1400,0,400,2,2,5,1000
+B106,1702308888.853246,23,62,1402,2,402,4,4,7,1002

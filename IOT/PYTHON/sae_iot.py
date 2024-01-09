@@ -70,6 +70,26 @@ def affichage_Moyenne(room):
 
             print(message + "\n")
 
+def affichage_MoyenneTest(room,csv):
+    with open(csv, "r") as csvfile:
+        csv_reader = csv.DictReader(csvfile)
+        data = [row for row in csv_reader if row["room"] == room]
+        if data:
+            print("Moyenne des données de la pièce " + room + " :")
+            message = ""
+            for key in config["selectedData"]:
+                if key != "time":
+                    values = [
+                        float(row[key])
+                        for row in data
+                        if key in row and row[key].strip()
+                    ]
+                    if values:
+                        moyenne = round(sum(values) / len(values), 2)
+                        message += key + " : " + str(moyenne) + " "
+
+            print(message + "\n")
+
 
 def on_message(client, userdata, msg):
     my_data = msg.payload.decode("utf-8")
