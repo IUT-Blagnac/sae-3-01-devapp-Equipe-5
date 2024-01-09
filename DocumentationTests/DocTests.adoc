@@ -1,0 +1,54 @@
+= Documentation Utilisateur site web Slave narratives
+:toc: macro
+:toc-title: Table des matières
+:toclevels: 3
+
+:hide-uri-scheme:   
+
+== Introduction
+
+Bienvenue dans la documentation utilisateur destinée à guider l'utilisation et la compréhension des tests en Python et en Java développés pour notre projet.
+
+toc::[]
+
+== Tests en Python
+
+=== Prérequis
+
+Avant de commencer, assurez-vous d'avoir installé les outils et librairies nécessaires. Vous aurez besoin de :
+
+* Python (version 3.x recommandée)
+* Bibliothèques Python : paho-mqtt, PyYAML, behave via la commande :
+
+[source,python]
+----
+pip install paho-mqtt PyYAML behave
+----
+
+et autres dépendances spécifiques au projet https://github.com/IUT-Blagnac/sae-3-01-devapp-Equipe-5/blob/master/IOT/PYTHON/README.adoc[Lien vers la documentation générale python]
+
+=== Exécution des Tests
+
+Afin d'exécuter les tests, placez-vous dans le dossier `/IOT/PYTHON` grâce à la commande :
+
+[source,python]
+----
+cd IOT/PYTHON
+----
+
+Puis, lancez la commande suivante :
+
+[source,terminal]
+----
+behave
+----
+
+WARNING: Il est obligatoire d'être connecté sur un réseau externe à l'IUT et exécuter le test sur un système d'exploitation autre que Windows.
+
+Cela devrait donner le rendu suivant :
+
+image::img/resultTestPy.png[Image résultat tests Python]
+
+=== Affichage des résultats
+
+=== Structure des Tests

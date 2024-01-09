@@ -5,14 +5,7 @@ import csv
 import json
 import threading
 import time
-
 import sys
-sys.path.append(r'C:\GitHub\sae-3-01-devapp-Equipe-5\IOT\PYTHON')
-
-from sae_iot import affichage_Moyennetest
-
-data = ''
-
 
 def on_connect(client, userdata, flags, rc):
     client.connected_flag = (rc == 0)  # rc 0 means successful connection
@@ -79,7 +72,7 @@ def step_impl(context):
 
     with open("configuration.yaml", "r") as file:
         config = yaml.safe_load(file)
-
+ 
     context.client.on_subscribe = on_subscribe
     for topic in config["topics"]:
         try:
@@ -152,19 +145,3 @@ def step_impl(context):
                 break
         else:
             assert False, "Les données attendues ne sont pas présentes dans le CSV"
-
-@given(u'a datatest.csv')
-def step_impl(context):
-    data = 'datatest.csv'
-
-
-@when(u'the average method is call')
-def step_impl(context):
-    room = "B106" 
-    affichage_Moyennetest(room, data)
-
-
-@then(u'the method sould print good results')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: Then the method should print good results')
-
