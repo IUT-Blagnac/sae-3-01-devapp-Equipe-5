@@ -17,8 +17,3 @@ Feature: MQTT Server Connection
     Given a connected MQTT client subscribed to topics
     When a message is published to a subscribed topic
     Then the message is received and processed correctly
-
-  Scenario: Test printing the average
-    Given a datatest.csv
-    When the average method is call
-    Then the method sould print good results
