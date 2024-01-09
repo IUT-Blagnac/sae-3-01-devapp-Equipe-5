@@ -16,3 +16,16 @@ Feature: Website URL Check
     Given I am on the website "http://193.54.227.208/~saephp05/index.php"
     When I click on the "Mentions légales" link
     Then I should be on the page "http://193.54.227.208/~saephp05/mentionsLegales.php"
+
+  Scenario: Search for a product
+    Given I am on the website "http://193.54.227.208/~saephp05/index.php"
+    When I fill in "searchbar" with "pinceaux"
+    And I press the search button
+    Then I should see "Lot de pinceaux" in the search results
+
+  Scenario: Successful login
+    Given I am on the website "http://193.54.227.208/~saephp05/login.php?redirect=compte.php?"
+    When I fill in "login" with "test"
+    And I fill in "password" with "test"
+    And I press the login button
+    Then I should be redirected to the account page

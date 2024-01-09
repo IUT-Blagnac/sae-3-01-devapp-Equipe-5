@@ -59,4 +59,55 @@ class FeatureContext extends MinkContext implements Context
             throw new Exception("Expected to be on page '$url' but found '$currentUrl' instead.");
         }
     }
+
+    /**
+     * @When I press the search button
+     */
+    public function iPressTheSearchButton()
+    {
+        $button = $this->getSession()->getPage()->find('css', '#searchbutton');
+        if (null === $button) {
+            throw new \Exception("Le bouton de recherche n'a pas été trouvé.");
+        }
+        $button->press();
+    }
+
+    /**
+     * @Then I should see :text in the search results
+     */
+    public function iShouldSeeInTheSearchResults($text)
+    {
+        $page = $this->getSession()->getPage();
+        $searchResults = $page->find('css', '#produits');
+        if (null === $searchResults) {
+            throw new \Exception("La zone de résultats de recherche n'a pas été trouvée.");
+        }
+
+        if (strpos($searchResults->getText(), $text) === false) {
+            throw new \Exception("Le texte '$text' n'a pas été trouvé dans les résultats de recherche.");
+        }
+    }
+
+    /**
+     * @When I press the login button
+     */
+    public function iPressTheLoginButton()
+    {
+        $button = $this->getSession()->getPage()->find('css', 'button#submit');
+        if (null === $button) {
+            throw new \Exception("Le bouton de connexion n'a pas été trouvé.");
+        }
+        $button->press();
+    }
+
+    /**
+     * @Then I should be redirected to the account page
+     */
+    public function iShouldBeRedirectedToTheAccountPage()
+    {
+        $currentUrl = $this->getSession()->getCurrentUrl();
+        if (strpos($currentUrl, "compte.php") === false) {
+            throw new \Exception("La redirection vers la page de compte a échoué.");
+        }
+    }
 }
