@@ -49,4 +49,6 @@ Cela devrait donner le rendu suivant :
 
 image::img/resultTestPy.png[Image résultat tests Python]
 
+=== Affichage des résultats
+
 === Structure des Tests

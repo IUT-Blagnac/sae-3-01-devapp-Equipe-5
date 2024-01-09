@@ -72,7 +72,7 @@ def step_impl(context):
 
     with open("configuration.yaml", "r") as file:
         config = yaml.safe_load(file)
-
+ 
     context.client.on_subscribe = on_subscribe
     for topic in config["topics"]:
         try:
@@ -145,4 +145,3 @@ def step_impl(context):
                 break
         else:
             assert False, "Les données attendues ne sont pas présentes dans le CSV"
-
