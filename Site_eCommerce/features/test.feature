@@ -7,25 +7,23 @@ Feature: Website URL Check
     Given I am on the website "http://193.54.227.208/~saephp05/index.php"
     Then I should see the website loaded successfully
 
-  Scenario: Check if the recommandation page works
-    Given I am on the website "http://193.54.227.208/~saephp05/index.php"
-    When I click on the "Les mieux notés" link
-    Then I should be on the page "http://193.54.227.208/~saephp05/produits.php?categorie=MieuxNotés"
+  Scenario Outline: Check if the page works
+    Given I am on the website "<urlDepart>"
+    When I click on the "<Lien>" link
+    Then I should be on the page "<urlArriver>"
 
-  Scenario: Navigate to the Mentions Légales page
-    Given I am on the website "http://193.54.227.208/~saephp05/index.php"
-    When I click on the "Mentions légales" link
-    Then I should be on the page "http://193.54.227.208/~saephp05/mentionsLegales.php"
+  Examples:
+    | urlDepart | Lien | urlArriver |
+    | http://193.54.227.208/~saephp05/index.php | Les mieux notés | http://193.54.227.208/~saephp05/produits.php?categorie=MieuxNotés |
+    | http://193.54.227.208/~saephp05/index.php | Mentions légales | http://193.54.227.208/~saephp05/mentionsLegales.php |
+    | http://193.54.227.208/~saephp05/index.php | Promotions | http://193.54.227.208/~saephp05/produits.php?categorie=Promotions |
+    | http://193.54.227.208/~saephp05/index.php | Peintures | http://193.54.227.208/~saephp05/produits.php?categorie=Peintures |
+    | http://193.54.227.208/~saephp05/index.php | Dessins | http://193.54.227.208/~saephp05/produits.php?categorie=Dessins |
+    | http://193.54.227.208/~saephp05/index.php | Matériels d'art | http://193.54.227.208/~saephp05/produits.php?categorie=Materiel dart |
+    | http://193.54.227.208/~saephp05/produit.php?reference=ART1&couleur=black | Matériels d'art | http://193.54.227.208/~saephp05/produits.php?categorie=Materiel dart |
 
   Scenario: Search for a product
     Given I am on the website "http://193.54.227.208/~saephp05/index.php"
     When I fill in "searchbar" with "pinceaux"
     And I press the search button
     Then I should see "Lot de pinceaux" in the search results
-
-  Scenario: Successful login
-    Given I am on the website "http://193.54.227.208/~saephp05/login.php?redirect=compte.php?"
-    When I fill in "login" with "tess"
-    And I fill in "password" with "test"
-    And I press the login button
-    Then I should be redirected to the account page

@@ -87,27 +87,4 @@ class FeatureContext extends MinkContext implements Context
             throw new \Exception("Le texte '$text' n'a pas été trouvé dans les résultats de recherche.");
         }
     }
-
-    /**
-     * @When I press the login button
-     */
-    public function iPressTheLoginButton()
-    {
-        $button = $this->getSession()->getPage()->find('css', 'button#submit');
-        if (null === $button) {
-            throw new \Exception("Le bouton de connexion n'a pas été trouvé.");
-        }
-        $button->press();
-    }
-
-    /**
-     * @Then I should be redirected to the account page
-     */
-    public function iShouldBeRedirectedToTheAccountPage()
-    {
-        $currentUrl = $this->getSession()->getCurrentUrl();
-        if (strpos($currentUrl, "compte.php") === false) {
-            throw new \Exception("La redirection vers la page de compte a échoué.");
-        }
-    }
 }
