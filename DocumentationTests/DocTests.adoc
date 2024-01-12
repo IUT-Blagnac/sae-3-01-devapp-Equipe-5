@@ -267,7 +267,7 @@ Il est possible d'afficher les résultats des tests dans un fichier HTML pour un
 
 image::img/resultTestPhp2.png[Image résultat web PHP]
 
-il suffit d'exécuter la commande suivante (dans le dossier `/Site_eCommerce`) :
+Afin de mettre à jour le fichier HTML, il suffit d'exécuter la commande suivante (dans le dossier `/Site_eCommerce`) :
 
 [source,terminal]
 ----
@@ -334,27 +334,46 @@ image::img/testPhp2.png[Image test PHP 2]
     }
 ----
 
-Le troisième test consiste à verifier si la barre de recherche fonctionne.Pour cela on vas recherche l'éléments "pinceaux".
+Le troisième test consiste à verifier si la barre de recherche fonctionne. Pour cela on va recherche l'élément "pinceaux".
 
 image::img/testPhp3.png[Image test PHP 3]
 
 
 [source,php]
 ----
-
+    /**
+     * @When I press the search button
+     */
+    public function iPressTheSearchButton()
+    {
+        $button = $this->getSession()->getPage()->find('css', '#searchbutton');
+        if (null === $button) {
+            throw new \Exception("Le bouton de recherche n'a pas été trouvé.");
+        }
+        $button->press();
+    }
 ----
 
 [source,php]
 ----
+    /**
+     * @Then I should see :text in the search results
+     */
+    public function iShouldSeeInTheSearchResults($text)
+    {
+        $page = $this->getSession()->getPage();
+        $searchResults = $page->find('css', '#produits');
+        if (null === $searchResults) {
+            throw new \Exception("La zone de résultats de recherche n'a pas été trouvée.");
+        }
 
+        if (strpos($searchResults->getText(), $text) === false) {
+            throw new \Exception("Le texte '$text' n'a pas été trouvé dans les résultats de recherche.");
+        }
+    }
 ----
 
-[source,php]
-----
-
-----
-
-Le quatième test consiste à vérifier si les liens pour changer la couleur des produits marche.Pour cela on vas utiliser un Scénario Outline pour parcourir tout les cas possibles rapidement et éfficacement.
+Le quatrième test consiste à vérifier si les liens pour changer la couleur des produits marchent. Pour cela, on va utiliser un Scénario Outline pour parcourir tous les cas possibles rapidement et efficacement.
 
 image::img/testPhp4.png[Image test PHP 4]
 
