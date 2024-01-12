@@ -226,3 +226,37 @@ def step_impl(context):
 ----
 
 == Tests en PHP
+
+=== Prérequis
+
+Afin de pouvoir exécuter les tests en PHP, il est nécessaire d'avoir installé les outils suivants :
+
+* PHP (8.* recommandé)
+* Behat (https://docs.behat.org/en/latest/quick_start.html#installation[Installation Behat])
+
+=== Exécution des Tests
+
+Afin d'exécuter les tests, placez-vous dans le dossier `/Site_eCommerce` grâce à la commande :
+
+[source,terminal]
+----
+cd Site_eCommerce
+----
+
+Puis, lancez la commande suivante :
+
+[source,terminal]
+----
+vendor/bin/behat
+----
+
+Cela devrait donner le rendu suivant :
+
+image::img/resultTestPhp.png[Image résultat tests PHP]
+
+WARNING: Il se peut que la commande vendor/bin/behat ne retourne rien. Dans ce cas, il vous faudra supprimer le dossier vendor et exécuter la commande suivante :
+
+[source,terminal]
+----
+composer install
+----

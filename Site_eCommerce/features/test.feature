@@ -25,7 +25,7 @@ Feature: Website URL Check
 
   Scenario: Successful login
     Given I am on the website "http://193.54.227.208/~saephp05/login.php?redirect=compte.php?"
-    When I fill in "login" with "test"
+    When I fill in "login" with "tess"
     And I fill in "password" with "test"
     And I press the login button
     Then I should be redirected to the account page
