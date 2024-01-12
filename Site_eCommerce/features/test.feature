@@ -20,7 +20,6 @@ Feature: Website URL Check
     | http://193.54.227.208/~saephp05/index.php | Peintures | http://193.54.227.208/~saephp05/produits.php?categorie=Peintures |
     | http://193.54.227.208/~saephp05/index.php | Dessins | http://193.54.227.208/~saephp05/produits.php?categorie=Dessins |
     | http://193.54.227.208/~saephp05/index.php | Matériels d'art | http://193.54.227.208/~saephp05/produits.php?categorie=Materiel dart |
-    | http://193.54.227.208/~saephp05/produit.php?reference=ART1&couleur=black | Matériels d'art | http://193.54.227.208/~saephp05/produits.php?categorie=Materiel dart |
 
   Scenario: Search for a product
     Given I am on the website "http://193.54.227.208/~saephp05/index.php"

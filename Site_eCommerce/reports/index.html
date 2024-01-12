@@ -366,8 +366,8 @@ I need to be able to access the website URL</p>
                 <ul class="tags">
                 </ul>
                 <h3>
-                    <span class="keyword"> Scenario: </span>
-                    <span class="title">Check if the recommandation page works</span>
+                    <span class="keyword"> Scenario Outline: </span>
+                    <span class="title">Check if the page works</span>
                 </h3>
                 <ol>
                     <li class="passed">
@@ -391,16 +391,6 @@ I need to be able to access the website URL</p>
                             <span class="path">FeatureContext::iShouldBeOnThePage()</span>
                         </div>
                     </li>
-                </ol>
-            </div>
-            <div class="scenario">
-                <ul class="tags">
-                </ul>
-                <h3>
-                    <span class="keyword"> Scenario: </span>
-                    <span class="title">Navigate to the Mentions Légales page</span>
-                </h3>
-                <ol>
                     <li class="passed">
                         <div class="step">
                             <span class="keyword">Given </span>
@@ -419,6 +409,90 @@ I need to be able to access the website URL</p>
                         <div class="step">
                             <span class="keyword">Then </span>
                             <span class="text">I should be on the page &quot;http://193.54.227.208/~saephp05/mentionsLegales.php&quot; </span>
+                            <span class="path">FeatureContext::iShouldBeOnThePage()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Given </span>
+                            <span class="text">I am on the website &quot;http://193.54.227.208/~saephp05/index.php&quot; </span>
+                            <span class="path">FeatureContext::iAmOnTheWebsite()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">When </span>
+                            <span class="text">I click on the &quot;Promotions&quot; link </span>
+                            <span class="path">FeatureContext::iClickOnTheLink()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Then </span>
+                            <span class="text">I should be on the page &quot;http://193.54.227.208/~saephp05/produits.php?categorie=Promotions&quot; </span>
+                            <span class="path">FeatureContext::iShouldBeOnThePage()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Given </span>
+                            <span class="text">I am on the website &quot;http://193.54.227.208/~saephp05/index.php&quot; </span>
+                            <span class="path">FeatureContext::iAmOnTheWebsite()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">When </span>
+                            <span class="text">I click on the &quot;Peintures&quot; link </span>
+                            <span class="path">FeatureContext::iClickOnTheLink()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Then </span>
+                            <span class="text">I should be on the page &quot;http://193.54.227.208/~saephp05/produits.php?categorie=Peintures&quot; </span>
+                            <span class="path">FeatureContext::iShouldBeOnThePage()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Given </span>
+                            <span class="text">I am on the website &quot;http://193.54.227.208/~saephp05/index.php&quot; </span>
+                            <span class="path">FeatureContext::iAmOnTheWebsite()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">When </span>
+                            <span class="text">I click on the &quot;Dessins&quot; link </span>
+                            <span class="path">FeatureContext::iClickOnTheLink()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Then </span>
+                            <span class="text">I should be on the page &quot;http://193.54.227.208/~saephp05/produits.php?categorie=Dessins&quot; </span>
+                            <span class="path">FeatureContext::iShouldBeOnThePage()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Given </span>
+                            <span class="text">I am on the website &quot;http://193.54.227.208/~saephp05/index.php&quot; </span>
+                            <span class="path">FeatureContext::iAmOnTheWebsite()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">When </span>
+                            <span class="text">I click on the &quot;Mat&eacute;riels d&#039;art&quot; link </span>
+                            <span class="path">FeatureContext::iClickOnTheLink()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Then </span>
+                            <span class="text">I should be on the page &quot;http://193.54.227.208/~saephp05/produits.php?categorie=Materiel dart&quot; </span>
                             <span class="path">FeatureContext::iShouldBeOnThePage()</span>
                         </div>
                     </li>
@@ -466,43 +540,218 @@ I need to be able to access the website URL</p>
                 <ul class="tags">
                 </ul>
                 <h3>
-                    <span class="keyword"> Scenario: </span>
-                    <span class="title">Successful login</span>
+                    <span class="keyword"> Scenario Outline: </span>
+                    <span class="title">Change colors of product</span>
                 </h3>
                 <ol>
                     <li class="passed">
                         <div class="step">
                             <span class="keyword">Given </span>
-                            <span class="text">I am on the website &quot;http://193.54.227.208/~saephp05/login.php?redirect=compte.php?&quot; </span>
+                            <span class="text">I am on the website &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot; </span>
                             <span class="path">FeatureContext::iAmOnTheWebsite()</span>
                         </div>
                     </li>
                     <li class="passed">
                         <div class="step">
                             <span class="keyword">When </span>
-                            <span class="text">I fill in &quot;login&quot; with &quot;tess&quot; </span>
-                            <span class="path">FeatureContext::fillField()</span>
-                        </div>
-                    </li>
-                    <li class="passed">
-                        <div class="step">
-                            <span class="keyword">And </span>
-                            <span class="text">I fill in &quot;password&quot; with &quot;test&quot; </span>
-                            <span class="path">FeatureContext::fillField()</span>
-                        </div>
-                    </li>
-                    <li class="passed">
-                        <div class="step">
-                            <span class="keyword">And </span>
-                            <span class="text">I press the login button </span>
-                            <span class="path">FeatureContext::iPressTheLoginButton()</span>
+                            <span class="text">I click on couleur case &quot;black&quot; </span>
+                            <span class="path">FeatureContext::iClickOnCouleurCase()</span>
                         </div>
                     </li>
                     <li class="passed">
                         <div class="step">
                             <span class="keyword">Then </span>
-                            <span class="text">I should be redirected to the account page </span>
-                            <span class="path">FeatureContext::iShouldBeRedirectedToTheAccountPage()</span>
+                            <span class="text">I should be on the page &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot; </span>
+                            <span class="path">FeatureContext::iShouldBeOnThePage()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Given </span>
+                            <span class="text">I am on the website &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot; </span>
+                            <span class="path">FeatureContext::iAmOnTheWebsite()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">When </span>
+                            <span class="text">I click on couleur case &quot;blue&quot; </span>
+                            <span class="path">FeatureContext::iClickOnCouleurCase()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Then </span>
+                            <span class="text">I should be on the page &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=blue&quot; </span>
+                            <span class="path">FeatureContext::iShouldBeOnThePage()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Given </span>
+                            <span class="text">I am on the website &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot; </span>
+                            <span class="path">FeatureContext::iAmOnTheWebsite()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">When </span>
+                            <span class="text">I click on couleur case &quot;brown&quot; </span>
+                            <span class="path">FeatureContext::iClickOnCouleurCase()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Then </span>
+                            <span class="text">I should be on the page &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=brown&quot; </span>
+                            <span class="path">FeatureContext::iShouldBeOnThePage()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Given </span>
+                            <span class="text">I am on the website &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot; </span>
+                            <span class="path">FeatureContext::iAmOnTheWebsite()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">When </span>
+                            <span class="text">I click on couleur case &quot;green&quot; </span>
+                            <span class="path">FeatureContext::iClickOnCouleurCase()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Then </span>
+                            <span class="text">I should be on the page &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=green&quot; </span>
+                            <span class="path">FeatureContext::iShouldBeOnThePage()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Given </span>
+                            <span class="text">I am on the website &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot; </span>
+                            <span class="path">FeatureContext::iAmOnTheWebsite()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">When </span>
+                            <span class="text">I click on couleur case &quot;orange&quot; </span>
+                            <span class="path">FeatureContext::iClickOnCouleurCase()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Then </span>
+                            <span class="text">I should be on the page &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=orange&quot; </span>
+                            <span class="path">FeatureContext::iShouldBeOnThePage()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Given </span>
+                            <span class="text">I am on the website &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot; </span>
+                            <span class="path">FeatureContext::iAmOnTheWebsite()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">When </span>
+                            <span class="text">I click on couleur case &quot;pink&quot; </span>
+                            <span class="path">FeatureContext::iClickOnCouleurCase()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Then </span>
+                            <span class="text">I should be on the page &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=pink&quot; </span>
+                            <span class="path">FeatureContext::iShouldBeOnThePage()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Given </span>
+                            <span class="text">I am on the website &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot; </span>
+                            <span class="path">FeatureContext::iAmOnTheWebsite()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">When </span>
+                            <span class="text">I click on couleur case &quot;purple&quot; </span>
+                            <span class="path">FeatureContext::iClickOnCouleurCase()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Then </span>
+                            <span class="text">I should be on the page &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=purple&quot; </span>
+                            <span class="path">FeatureContext::iShouldBeOnThePage()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Given </span>
+                            <span class="text">I am on the website &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot; </span>
+                            <span class="path">FeatureContext::iAmOnTheWebsite()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">When </span>
+                            <span class="text">I click on couleur case &quot;red&quot; </span>
+                            <span class="path">FeatureContext::iClickOnCouleurCase()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Then </span>
+                            <span class="text">I should be on the page &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=red&quot; </span>
+                            <span class="path">FeatureContext::iShouldBeOnThePage()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Given </span>
+                            <span class="text">I am on the website &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot; </span>
+                            <span class="path">FeatureContext::iAmOnTheWebsite()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">When </span>
+                            <span class="text">I click on couleur case &quot;white&quot; </span>
+                            <span class="path">FeatureContext::iClickOnCouleurCase()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Then </span>
+                            <span class="text">I should be on the page &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=white&quot; </span>
+                            <span class="path">FeatureContext::iShouldBeOnThePage()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Given </span>
+                            <span class="text">I am on the website &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot; </span>
+                            <span class="path">FeatureContext::iAmOnTheWebsite()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">When </span>
+                            <span class="text">I click on couleur case &quot;yellow&quot; </span>
+                            <span class="path">FeatureContext::iClickOnCouleurCase()</span>
+                        </div>
+                    </li>
+                    <li class="passed">
+                        <div class="step">
+                            <span class="keyword">Then </span>
+                            <span class="text">I should be on the page &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=yellow&quot; </span>
+                            <span class="path">FeatureContext::iShouldBeOnThePage()</span>
                         </div>
                     </li>
                 </ol>
@@ -549,7 +798,7 @@ I need to be able to access the website URL</p>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Automated test report - 12/01/2024 13:10:40</a>
+            <a class="navbar-brand" href="#">Automated test report - 12/01/2024 14:06:48</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -575,7 +824,7 @@ I need to be able to access the website URL</p>
                 <canvas id="chart-scenarios" width="300" height="300"/>
             </div>
             <div class="chart-summary title">
-                5
+                4
                 Scenarios:
             </div>
             <div class="chart-summary failed">0 failed</div>
@@ -587,7 +836,7 @@ I need to be able to access the website URL</p>
                 <canvas id="chart-steps" width="300" height="300"/>
             </div>
             <div class="chart-summary title">
-                17
+                54
                 Steps:
             </div>
             <div class="chart-summary failed">0 failed</div>
@@ -710,11 +959,13 @@ I need to be able to access the website URL</p>
                                            href="#scenario-1-2"
                                            aria-expanded="true"
                                            aria-controls="scenario-1-2">
-                                            Scenario: Check if the recommandation page works
+                                            Scenario: Check if the page works
                                         </a>
 
                                         <div class="tags pull-right">
-                                                                                                                                </div>
+                                                                                        
+Deprecated: file_exists(): Passing null to parameter #1 ($filename) of type string is deprecated in /Users/aestra/Desktop/Projets/sae-3-01-devapp-Equipe-5/Site_eCommerce/vendor/emuse/behat-html-formatter/src/Classes/Scenario.php on line 205
+                                        </div>
                                     </h4>
                                 </div>
                                 <div id="scenario-1-2" class="panel-collapse collapse in"
@@ -729,6 +980,56 @@ I need to be able to access the website URL</p>
                                                                                                                                                                                                                                                                                                                                                 </li>
                                                                                                                                                                                                                         <li class="list-group-item alert alert-success">
                                                 <b>Then</b> I should be on the page &quot;http://193.54.227.208/~saephp05/produits.php?categorie=MieuxNotés&quot;
+                                                                                                                                                                                                                                                                                                                                                        </li><li class="list-group-item break">
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Given</b> I am on the website &quot;http://193.54.227.208/~saephp05/index.php&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>When</b> I click on the &quot;Mentions légales&quot; link
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Then</b> I should be on the page &quot;http://193.54.227.208/~saephp05/mentionsLegales.php&quot;
+                                                                                                                                                                                                                                                                                                                                                        </li><li class="list-group-item break">
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Given</b> I am on the website &quot;http://193.54.227.208/~saephp05/index.php&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>When</b> I click on the &quot;Promotions&quot; link
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Then</b> I should be on the page &quot;http://193.54.227.208/~saephp05/produits.php?categorie=Promotions&quot;
+                                                                                                                                                                                                                                                                                                                                                        </li><li class="list-group-item break">
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Given</b> I am on the website &quot;http://193.54.227.208/~saephp05/index.php&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>When</b> I click on the &quot;Peintures&quot; link
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Then</b> I should be on the page &quot;http://193.54.227.208/~saephp05/produits.php?categorie=Peintures&quot;
+                                                                                                                                                                                                                                                                                                                                                        </li><li class="list-group-item break">
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Given</b> I am on the website &quot;http://193.54.227.208/~saephp05/index.php&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>When</b> I click on the &quot;Dessins&quot; link
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Then</b> I should be on the page &quot;http://193.54.227.208/~saephp05/produits.php?categorie=Dessins&quot;
+                                                                                                                                                                                                                                                                                                                                                        </li><li class="list-group-item break">
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Given</b> I am on the website &quot;http://193.54.227.208/~saephp05/index.php&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>When</b> I click on the &quot;Matériels d&#039;art&quot; link
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Then</b> I should be on the page &quot;http://193.54.227.208/~saephp05/produits.php?categorie=Materiel dart&quot;
                                                                                                                                                                                                                                                                                                                                                 </li>
                                                                                                                                                                                                                 </ul>
                                 </div>
@@ -740,36 +1041,6 @@ I need to be able to access the website URL</p>
                                            href="#scenario-1-3"
                                            aria-expanded="true"
                                            aria-controls="scenario-1-3">
-                                            Scenario: Navigate to the Mentions Légales page
-                                        </a>
-
-                                        <div class="tags pull-right">
-                                                                                                                                </div>
-                                    </h4>
-                                </div>
-                                <div id="scenario-1-3" class="panel-collapse collapse in"
-                                     role="tabpanel"
-                                     aria-labelledby="headingOne">
-                                    <ul class="list-group">
-                                                                                    <li class="list-group-item alert alert-success">
-                                                <b>Given</b> I am on the website &quot;http://193.54.227.208/~saephp05/index.php&quot;
-                                                                                                                                                                                                                                                                                                                                                </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
-                                                <b>When</b> I click on the &quot;Mentions légales&quot; link
-                                                                                                                                                                                                                                                                                                                                                </li>
-                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
-                                                <b>Then</b> I should be on the page &quot;http://193.54.227.208/~saephp05/mentionsLegales.php&quot;
-                                                                                                                                                                                                                                                                                                                                                </li>
-                                                                                                                                                                                                                </ul>
-                                </div>
-                            </div>
-                                                    <div class="panel panel-default passed">
-                                <div class="panel-heading" role="tab">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion"
-                                           href="#scenario-1-4"
-                                           aria-expanded="true"
-                                           aria-controls="scenario-1-4">
                                             Scenario: Search for a product
                                         </a>
 
@@ -777,7 +1048,7 @@ I need to be able to access the website URL</p>
                                                                                                                                 </div>
                                     </h4>
                                 </div>
-                                <div id="scenario-1-4" class="panel-collapse collapse in"
+                                <div id="scenario-1-3" class="panel-collapse collapse in"
                                      role="tabpanel"
                                      aria-labelledby="headingOne">
                                     <ul class="list-group">
@@ -800,34 +1071,120 @@ I need to be able to access the website URL</p>
                                 <div class="panel-heading" role="tab">
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" data-parent="#accordion"
-                                           href="#scenario-1-5"
+                                           href="#scenario-1-4"
                                            aria-expanded="true"
-                                           aria-controls="scenario-1-5">
-                                            Scenario: Successful login
+                                           aria-controls="scenario-1-4">
+                                            Scenario: Change colors of product
                                         </a>
 
                                         <div class="tags pull-right">
-                                                                                                                                </div>
+                                                                                        
+Deprecated: file_exists(): Passing null to parameter #1 ($filename) of type string is deprecated in /Users/aestra/Desktop/Projets/sae-3-01-devapp-Equipe-5/Site_eCommerce/vendor/emuse/behat-html-formatter/src/Classes/Scenario.php on line 205
+                                        </div>
                                     </h4>
                                 </div>
-                                <div id="scenario-1-5" class="panel-collapse collapse in"
+                                <div id="scenario-1-4" class="panel-collapse collapse in"
                                      role="tabpanel"
                                      aria-labelledby="headingOne">
                                     <ul class="list-group">
                                                                                     <li class="list-group-item alert alert-success">
-                                                <b>Given</b> I am on the website &quot;http://193.54.227.208/~saephp05/login.php?redirect=compte.php?&quot;
+                                                <b>Given</b> I am on the website &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot;
                                                                                                                                                                                                                                                                                                                                                 </li>
                                                                                                                                                                                                                         <li class="list-group-item alert alert-success">
-                                                <b>When</b> I fill in &quot;login&quot; with &quot;tess&quot;
+                                                <b>When</b> I click on couleur case &quot;black&quot;
                                                                                                                                                                                                                                                                                                                                                 </li>
                                                                                                                                                                                                                         <li class="list-group-item alert alert-success">
-                                                <b>And</b> I fill in &quot;password&quot; with &quot;test&quot;
+                                                <b>Then</b> I should be on the page &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot;
+                                                                                                                                                                                                                                                                                                                                                        </li><li class="list-group-item break">
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Given</b> I am on the website &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot;
                                                                                                                                                                                                                                                                                                                                                 </li>
                                                                                                                                                                                                                         <li class="list-group-item alert alert-success">
-                                                <b>And</b> I press the login button
+                                                <b>When</b> I click on couleur case &quot;blue&quot;
                                                                                                                                                                                                                                                                                                                                                 </li>
                                                                                                                                                                                                                         <li class="list-group-item alert alert-success">
-                                                <b>Then</b> I should be redirected to the account page
+                                                <b>Then</b> I should be on the page &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=blue&quot;
+                                                                                                                                                                                                                                                                                                                                                        </li><li class="list-group-item break">
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Given</b> I am on the website &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>When</b> I click on couleur case &quot;brown&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Then</b> I should be on the page &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=brown&quot;
+                                                                                                                                                                                                                                                                                                                                                        </li><li class="list-group-item break">
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Given</b> I am on the website &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>When</b> I click on couleur case &quot;green&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Then</b> I should be on the page &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=green&quot;
+                                                                                                                                                                                                                                                                                                                                                        </li><li class="list-group-item break">
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Given</b> I am on the website &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>When</b> I click on couleur case &quot;orange&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Then</b> I should be on the page &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=orange&quot;
+                                                                                                                                                                                                                                                                                                                                                        </li><li class="list-group-item break">
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Given</b> I am on the website &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>When</b> I click on couleur case &quot;pink&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Then</b> I should be on the page &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=pink&quot;
+                                                                                                                                                                                                                                                                                                                                                        </li><li class="list-group-item break">
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Given</b> I am on the website &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>When</b> I click on couleur case &quot;purple&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Then</b> I should be on the page &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=purple&quot;
+                                                                                                                                                                                                                                                                                                                                                        </li><li class="list-group-item break">
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Given</b> I am on the website &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>When</b> I click on couleur case &quot;red&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Then</b> I should be on the page &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=red&quot;
+                                                                                                                                                                                                                                                                                                                                                        </li><li class="list-group-item break">
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Given</b> I am on the website &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>When</b> I click on couleur case &quot;white&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Then</b> I should be on the page &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=white&quot;
+                                                                                                                                                                                                                                                                                                                                                        </li><li class="list-group-item break">
+                                                                                            </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Given</b> I am on the website &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=black&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>When</b> I click on couleur case &quot;yellow&quot;
+                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                        <li class="list-group-item alert alert-success">
+                                                <b>Then</b> I should be on the page &quot;http://193.54.227.208/~saephp05/produit.php?reference=ART1&amp;couleur=yellow&quot;
                                                                                                                                                                                                                                                                                                                                                 </li>
                                                                                                                                                                                                                 </ul>
                                 </div>
@@ -857,14 +1214,14 @@ I need to be able to access the website URL</p>
         new Chart(scenarioChart, {type: 'doughnut', options: {legend: {display: false}}, data: {
                 labels: ['Failed', 'Pending', 'Passed'],
                 datasets: [{
-                    data: [0, 0, 5],
+                    data: [0, 0, 4],
                     backgroundColor: ['#F7464A', 'e38d13', '#00a65a'],
                 }],
             }});
         new Chart(stepChart, {type: 'doughnut', options: {legend: {display: false}}, data: {
                 labels: ['Failed','Passed'],
                 datasets: [{
-                    data: [0, 17],
+                    data: [0, 54],
                     backgroundColor: ["#F7464A", "#00a65a"],
                 }],
             }});
@@ -929,13 +1286,13 @@ I need to be able to access the website URL</p>
                     1 features ( <strong class="passed">1 success</strong> )
                 </p>
                 <p class="scenarios">
-                    5 scenarios ( <strong class="passed">5 success</strong> )
+                    4 scenarios ( <strong class="passed">4 success</strong> )
                 </p>
                 <p class="steps">
-                    17 steps ( <strong class="passed">17 success</strong> )
+                    54 steps ( <strong class="passed">54 success</strong> )
                 </p>
                 <p class="time">
-                0m1.53s - 15.28Mb
+                0m3.38s - 15.50Mb
                 </p>
             </div>
             <div class="switchers">

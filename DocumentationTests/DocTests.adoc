@@ -260,3 +260,66 @@ WARNING: Il se peut que la commande vendor/bin/behat ne retourne rien. Dans ce c
 ----
 composer install
 ----
+
+=== Affichage des résultats
+
+Il est possible d'afficher les résultats des tests dans un fichier HTML pour une meilleure lisibilité. Pour cela, il suffit d'ouvrir le fichier `/Site_eCommerce/reports/index.html` dans votre navigateur :
+
+image::img/resultTestPhp2.png[Image résultat web PHP]
+
+il suffit d'exécuter la commande suivante (dans le dossier `/Site_eCommerce`) :
+
+[source,terminal]
+----
+vendor/bin/behat --format html --out ./reports 
+----
+
+=== Structure des Tests
+
+Le premier test consiste à vérifier que le site web est accessible et que la page a été chargée avec succès.
+
+image::img/testPhp.png[Image test PHP 1]
+
+[source,php]
+----
+    /**
+     * @Given I am on the website :url
+     */
+    public function iAmOnTheWebsite($url)
+    {
+        $this->visit($url);
+    }
+----
+
+[source,php]
+----
+    /**
+     * @Then I should see the website loaded successfully
+     */
+    public function iShouldSeeTheWebsiteLoadedSuccessfully()
+    {
+        $statusCode = $this->getSession()->getStatusCode();
+        if ($statusCode != 200) {
+            throw new Exception("Website did not load successfully. Status code: $statusCode");
+        }
+    }
+----
+
+Le deuxième test consiste à vérifier que le fonctionnement de plusieurs liens en utilisant un ensemble d'exemples pour spécifier différentes URLs de départ, textes de liens, et URLs d'arrivée attendues après le clic
+
+image::img/testPhp2.png[Image test PHP 2]
+
+[source,php]
+----
+
+----
+
+[source,php]
+----
+
+----
+
+[source,php]
+----
+
+----
