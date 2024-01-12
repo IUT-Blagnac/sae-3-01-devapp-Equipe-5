@@ -87,4 +87,20 @@ class FeatureContext extends MinkContext implements Context
             throw new \Exception("Le texte '$text' n'a pas été trouvé dans les résultats de recherche.");
         }
     }
+
+    /**
+     * @When I click on couleur case :couleur
+     */
+    public function iClickOnCouleurCase($couleur)
+    {
+        $xpath = sprintf('//a[div[@class="square" and contains(@style, "background-color:%s;")]]', $couleur);
+        $element = $this->getSession()->getPage()->find('xpath', $xpath);
+
+        if ($element) {
+            $element->click();
+        } else {
+            throw new \RuntimeException(sprintf('Link containing square with color %s not found', $couleur));
+        }
+    }
+
 }

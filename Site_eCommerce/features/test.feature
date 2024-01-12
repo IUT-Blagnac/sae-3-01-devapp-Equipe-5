@@ -27,3 +27,22 @@ Feature: Website URL Check
     When I fill in "searchbar" with "pinceaux"
     And I press the search button
     Then I should see "Lot de pinceaux" in the search results
+
+  Scenario Outline: Change colors of product
+    Given I am on the website "http://193.54.227.208/~saephp05/produit.php?reference=ART1&couleur=black"
+    When I click on couleur case "<color>"
+    Then I should be on the page "<urlArriver>"
+
+  Examples:
+    | color | urlArriver |
+    | black | http://193.54.227.208/~saephp05/produit.php?reference=ART1&couleur=black |
+    | blue | http://193.54.227.208/~saephp05/produit.php?reference=ART1&couleur=blue |
+    | brown | http://193.54.227.208/~saephp05/produit.php?reference=ART1&couleur=brown |
+    | green | http://193.54.227.208/~saephp05/produit.php?reference=ART1&couleur=green |
+    | orange | http://193.54.227.208/~saephp05/produit.php?reference=ART1&couleur=orange |
+    | pink | http://193.54.227.208/~saephp05/produit.php?reference=ART1&couleur=pink |
+    | purple | http://193.54.227.208/~saephp05/produit.php?reference=ART1&couleur=purple |
+    | red | http://193.54.227.208/~saephp05/produit.php?reference=ART1&couleur=red |
+    | white | http://193.54.227.208/~saephp05/produit.php?reference=ART1&couleur=white |
+    | yellow | http://193.54.227.208/~saephp05/produit.php?reference=ART1&couleur=yellow |
+
