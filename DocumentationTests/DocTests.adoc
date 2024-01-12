@@ -311,8 +311,33 @@ image::img/testPhp2.png[Image test PHP 2]
 
 [source,php]
 ----
-
+    /**
+     * @When I click on the :linkText link
+     */
+    public function iClickOnTheLink($linkText)
+    {
+        $this->clickLink($linkText);
+    }
 ----
+
+[source,php]
+----
+    /**
+     * @Then I should be on the page :url
+     */
+    public function iShouldBeOnThePage($url)
+    {
+        $currentUrl = $this->getSession()->getCurrentUrl();
+        if ($currentUrl !== $url) {
+            throw new Exception("Expected to be on page '$url' but found '$currentUrl' instead.");
+        }
+    }
+----
+
+Le troisième test consiste à verifier si la barre de recherche fonctionne.Pour cela on vas recherche l'éléments "pinceaux".
+
+image::img/testPhp3.png[Image test PHP 3]
+
 
 [source,php]
 ----
@@ -322,4 +347,31 @@ image::img/testPhp2.png[Image test PHP 2]
 [source,php]
 ----
 
+----
+
+[source,php]
+----
+
+----
+
+Le quatième test consiste à vérifier si les liens pour changer la couleur des produits marche.Pour cela on vas utiliser un Scénario Outline pour parcourir tout les cas possibles rapidement et éfficacement.
+
+image::img/testPhp4.png[Image test PHP 4]
+
+[source,php]
+----
+    /**
+     * @When I click on couleur case :couleur
+     */
+    public function iClickOnCouleurCase($couleur)
+    {
+        $xpath = sprintf('//a[div[@class="square" and contains(@style, "background-color:%s;")]]', $couleur);
+        $element = $this->getSession()->getPage()->find('xpath', $xpath);
+
+        if ($element) {
+            $element->click();
+        } else {
+            throw new \RuntimeException(sprintf('Link containing square with color %s not found', $couleur));
+        }
+    }
 ----
