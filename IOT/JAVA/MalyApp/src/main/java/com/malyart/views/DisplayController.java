@@ -1,5 +1,7 @@
-package com.malyart;
+package com.malyart.views;
 
+import com.malyart.controls.Main;
+import com.malyart.tools.SelectSalle;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import javafx.application.Platform;
@@ -48,9 +50,16 @@ public class DisplayController {
     @FXML
     private TextArea pressureTextArea;
 
-    // Ajouter Timer et TimerTask
     private Timer refreshTimer;
 
+
+    /*
+     * Initialisation de la fenêtre
+     * - Affiche la salle sélectionnée
+     * - Démarre le TimerTask
+     * - Affiche les valeurs
+     * - Affiche les alertes
+     */
     @FXML
     public void initialize() {
         labelSalle.setText(targetRoom);
@@ -68,6 +77,19 @@ public class DisplayController {
         refreshTimer.scheduleAtFixedRate(refreshTask, 0, 5000);
     }
 
+
+    /**
+     * Rafraîchir les données
+     * - Réinitialiser les valeurs
+     * - Lire le fichier data.csv
+     * - Afficher les nouvelles valeurs
+     * - Lire le fichier alert.csv
+     * - Afficher les alertes
+     * 
+     * @throws IOException
+     * @throws NumberFormatException
+     * @throws CsvException
+     */
     private void refreshData() {
         
         // Réinitialiser Valeurs
@@ -133,6 +155,14 @@ public class DisplayController {
 
     }
 
+
+    /**
+     * Change la couleur des éléments qui dépassent les limites
+     * - Remet tout en noir
+     * - Change la couleur du fond du TextArea en rouge
+     * 
+     * @param alert
+     */
     private void updateColor(String alert) {
         // Remet tout en noir
         temperatureTextArea.setStyle("-fx-text-fill: black;");
@@ -175,11 +205,23 @@ public class DisplayController {
         }
     }
 
+
+    /**
+     * Ouvrir la version All (toutes les données captées à plusieurs temps)
+     * 
+     * @throws IOException
+     */
     @FXML
-    private void openChartsVersion() throws IOException {
+    private void openAllVersion() throws IOException {
         Main.changeScene("displayData");
     }
 
+
+    /**
+     * Fermer la fenêtre
+     * 
+     * @throws IOException
+     */
     @FXML
     private void actionQuitter() throws IOException {
         Stage stage = (Stage) buttonQuitter.getScene().getWindow();

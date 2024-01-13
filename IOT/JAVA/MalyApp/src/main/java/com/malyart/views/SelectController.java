@@ -1,4 +1,4 @@
-package com.malyart;
+package com.malyart.views;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,6 +6,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
+import com.malyart.controls.Main;
+import com.malyart.tools.SelectSalle;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -31,6 +34,10 @@ public class SelectController {
     private static Thread pythonThread;
     private static Process pythonProcess;
 
+    /*
+     * Initialisation de la fenêtre
+     * - Remplir la ChoiceBox avec les salles congifurées
+     */
     @FXML
     private void initialize() {
 
@@ -46,8 +53,6 @@ public class SelectController {
 
             while ((ligne = br.readLine()) != null) {
                 String valeur = "";
-
-                // Suite de conditions pour remplir les champs automatiquement
 
                 if (ligne.startsWith("topics: ")) {
                     valeur = ligne.replace("topics: [", "");
@@ -71,10 +76,8 @@ public class SelectController {
 
             toggleButtonLaunchScript.setOnAction(event -> {
                 if (toggleButtonLaunchScript.isSelected()) {
-                    // Button is selected, start the Python thread
                     startPythonThread();
                 } else {
-                    // Button is not selected, stop the Python thread
                     stopPythonThread();
                 }
             });
@@ -90,18 +93,19 @@ public class SelectController {
 
     }
 
+
+    /*
+     * Démarrer le script Python
+     */
     private void startPythonThread() {
         pythonThread = new Thread(() -> {
             try {
-                // Commande complète à exécuter
                 String command = "python3 ./sae-iot.py";
 
-                // Créer le processus
                 ProcessBuilder processBuilder = new ProcessBuilder(command.split("\\s+"));
                 processBuilder.redirectErrorStream(true);
                 pythonProcess = processBuilder.start();
 
-                // Wait for the Python process to finish
                 pythonProcess.waitFor();
 
             } catch (Exception e) {
@@ -109,10 +113,13 @@ public class SelectController {
             }
         });
 
-        // Start the Python thread
         pythonThread.start();
     }
 
+
+    /*
+     * Arrêter le script Python
+     */
     private void stopPythonThread() {
         if (pythonThread != null && pythonThread.isAlive()) {
             // Stop the Python script gracefully
@@ -122,12 +129,24 @@ public class SelectController {
         }
     }
 
+
+    /**
+     * Change la fenêtre vers la fenêtre de configuration
+     * 
+     * @throws IOException
+     */
     @FXML
     private void switchToConfigure() throws IOException {
         stopPythonThread();
         Main.setRoot("configure");
     }
 
+
+    /**
+     * Ouvrir la fenêtre de visualisation
+     * 
+     * @throws IOException
+     */
     @FXML
     private void openDisplay() throws IOException {
         if (listSalle.getSelectionModel().isEmpty()) {

@@ -1,4 +1,4 @@
-package com.malyart;
+package com.malyart.views;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.malyart.controls.Main;
+import com.malyart.tools.SelectSalle;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 
@@ -57,8 +59,8 @@ public class DisplayDataController {
     @FXML
     private TableColumn<Room, String> pressureColumn;
 
-    // Ajouter Timer et TimerTask
     private Timer refreshTimer;
+
 
     private static class Room {
         private SimpleStringProperty time;
@@ -127,6 +129,13 @@ public class DisplayDataController {
         }
     }
 
+    
+    /*
+     * Initialisation de la fenêtre
+     * - Affiche la salle sélectionnée
+     * - Démarre le TimerTask
+     * - Affiche toutes les valeurs captées à plusieurs temps de la salle sélectionnée (tableau)
+     */
     @FXML
     public void initialize() {
         labelSalle.setText(targetRoom);
@@ -164,6 +173,16 @@ public class DisplayDataController {
     }
 
 
+    /**
+     * Rafraîchir les données
+     * - Réinitialiser les valeurs
+     * - Lire le fichier data.csv
+     * - Afficher les nouvelles valeurs
+     * 
+     * @throws IOException
+     * @throws NumberFormatException
+     * @throws CsvException
+     */
     private ObservableList<Room> chargerData() {
         ObservableList<Room> room = FXCollections.observableArrayList();
 
@@ -182,11 +201,21 @@ public class DisplayDataController {
         return room;
     }
 
+    /**
+     * Ouvrir la version texte (les dernières données captées)
+     * 
+     * @throws IOException
+     */
     @FXML
     private void openTextVersion() throws IOException {
         Main.changeScene("display");
     }
 
+    /**
+     * Fermer la fenêtre
+     * 
+     * @throws IOException
+     */
     @FXML
     private void actionQuitter() throws IOException {
         Stage stage = (Stage) buttonQuitter.getScene().getWindow();

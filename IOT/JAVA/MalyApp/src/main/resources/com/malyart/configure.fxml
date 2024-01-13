@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.malyart.ConfigureController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.malyart.views.ConfigureController">
    <children>
       <Label alignment="CENTER" layoutX="360.0" layoutY="24.0" text="Configuration" textOverrun="CENTER_ELLIPSIS">
          <font>
@@ -38,7 +38,7 @@
                               <Insets top="10.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="urlField" layoutX="200.0" layoutY="11.0" promptText="chirpstack.iut-blagnac.fr" text="chirpstack.iut-blagnac.fr">
+                        <TextField fx:id="urlField" editable="false" layoutX="200.0" layoutY="11.0" promptText="chirpstack.iut-blagnac.fr" text="chirpstack.iut-blagnac.fr">
                            <padding>
                               <Insets left="1.0" />
                            </padding>
@@ -52,7 +52,7 @@
                               <Insets top="10.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="portField" layoutX="77.0" layoutY="11.0" promptText="1883" text="1883">
+                        <TextField fx:id="portField" editable="false" layoutX="77.0" layoutY="11.0" promptText="1883" text="1883">
                            <padding>
                               <Insets left="1.0" />
                            </padding>
@@ -198,7 +198,7 @@
                   </BorderPane>
                </children>
             </GridPane>
-            <TextField fx:id="topicsField" layoutX="188.0" layoutY="162.0" prefHeight="26.0" prefWidth="535.0" promptText="AM107/by-room/+/data" text="AM107/by-room/+/data">
+            <TextField fx:id="topicsField" layoutX="188.0" layoutY="162.0" prefHeight="26.0" prefWidth="535.0" promptText="C006" text="C006">
                <padding>
                   <Insets left="1.0" />
                </padding>

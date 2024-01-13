@@ -1,4 +1,4 @@
-package com.malyart;
+package com.malyart.controls;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -25,15 +25,15 @@ public class Main extends Application {
         stage.setResizable(false);
     }
 
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
-    static void changeScene(String fxml) throws IOException {
+    public static void changeScene(String fxml) throws IOException {
         newScene.setRoot(loadFXML(fxml));
     }
 
-    static void openNewWindow(String fxml) throws IOException {
+    public static void openNewWindow(String fxml) throws IOException {
         Stage newStage = new Stage();
         newScene = new Scene(loadFXML(fxml), 900, 700);
         newStage.setScene(newScene);
@@ -43,7 +43,7 @@ public class Main extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/malyart/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
