@@ -18,9 +18,9 @@ L'application nécessite plusieurs choses qu'il vous faudra installer au préala
 == Installation
 1. Télécharger l'application java à partir du lien suivant : https://github.com/IUT-Blagnac/sae-3-01-devapp-Equipe-5/blob/IOT/IOT/JAVA/malyapp.jar[malyapp.jar]
 
-2. Regrouper l'application dans le même dossier que le programme python et le fichier de configuration.
+2. Regrouper l'application dans le même dossier que le programme python.
 
-image::IMAGE !!!
+image::./img/dossier.png[Image montrant le dossier contenant l'application et le programme python]
 
 == Utilisation
 Pour lancer l'application, il vous suffit de lancer le fichier malyapp.jar :
@@ -34,9 +34,7 @@ image::./img/Jar.png[Image montrant le jar de l'application]
 java -jar malyapp.jar
 ----
 
-image::./img/launch.png
-
-Ensuite 
+image::./img/launch.png[Image montrant le lancement de l'application avec une ligne de commande]
 
 
 
