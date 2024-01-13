@@ -1,9 +1,12 @@
-package com.malyart;
+package com.malyart.views;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
+
+import com.malyart.controls.Main;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -59,10 +62,13 @@ public class ConfigureController {
     File fileNewConfigFile = new File("./configuration.yaml");
     String SIGNAL_FILE = "./signal.txt";
 
+    /**
+     * Permet de récupérer les données du fichier configuration.csv s'il existe
+     */
     @FXML
     public void initialize() {
 
-        restDurationComboBox.getItems().addAll("10", "20", "30", "60");
+        restDurationComboBox.getItems().addAll("0", "10", "20", "30", "60");
 
         File configExists = new File("./configuration.csv");
 
@@ -97,10 +103,11 @@ public class ConfigureController {
                         valeur = valeur.replace("\"", "");
                         alertFileField.setText(valeur);
                     } else if (ligne.startsWith("topics: ")) {
-                        valeur = ligne.replace("topics: ", "");
-                        valeur = valeur.replace("[\"", "");
-                        valeur = valeur.replace("\",\"", ",");
-                        valeur = valeur.replace("\"]", "");
+                        valeur = ligne.replace("topics: [\"AM107/by-room/+/data\",\"AM107/by-room/", "");
+                        valeur = valeur.replace("/data\"]", "");
+                        valeur = valeur.replace("\"", "");
+                        valeur = valeur.replace("AM107/by-room/", "");
+                        valeur = valeur.replace("/data", "");
                         topicsField.setText(valeur);
                     } else if (ligne.startsWith("rest_duration  : ")) {
                         valeur = ligne.replace("rest_duration  : ", "");
@@ -142,11 +149,22 @@ public class ConfigureController {
         }
     }
 
+    /**
+     * Permet de quitter l'application
+     * 
+     * @throws IOException
+     */
     @FXML
     private void actionQuitter() throws IOException {
         Platform.exit();
     }
 
+    /**
+     * Permet de récupérer les données du fichier configuration.csv et de les
+     * écrire dans le fichier configuration.yaml
+     * 
+     * @throws IOException
+     */
     @FXML
     private void getConfiguration() throws IOException {
 
@@ -169,21 +187,6 @@ public class ConfigureController {
         String infrared_and_visibleConfig = infrared_and_visibleTextField.getText();
         String pressureConfig = pressureTextField.getText();
 
-        // Manque une/des information(s)
-        if (urlConfig.isEmpty() || portConfig.isEmpty() || alertFileConfig.isEmpty() || dataFileConfig.isEmpty() ||
-                salleConfig.isEmpty() || restDurationConfig.isEmpty() || temperatureConfig.isEmpty()
-                || humidityConfig.isEmpty() || co2Config.isEmpty() ||
-                activityConfig.isEmpty() || tvocConfig.isEmpty() || illuminationConfig.isEmpty() ||
-                infraredConfig.isEmpty() || infrared_and_visibleConfig.isEmpty() || pressureConfig.isEmpty()) {
-
-            Alert missedAlert = new Alert(AlertType.ERROR);
-
-            missedAlert.setTitle("Error alert");
-            missedAlert.setHeaderText("Il manque une/des information(s) dans la configuration");
-            missedAlert.setContentText("Vérifiez tous les champs !");
-
-            missedAlert.showAndWait();
-        }
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFilePath))) {
 
@@ -213,11 +216,11 @@ public class ConfigureController {
 
             // topics
             String[] topics = salleConfig.split(",");
-            writer.write("topics: [");
+            writer.write("topics: [\"AM107/by-room/+/data\",");
             for (int i = 0; i < topics.length; i++) {
-                // remove spaces
+                // enleve les espaces
                 topics[i] = topics[i].trim();
-                writer.write(String.format("\"%s\"", topics[i]));
+                writer.write(String.format("\"AM107/by-room/%s/data\"", topics[i]));
                 if (i < topics.length - 1) {
                     writer.write(",");
                 }
@@ -287,6 +290,14 @@ public class ConfigureController {
 
             Main.setRoot("select");
 
+        } else {
+            Alert missedAlert = new Alert(AlertType.ERROR);
+
+            missedAlert.setTitle("Error alert");
+            missedAlert.setHeaderText("Il manque une/des information(s) dans la configuration");
+            missedAlert.setContentText("Vérifiez tous les champs !");
+
+            missedAlert.showAndWait();
         }
 
     }

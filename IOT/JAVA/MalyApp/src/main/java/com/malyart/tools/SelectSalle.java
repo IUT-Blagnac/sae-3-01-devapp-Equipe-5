@@ -1,4 +1,4 @@
-package com.malyart;
+package com.malyart.tools;
 
 public class SelectSalle {
     private static SelectSalle instance = new SelectSalle();
