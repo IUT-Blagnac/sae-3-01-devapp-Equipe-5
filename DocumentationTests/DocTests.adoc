@@ -7,9 +7,17 @@
 
 == Introduction
 
-Bienvenue dans la documentation utilisateur destinée à guider l'utilisation et la compréhension des tests en Python, en PHP et en Java développés pour le projet.
+Bienvenue dans la documentation utilisateur destinée à guider l'utilisation et la compréhension des tests en Python et en PHP développés pour le projet.
 
 toc::[]
+
+== Equipe 
+
+Documentation réalisée par : 
+
+- https://github.com/Aestraa[MOINY Yanis]
+- https://github.com/RMassip[MASSIP Romain] 
+- https://github.com/Ted971[BABEL Teddy]
 
 == Tests en Python
 
