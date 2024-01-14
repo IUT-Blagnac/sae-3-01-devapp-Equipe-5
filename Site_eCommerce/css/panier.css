@@ -130,3 +130,103 @@ input[name="price"] {
   -moz-appearance: textfield;
 
 }
+
+.total {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+  .elements {
+    flex-direction: column;
+    .elements .produit {
+      width: 100%;
+      max-width: 100%;
+    }
+
+  }
+}
+
+.elements {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+
+/*Align on to the top and make the min height 50px*/
+.elements #addresseDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 50px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 800px;
+
+}
+
+
+.choixAdresse form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+.choixAdresse input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+#newAddressDiv {
+  display: none;
+}
+
+.Modes_paiement {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  min-height: 50px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 800px;
+}
+.Modes_payement div {
+  width: 100%;
+}
+
+
+#btnPay {
+  font-size: larger;
+}
+
+.radio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 50px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 800px;
+}
+

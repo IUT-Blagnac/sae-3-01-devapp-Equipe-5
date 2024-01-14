@@ -123,16 +123,4 @@ input.addEventListener("keyup", function (event) {
   }
 });
 
-function confirmDelete() {
-  return confirm("Voulez-vous vraiment supprimer cet emplacement ?");
-}
 
-function toggleNewAddress() {
-  const newAddressDiv = document.getElementById("newAddressDiv");
-  const existingAddress = document.getElementById("existingAddress");
-  if (existingAddress.value === "") {
-      newAddressDiv.style.display = "block";
-  } else {
-      newAddressDiv.style.display = "none";
-  }
-}

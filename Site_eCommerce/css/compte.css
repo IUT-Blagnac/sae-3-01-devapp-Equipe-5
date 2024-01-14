@@ -75,6 +75,14 @@ input {
   border-radius: 20px;
 }
 
+input:user-valid {
+  border-color: #70019f;
+}
+
+input:user-invalid {
+  border-color: #a60000a8;
+}
+
 .remember-me {
   all: unset;
 }
@@ -92,7 +100,6 @@ button {
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
-  border-radius: 20px;
   box-sizing: border-box;
 }
 
