@@ -74,4 +74,34 @@ concerné avec une nouvelle valeur :
 
 image::popup_doublon_compte.png[Valeur déjà utilisée]
 
+## 4) Ajout/Modification d'un produit
+
+Pour ajouter un produit, une composition ou un produit à une composition, l'administrateur clique sur le bouton correspondant dans le header puis remplis le formulaire avec les informations nécessaires. Tous les champs
+doivent être remplis pour pouvoir valider l'ajout.
+
+image::ajout_produit[Ajouter un produit]
+
+Après avoir cliqué sur le bouton "modifier" sur la page de détails d'un article, l'administrateur peut modifier les informations d'un article. Tous les champs doivent être remplis. Mettre la quantité d'un produit à 0 
+l'enlève du site. 
+
+image::modifier_article[Modifier un article]
+
+## 5) Laisser un avis
+
+Un utilisateur peut laisser un avis sur un produit une fois celui-ci livré. Sinon, le bouton de validation ne fonctionne pas. Un administrateur peut cependant laisser un commentaire pour répondre à un avis à tout moment.
+
+## 6) Supprimer un avis
+
+Pour supprimer un avis, l'administrateur clique sur supprimer sous l'avis correspondant. Celui-ci n'apparaît plus par la suite sur le site.
+
+## 7) Payer sa commande
+
+Une fois la commande confirmée, l'utilisateur doit choisir son adresse de livraison. S'il veut en choisir une nouvelle, il doit sélectionner "ajouter une nouvelle adresse" dans le menu déroulant puis remplir les champs. 
+Seul le champ "complément" ne doit pas obligatoirement être remplis. 
+
+image::modifier_adresse[Modifier son adresse]
+
+L'utilisateur doit ensuite remplir les champs de ses informations bancaires ou de son compte PayPal suivant le moyen de paiement selectionné. Dans les deux cas, tous les champs doivent être remplis. Les formats doivent tous être respectés (un numéro de carte est composé de 16 chiffres, un code de sécurité/cryptogramme de 3 chiffres...) sinon un message d'erreur de ce type apparaît :
+
+image::erreur_paiement[Erreur paiement]
 
