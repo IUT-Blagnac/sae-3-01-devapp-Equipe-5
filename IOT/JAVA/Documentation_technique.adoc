@@ -9,7 +9,7 @@ L’entreprise MalyArt souhaite suivre en direct l’environnement dans ses diff
 
 Voici le Use Case global de l'application :
 
-image::use_case_java[Use case]
+image::./img/use_case_java.png[Use case]
 
 Ainsi, les fonctionnalités de l'application sont les suivantes :
 
