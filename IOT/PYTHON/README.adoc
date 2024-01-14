@@ -47,6 +47,7 @@ python3 sae-iot.py
 
 image::./img/launch.png[Image montrant la commande de lancement de l'application]
 
+
 == Exemple d'utilisation
 Lorsque l'application est lancée, elle va alors se connecter au broker MQTT et s'abonner aux topics configurés dans le fichier de configuration. Elle va ensuite afficher les données reçues dans la console et les enregistrer dans un fichier csv.
 
@@ -124,28 +125,107 @@ thresholds:
 ----
 
 
-=== Le fichier principal
-Le fichier principal est le fichier python qui permet de récupérer les données des capteurs s'organise autour d'une fonction principale qui est la fonction `on_message(client, userdata, msg)`.
-
-Cette fonction est appelée à chaque fois que l'application reçoit un message du broker MQTT. Celle-ci va alors recupérer les données json du message, les convertir en dictionnaire python et les enregistrer dans un fichier csv puis les afficher dans la console.
-
-La fonction va ensuite vérifier si les données reçues sont supérieures aux seuils d'alertes. Si c'est le cas, elle va enregistrer les données dans un fichier csv d'alerte.
-
-Pour finir la fonction va afficher la moyenne des données reçues pour la pièce dans la console.
-
-
-En plus de la fonction principale, le fichier python contient aussi une fonction `on_connect(client, userdata, flags, rc)` qui est appelée à chaque fois que l'application se connecte au broker MQTT. Celle-ci va alors s'abonner aux topics configurés dans le fichier de configuration et créer les fichiers csv si ils n'existent pas.
-
-
-Nous avons également une partie qui permet de gérer les temps d'attente entre chaque écoute à l'aide de la fonction `signal.signal(signal.SIGALRM, handler)` qui permet de gérer les signaux et de la fonction `handle_execution(signum, frame)` qui permet de gérer les signaux reçus par l'application. +
-Nous utilisons les alarmes pour gérer les temps d'attente entre chaque écoute. Lorsque l'application reçoit un signal, elle va alors se mettre en pause pendant le temps d'attente configuré dans le fichier de configuration puis elle va reprendre son écoute.
-
-Au début du programme, nous avons une partie qui permet de lire le fichier de configuration et de le convertir en dictionnaire python.
-
-L'application tourne en boucle jusqu'à ce que l'utilisateur appuie sur `CTRL+C` pour l'arrêter. Lorsque l'application est arrêtée, elle va alors se désabonner des topics et se déconnecter du broker MQTT.
 
 
 
+=== Configuration du broker MQTT
+Pour configurer le broker MQTT, il vous suffit de modifier les valeurs des champs `url`, `port` et `keepalive`.
+
+=== Configuration des topics
+Pour configurer les topics, il vous suffit de modifier la valeur du champ `topics`.
+Chaque topic doit être séparé par une virgule.
+
+=== Configuration des fichiers de données
+Pour configurer les fichiers de données, il vous suffit de modifier les valeurs des champs `dataFile` et `alertFile`.
+
+WARNING: Les fichiers doivent être au format csv!
+
+=== Configuration des capteurs
+Pour configurer les capteurs, il vous suffit de modifier la valeur du champ `selectedData`.
+Chaque capteur doit être séparé par une virgule.
+
+=== Configuration des fréquences de récupération des données
+Pour configurer les fréquences de récupération des données, il vous suffit de modifier les valeurs des champs `rest_duration` et `running_time`.
+
+`rest_duration` correspond à la durée de pause entre chaque récupération de données.
+`running_time` correspond à la durée de récupération des données. 
+
+=== Configuration des limites
+Pour configurer les limites, il vous suffit de modifier les valeurs des champs `limites`.
+
+
+== Fonctionnement
+Notre application python fonctionne de la manière suivante :
+
+=== Récupération des paramètres
+L'application récupère les paramètres du fichier de configuration.
+
+image::./img/read_config.png[Image montrant le fichier de configuration]
+
+
+
+=== Connexion au broker MQTT
+L'application se connecte au broker MQTT.
+Cela se fait grâce à la fonction `on_connect` qui est appelée lorsque l'application se connecte au broker MQTT.
+
+Dans la même fonction, l'application s'abonne aux topics configurés dans le fichier de configuration.
+
+image::./img/connect.png[Image montrant la connexion au broker MQTT]
+
+
+=== Création des fichiers de données
+Dans la fonction `on_connect`, l'application crée les fichiers de données configurés dans le fichier de configuration s'ils n'existent pas déjà.
+
+image::./img/create_files.png[Image montrant la création des fichiers de données]
+
+=== Récupération des données
+L'application reçoit les données des capteurs grâce à la fonction `on_message` qui est appelée lorsque l'application reçoit un message du broker MQTT.
+
+Dans un premier temps, l'application récupère les données du message et les transforme en dictionnaire json.
+Puis elle ne retient que les données des capteurs configurés dans le fichier de configuration. Cela se faite grâce à un dictionnaire crée en compréhension qui ne retient que les données des capteurs configurés.
+
+image::./img/get_data.png[Image montrant la récupération des données]
+
+=== Enregistrement des données
+L'application enregistre ensuite les données dans le fichier de données configuré dans le fichier de configuration.
+
+image::./img/save_data.png[Image montrant l'enregistrement des données]
+
+
+=== Check et enregistrement des alertes
+L'application vérifie ensuite si les données reçues sont en dehors des limites configurées dans le fichier de configuration.
+Si c'est le cas, elle enregistre une alerte dans le fichier d'alertes.
+
+image::./img/check_alert.png[Image montrant le check et l'enregistrement des alertes]
+
+=== Moyenne des données
+L'application calcule ensuite la moyenne des données reçues et l'affiche dans la console.
+
+image::./img/average.png[Image montrant le calcul de la moyenne des données]
+
+Cette moyenne est calculée en ouvrant le fichier de données, en lisant les données et en calculant la moyenne de chaque type de données pour la pièce. 
+
+=== Fréquence de récupération des données
+L'application attend ensuite la durée de pause configurée dans le fichier de configuration avant de récupérer de nouveau les données. Pour cela, nous utilisons la librairie `signal` qui permet de gérer les signaux.
+
+image::./img/wait.png[Image montrant l'attente de la durée de pause]
+
+Le fonctionnement est le suivant :
+
+- L'application crée un signal `SIGALRM` qui est appelé lorsque la durée de pause est écoulée, ce signal appelle la fonction `handler`.
+- Lors de l'appel de la fonction `handler` (ici `handle_execution`), celle-ci débute l'écoute des données du broker MQTT tant que la durée de récupération des données n'est pas écoulée.
+- Lorsque la durée de récupération des données est écoulée, la fonction `handle_execution` lance une nouvelle alarme qui débute le temps de pause.
+- Pour l'attente de l'alarme nous avons une boucle infinie qui attend la réception du signal `SIGALRM`.
+
+== Exemple d'utilisation
+
+Pour tester notre application, nous avons utilisé le broker MQTT `chirpstack.iut-blagnac.fr` et le topic `AM107/by-room/+/data`.
+
+image::./img/example.png[Image montrant un exemple d'utilisation de l'application]
+
+L'application récupère les données du capteur `AM107` et les enregistre dans le fichier `data.csv` et les alertes dans le fichier `alert.csv`.
+
+image::./img/example_files.png[Image montrant les fichiers de données et d'alertes]
 
 == Tests
 Nous allons maintenant tester l'application en utilisant le broker MQTT de l'IUT de Blagnac. 
@@ -184,5 +264,10 @@ Nous pouvons voir sur l'image ci-dessus que l'application a signalé que les don
 Pour le quatrième test, nous allons modifier le temps d'attente entre chaque écoute pour que le temps d'attente soit reduit.
 
 image::./img/test4.png[Image montrant le lancement de l'application et la réception des données du capteur de la salle E003 avec un temps d'attente réduit]
+
+
+
+== Conclusion
+Notre application python permet de récupérer les données envoyées par les différents capteurs présents dans les entrepôts de stockage de MalyArt qui les utilise pour s'assurer que les conditions de stockage sont optimales pour les oeuves d'art qui y sont entreposées.
 
 Nous pouvons voir sur l'image ci-dessus que l'application a bien effeccuté les écoutes avec une pause de 60 secondes.

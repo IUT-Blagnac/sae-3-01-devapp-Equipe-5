@@ -6,7 +6,7 @@ keepalive: 60
 topics: ["AM107/by-room/+/data","AM107/by-room/E003/data","AM107/by-room/E006/data"]
 # Fichiers de données
 dataFile: "data.csv"
-alertFile: "alert.csv"
+alertFile: "alert.csv
 # Données à récupérer
 selectedData: ["temperature","humidity","co2","activity","tvoc","illumination","infrared","infrared_and_visible","pressure"]
 # Temps d'attente entre deux mesures (en minutes)
@@ -23,3 +23,4 @@ thresholds:
   infrared : 100
   infrared_and_visible : 100
   pressure : 1100
+

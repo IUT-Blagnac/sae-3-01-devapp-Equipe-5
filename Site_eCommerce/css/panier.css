@@ -1,0 +1,132 @@
+a {
+  text-decoration: none;
+}
+.panier {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.produits {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.produit {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.produit img {
+  width: 70px;
+  margin-right: 15px;
+}
+.control{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: auto;
+}
+.price {
+  min-width: min-content;
+  margin: 0 10px;
+  
+}
+
+.control img {
+  width: 20px;
+  transition: transform 0.3s ease;
+  
+    margin: 0;
+
+}
+.control form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: auto;
+}
+
+.control img:hover {
+  transform: scale(1.08);
+}
+.control .quantities {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+/*Put the buttons on the right*/
+.control .buttons {
+  margin-left: auto;
+
+}
+.control #quantity {
+  width: 45px;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  margin: 0 10px;
+  
+}
+
+.delete input[type="image"] {
+  width: 20px;
+  transition: transform 0.3s ease;
+  
+    margin: 0 10px;
+}
+
+.delete input[type="image"]:hover {
+  transform: scale(1.08);
+}
+
+input[type="submit"]  {
+  background-color: #b300ff;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+input[type="submit"]:hover {
+  background-color: #70019f;
+}
+
+input[type="button"] {
+  background-color: gray;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+input[name="price"] {
+  border: none;
+  -moz-appearance: textfield;
+
+}
