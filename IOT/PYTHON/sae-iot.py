@@ -3,7 +3,6 @@ import yaml
 import paho.mqtt.client as mqtt
 import time
 import json
-import time
 import signal
 
 # Lecture du fichier de configuration
@@ -57,6 +56,7 @@ def affichage_Moyenne(room):
         if data:
             print("Moyenne des données de la pièce " + room + " :")
             message = ""
+            # Pour chaque donnée sélectionnée dans le fichier de configuration, on calcule la moyenne
             for key in config["selectedData"]:
                 if key != "time":
                     values = [
@@ -70,7 +70,7 @@ def affichage_Moyenne(room):
 
             print(message + "\n")
 
-
+# Fonction appelée à chaque réception de message MQTT
 def on_message(client, userdata, msg):
     my_data = msg.payload.decode("utf-8")
     my_json = json.loads(my_data)
@@ -79,7 +79,7 @@ def on_message(client, userdata, msg):
     try:
         room = my_json[1]["room"]
     except Exception as e:
-        print("~ Nom de salle absent")
+        print("~ Erreur lors de la réception des données ")
         return
 
     # check si il y a des données dans le json
@@ -113,7 +113,10 @@ def on_message(client, userdata, msg):
     # Check si les données dépassent les seuils et écriture dans le fichier d'alerte le cas échéant
     with open(config["alertFile"], "a", newline="") as alertfile:
         alert_writer = csv.writer(alertfile)
-        for key, threshold in config["limites"].items():
+
+        # Pour chaque seuil défini dans le fichier de configuration, on vérifie si la donnée dépasse le seuil
+        for key, threshold in config["thresholds"].items():
+
             if key in data_values and data_values[key] > threshold:
                 print(
                     "Threshold exceeded - {}: {} (Threshold: {})".format(
@@ -133,6 +136,7 @@ def on_message(client, userdata, msg):
     affichage_Moyenne(room)
     print("")
 
+# Connexion au broker MQTT
 
 client = mqtt.Client()
 client.on_connect = on_connect
@@ -140,9 +144,13 @@ client.on_message = on_message
 
 client.connect(config["url"], config["port"], config["keepalive"])
 
-running_time = config["running_time"] * 60  # temps d'éxécution transformé en minutes
-rest_duration = config["rest_duration"] * 60  # temps de repos transformé en minutes
 
+# Définition des temps d'exécution et de repos
+running_time = config["running_time"]*60  # temps d'éxécution transformé de minutes en secondes
+rest_duration = config["rest_duration"]*60  # temps de repos transformé de minutes en secondes
+if rest_duration == 0:
+    rest_duration = 1
+# Fonction appelée à chaque déclenchement d'alarme
 
 def handle_execution(signum, frame):
     print("Exécution pendant {} secondes...".format(running_time))
