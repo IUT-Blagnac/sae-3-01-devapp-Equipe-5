@@ -21,4 +21,28 @@ Fondée lors de la crise sanitaire de 2020, MalyArt est une entreprise Toulousai
 
 L'entreprise a donc besoin d'un site web offrant une vitrine de ses produits, ainsi qu'un espace de vente en ligne. Cela affirmera sa présence sur le marché et lui permettra de se développer au niveau national.
 
-//Le reste de la page est à compléter plus tard//
+== Architecture 
+
+Le site web de MalyArt est hebergé sur un serveur Apache de l'IUT de Blagnac et trouvable à cette adresse : http://193.54.227.208/~saephp05/index.php
+
+La base de données est une base MySQL.
+
+== Schéma d'enchaînement des pages
+
+Le schéma d'enchaînement des pages du site est disponible https://github.com/IUT-Blagnac/sae-3-01-devapp-Equipe-5/blob/master/Site_eCommerce/Documentation/Sch%C3%A9ma%20encha%C3%AEnement%20des%20pages.png[ici]
+
+== Fonctionnalités du site
+
+=== Modification des informations d'un compte 
+
+Cette partie du code récupère les informations du compte connecté.
+
+image::champs[remplir champs]
+
+La suite du code vérifie ensuite que tous les changements que l'on veut effectuer ne rentrent pas en conflit avec les contraintes que l'on a défini (format du mail, numéro de téléphone ou pseudonyme non utilisés...)
+Si tout n'est pas valide, un message d'erreur s'affiche, sinon, les requêtes SQL suivantes sont effectuées :
+
+image::sql_compte[Modification des informations d'un compte code]
+
+
+
