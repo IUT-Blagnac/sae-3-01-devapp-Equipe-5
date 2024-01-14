@@ -6,3 +6,17 @@
 
 == Présentation rapide de l’application
 L’entreprise MalyArt souhaite suivre en direct l’environnement dans ses différents entrepôts de stockage. Plusieurs capteurs ont été installés permettant la récupération de données suivantes : Temperature, Humidité, CO2, Activité, Tvoc, Illumination, Infrared, Infrared_et_visibilité et Pression. Grâce à ces derniers, l'entreprise souhaite disposer d’un outil permettant la visualisation de ces données pour s’assurer des bonnes conditions de stockage de ces produits (Peintures, Dessins, Matériels d'art, etc...).
+
+Voici le Use Case global de l'application :
+
+image::use_case_java[Use case]
+
+Ainsi, les fonctionnalités de l'application sont les suivantes :
+
+- Visualisation des dernières données d'une salle 
+- Visualisation de toutes les données d'une salles
+- Configuration des seuils maximaux pour chaque données
+- Configuration du temps de pause entre deux relevés de données
+
+== Structure de l'application
+
