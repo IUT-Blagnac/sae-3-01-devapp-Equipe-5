@@ -90,9 +90,13 @@ image::modifier_article[Modifier un article]
 
 Un utilisateur peut laisser un avis sur un produit une fois celui-ci livré. Sinon, le bouton de validation ne fonctionne pas. Un administrateur peut cependant laisser un commentaire pour répondre à un avis à tout moment.
 
+image::avis.png[avis]
+
 ## 6) Supprimer un avis
 
 Pour supprimer un avis, l'administrateur clique sur supprimer sous l'avis correspondant. Celui-ci n'apparaît plus par la suite sur le site.
+
+image::supprimer_avis.png[Supprimer un avis]
 
 ## 7) Payer sa commande
 
