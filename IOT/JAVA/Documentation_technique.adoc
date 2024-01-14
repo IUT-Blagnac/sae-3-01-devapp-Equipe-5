@@ -20,3 +20,7 @@ Ainsi, les fonctionnalités de l'application sont les suivantes :
 
 == Structure de l'application
 
+L'application est structurée sous forme de Modèle-Vue-Contrôleur (MVC). Ce type d'architecture fonctionne comme ceci : le modèle contient les données à afficher, la vue gère l'interface graphique de l'application et le contrôleur effectue le lien entre les deux autres parties. 
+
+
+
