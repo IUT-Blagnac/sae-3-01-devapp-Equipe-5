@@ -1,15 +1,21 @@
+# Connection to the MQTT broker
 url: "chirpstack.iut-blagnac.fr"
 port: 1883
 keepalive: 60
+# Topics MQTT à écouter
+topics: ["AM107/by-room/+/data","AM107/by-room/E003/data","AM107/by-room/E006/data"]
+# Fichiers de données
 dataFile: "data.csv"
-alertFile: "alert.csv"
-topics: ["AM107/by-room/+/data"]
+alertFile: "alert.csv
+# Données à récupérer
 selectedData: ["temperature","humidity","co2","activity","tvoc","illumination","infrared","infrared_and_visible","pressure"]
+# Temps d'attente entre deux mesures (en minutes)
 rest_duration  : 30
 running_time : 10
+# Seuils d'alerte
 thresholds:
-  temperature : 24
-  humidity : 40
+  temperature : 10
+  humidity : 45
   co2 : 10000
   activity : 300
   tvoc : 500
@@ -17,5 +23,4 @@ thresholds:
   infrared : 100
   infrared_and_visible : 100
   pressure : 1100
-
 

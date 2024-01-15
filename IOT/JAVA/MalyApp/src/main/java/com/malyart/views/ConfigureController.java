@@ -1,20 +1,25 @@
-package com.malyart;
+package com.malyart.views;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
+
+import com.malyart.controls.Main;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
+
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class ConfigureController {
 
@@ -32,6 +37,8 @@ public class ConfigureController {
     private TextField dataFileField;
     @FXML
     private TextField alertFileField;
+    @FXML
+    private ComboBox<String> restDurationComboBox;
     @FXML
     private TextField temperatureTextField;
     @FXML
@@ -51,14 +58,19 @@ public class ConfigureController {
     @FXML
     private TextField pressureTextField;
 
-    File fileOldConfigFile = new File("src/test/configuration.csv");
-    File fileNewConfigFile = new File("src/test/configuration.yaml");
+    File fileOldConfigFile = new File("./configuration.csv");
+    File fileNewConfigFile = new File("./configuration.yaml");
+    String SIGNAL_FILE = "./signal.txt";
 
+    /**
+     * Permet de récupérer les données du fichier configuration.csv s'il existe
+     */
     @FXML
     public void initialize() {
 
+        restDurationComboBox.getItems().addAll("0", "10", "20", "30", "60");
 
-        File configExists = new File("src/test/configuration.csv");
+        File configExists = new File("./configuration.csv");
 
         String ligne;
 
@@ -91,11 +103,15 @@ public class ConfigureController {
                         valeur = valeur.replace("\"", "");
                         alertFileField.setText(valeur);
                     } else if (ligne.startsWith("topics: ")) {
-                        valeur = ligne.replace("topics: ", "");
-                        valeur = valeur.replace("[\"", "");
-                        valeur = valeur.replace("\",\"", ",");
-                        valeur = valeur.replace("\"]", "");
+                        valeur = ligne.replace("topics: [\"AM107/by-room/+/data\",\"AM107/by-room/", "");
+                        valeur = valeur.replace("/data\"]", "");
+                        valeur = valeur.replace("\"", "");
+                        valeur = valeur.replace("AM107/by-room/", "");
+                        valeur = valeur.replace("/data", "");
                         topicsField.setText(valeur);
+                    } else if (ligne.startsWith("rest_duration  : ")) {
+                        valeur = ligne.replace("rest_duration  : ", "");
+                        restDurationComboBox.getSelectionModel().select(2);
                     } else if (ligne.startsWith("  temperature : ")) {
                         valeur = ligne.replace("  temperature : ", "");
                         temperatureTextField.setText(valeur);
@@ -123,7 +139,7 @@ public class ConfigureController {
                     } else if (ligne.startsWith("  pressure : ")) {
                         valeur = ligne.replace("  pressure : ", "");
                         pressureTextField.setText(valeur);
-                    } 
+                    }
                 }
 
                 br.close();
@@ -133,16 +149,26 @@ public class ConfigureController {
         }
     }
 
+    /**
+     * Permet de quitter l'application
+     * 
+     * @throws IOException
+     */
     @FXML
     private void actionQuitter() throws IOException {
-        Stage stage = (Stage) buttonQuitter.getScene().getWindow();
-        stage.close();
+        Platform.exit();
     }
 
+    /**
+     * Permet de récupérer les données du fichier configuration.csv et de les
+     * écrire dans le fichier configuration.yaml
+     * 
+     * @throws IOException
+     */
     @FXML
     private void getConfiguration() throws IOException {
 
-        String csvFilePath = "src/test/configuration.csv";
+        String csvFilePath = "./configuration.csv";
 
         // Les Données
         String urlConfig = urlField.getText();
@@ -150,6 +176,7 @@ public class ConfigureController {
         String alertFileConfig = alertFileField.getText();
         String dataFileConfig = dataFileField.getText();
         String salleConfig = topicsField.getText();
+        String restDurationConfig = restDurationComboBox.getValue();
         String temperatureConfig = temperatureTextField.getText();
         String humidityConfig = humidityTextField.getText();
         String co2Config = co2TextField.getText();
@@ -160,20 +187,6 @@ public class ConfigureController {
         String infrared_and_visibleConfig = infrared_and_visibleTextField.getText();
         String pressureConfig = pressureTextField.getText();
 
-        // Manque une/des information(s)
-        if (urlConfig.isEmpty() || portConfig.isEmpty() || alertFileConfig.isEmpty() || dataFileConfig.isEmpty() ||
-                salleConfig.isEmpty() || temperatureConfig.isEmpty() || humidityConfig.isEmpty() || co2Config.isEmpty() ||
-                activityConfig.isEmpty() || tvocConfig.isEmpty() || illuminationConfig.isEmpty() || infraredConfig.isEmpty() ||
-                infrared_and_visibleConfig.isEmpty() || pressureConfig.isEmpty()) {
-
-            Alert missedAlert = new Alert(AlertType.ERROR);
-
-            missedAlert.setTitle("Error alert");
-            missedAlert.setHeaderText("Il manque une/des information(s) dans la configuration");
-            missedAlert.setContentText("Vérifiez tous les champs !");
-
-            missedAlert.showAndWait();
-        }
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFilePath))) {
 
@@ -203,11 +216,11 @@ public class ConfigureController {
 
             // topics
             String[] topics = salleConfig.split(",");
-            writer.write("topics: [");
+            writer.write("topics: [\"AM107/by-room/+/data\",");
             for (int i = 0; i < topics.length; i++) {
-                //remove spaces
+                // enleve les espaces
                 topics[i] = topics[i].trim();
-                writer.write(String.format("\"%s\"", topics[i]));
+                writer.write(String.format("\"AM107/by-room/%s/data\"", topics[i]));
                 if (i < topics.length - 1) {
                     writer.write(",");
                 }
@@ -218,8 +231,12 @@ public class ConfigureController {
             writer.write(
                     "selectedData: [\"temperature\",\"humidity\",\"co2\",\"activity\",\"tvoc\",\"illumination\",\"infrared\",\"infrared_and_visible\",\"pressure\"]\n");
 
-            // frequency
-            writer.write("frequency : 30\n");
+            // rest_duration
+            writer.write("rest_duration  : ");
+            writer.write(String.format("%s\n", restDurationConfig));
+
+            // running_time
+            writer.write("running_time : 10\n");
 
             // thresholds
             writer.write("thresholds:\n");
@@ -263,15 +280,24 @@ public class ConfigureController {
             Files.delete(fileNewConfigFile.toPath());
             Files.copy(fileOldConfigFile.toPath(), fileNewConfigFile.toPath());
         }
-        
 
         if (!urlConfig.isEmpty() && !portConfig.isEmpty() && !alertFileConfig.isEmpty() && !dataFileConfig.isEmpty() &&
-                !salleConfig.isEmpty() && !temperatureConfig.isEmpty() && !humidityConfig.isEmpty()
-                && !co2Config.isEmpty() &&
-                !activityConfig.isEmpty() && !tvocConfig.isEmpty() && !illuminationConfig.isEmpty()
-                && !infraredConfig.isEmpty() &&
-                !infrared_and_visibleConfig.isEmpty() && !pressureConfig.isEmpty()) {
-            Main.setRoot("primary");
+                !salleConfig.isEmpty() && !restDurationConfig.isEmpty() && !temperatureConfig.isEmpty()
+                && !humidityConfig.isEmpty() &&
+                !co2Config.isEmpty() && !activityConfig.isEmpty() && !tvocConfig.isEmpty()
+                && !illuminationConfig.isEmpty() &&
+                !infraredConfig.isEmpty() && !infrared_and_visibleConfig.isEmpty() && !pressureConfig.isEmpty()) {
+
+            Main.setRoot("select");
+
+        } else {
+            Alert missedAlert = new Alert(AlertType.ERROR);
+
+            missedAlert.setTitle("Error alert");
+            missedAlert.setHeaderText("Il manque une/des information(s) dans la configuration");
+            missedAlert.setContentText("Vérifiez tous les champs !");
+
+            missedAlert.showAndWait();
         }
 
     }

@@ -1,4 +1,4 @@
-= SAÉ 3.01 2023-2024 - Documentation technique Web - Équipe 5
+= SAÉ 3.01 2023-2024 - Documentation utilisateur Web - Équipe 5
 :toc:
 :toc-title: Table des matières
 :sectnums: 
@@ -22,3 +22,5 @@ Fondée lors de la crise sanitaire de 2020, MalyArt est une entreprise Toulousai
 L'entreprise a donc besoin d'un site web offrant une vitrine de ses produits, ainsi qu'un espace de vente en ligne. Cela affirmera sa présence sur le marché et lui permettra de se développer au niveau national.
 
 //Le reste de la page est à compléter plus tard//
+
+

@@ -117,9 +117,3 @@ image::Ajouter.PNG[Ajouter]
 Un administrateur du site peut modifier les informations d'un produit en cliquant sur le bouton "modifier l'article". Ensuite, il peut remplacer les champs qu'il souhaite modifier ou changer l'image. Cliquer sur "modifier" confirme les changements. 
 
 image::Remplacer.PNG[Modifier]
-
-
-
-
-
-
