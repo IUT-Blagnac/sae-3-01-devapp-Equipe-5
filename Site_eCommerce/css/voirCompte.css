@@ -70,3 +70,11 @@
   margin-top: 20px;
   margin: 0 auto; 
 }
+
+/* Style du conteneur de chaque ligne de l'historique de commandes*/
+.historique{
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}

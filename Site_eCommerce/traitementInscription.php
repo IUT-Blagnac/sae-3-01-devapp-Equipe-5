@@ -1,23 +1,23 @@
 <?php
 require_once('include/connect.inc.php');
+
 // On récupère les données du formulaire
 if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && isset($_POST['tel']) && isset($_POST['dtN']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['ConfirmPassword'])) {
     //recuperation des données avec htmlentities 
-    $nom = htmlentities($_POST['nom']);
-    $prenom = htmlentities($_POST['prenom']);
-    $mail = htmlentities($_POST['mail']);
-    $tel = htmlentities($_POST['tel']);
-    $dtN = htmlentities($_POST['dtN']);
-    $username = htmlentities($_POST['username']);
-    $password = htmlentities($_POST['password']);
-    $ConfirmPassword = htmlentities($_POST['ConfirmPassword']);
+    $nom = htmlentities($_POST['nom'], ENT_QUOTES, 'UTF-8');
+    $prenom = htmlentities($_POST['prenom'], ENT_QUOTES, 'UTF-8');
+    $mail = htmlentities($_POST['mail'], ENT_QUOTES, 'UTF-8');
+    $tel = htmlentities($_POST['tel'], ENT_QUOTES, 'UTF-8');
+    $dtN = htmlentities($_POST['dtN'], ENT_QUOTES, 'UTF-8');
+    $username = htmlentities($_POST['username'], ENT_QUOTES, 'UTF-8');
+    $password = htmlentities($_POST['password'], ENT_QUOTES, 'UTF-8');
+    $ConfirmPassword = htmlentities($_POST['ConfirmPassword'], ENT_QUOTES, 'UTF-8');
     //On recupere les données de l'adresse
-    $rue = htmlentities($_POST['rue']);
-    $ville = htmlentities($_POST['ville']);
-    $codePostal = htmlentities($_POST['codePostal']);
-    $complement = htmlentities($_POST['complement']);
-    $pays = htmlentities($_POST['pays']);
-    //console log all values with their types
+    $rue = htmlentities($_POST['rue'], ENT_QUOTES, 'UTF-8');
+    $ville = htmlentities($_POST['ville'], ENT_QUOTES, 'UTF-8');
+    $codePostal = htmlentities($_POST['codePostal'], ENT_QUOTES, 'UTF-8');
+    $complement = htmlentities($_POST['complement'], ENT_QUOTES, 'UTF-8');
+    $pays = htmlentities($_POST['pays'], ENT_QUOTES, 'UTF-8');
 
 
     $nbErreur = 0;

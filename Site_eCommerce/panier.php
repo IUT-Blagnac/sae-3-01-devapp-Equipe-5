@@ -13,9 +13,11 @@ require_once('include/loginCheck.php');
     <title>Votre panier</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./css/panier.css">
+    <link rel="icon" href="include/logoRond.png" type="image/x-icon">
     <style>
 
     </style>
+
 </head>
 
 <body>
@@ -174,7 +176,7 @@ require_once('include/loginCheck.php');
             <form action="commander.php?numCommande=<?php echo $produit['numCommande'];  ?>" method="post">
                 <input type="hidden" name="total" value="<?php echo $total['total']; ?>">
                 <input type="hidden" name="numCommande" value="<?php echo $produit['numCommande']; ?>">
-                <input type="submit" id="commander" value="Commander">
+                <input type="submit" id="commander" value="Valider ma commande ">
             </form>
         </div>
 

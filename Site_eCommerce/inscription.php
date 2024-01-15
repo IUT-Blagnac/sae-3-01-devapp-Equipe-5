@@ -1,4 +1,5 @@
 <?php
+
 if (isset($_GET['erreur'])) {
   switch ($_GET['erreur']) {
     case 'sql':
@@ -64,6 +65,7 @@ if (isset($_GET['erreur'])) {
   <title>Inscription</title>
   <link rel="stylesheet" href="./css/compte.css">
   <script src="./js/register.js"></script>
+    <link rel="icon" href="include/logoRond.png" type="image/x-icon">
 </head>
 
 <body>
@@ -75,16 +77,16 @@ if (isset($_GET['erreur'])) {
         <div class="column">
           <h3>Informations personnelles</h3>
           <label for="nom">Nom :</label>
-          <input type="text" id="nom" name="nom" required>
+          <input type="text" id="nom" name="nom" required maxlength="40">
 
           <label for="prenom">Prénom :</label>
-          <input type="text" id="prenom" name="prenom" required>
+          <input type="text" id="prenom" name="prenom" required maxlength="40">
 
           <label for="mail">Adresse Mail :</label>
-          <input type="text" id="mail" name="mail" required>
+          <input type="text" id="mail" name="mail" required maxlength="40">
 
           <label for="tel">Téléphone :</label>
-          <input type="text" id="tel" name="tel" required>
+          <input type="text" id="tel" name="tel" required maxlength="15">
 
           <label for="dtN">Date de naissance :</label>
           <input type="date" id="dtN" name="dtN" required>
@@ -93,25 +95,25 @@ if (isset($_GET['erreur'])) {
         <div class="column">
           <h3>Adresse </h3>
           <label for="rue">Rue :</label>
-          <input type="text" id="rue" name="rue" required>
+          <input type="text" id="rue" name="rue" required maxlength="40">
 
           <label for="ville">Ville :</label>
-          <input type="text" id="ville" name="ville" required>
+          <input type="text" id="ville" name="ville" required maxlength="40">
 
           <label for="codePostal">Code postal</label>
           <input type="number" id="codePostal" name="codePostal" required min="1" max="100000">
 
           <label for="complement">Complément :</label>
-          <input type="text" id="complement" name="complement">
+          <input type="text" id="complement" name="complement" maxlength="100">
 
           <label for="pays">Pays :</label>
-          <input type="text" id="pays" name="pays" value="France" required>
+          <input type="text" id="pays" name="pays" value="France" required maxlength="40">
         </div>
 
         <div class="column">
           <h3>Informations de connexion</h3>
           <label for="username">Nom d'utilisateur :</label>
-          <input type="text" id="username" name="username" required>
+          <input type="text" id="username" name="username" required maxlength="20">
 
           <label for="password">Mot de passe :</label>
           <input type="password" id="password" name="password" required>
