@@ -1,0 +1,119 @@
+= SAÉ 3.01 2023-2024 - Documentation utilisateur Web - Équipe 5
+:toc:
+:toc-title: Table des matières
+:sectnums: 
+:sectnumlevels: 4
+
+== Présentation du projet
+=== Equipe
+
+Projet est réalisé par::
+
+- https://github.com/BernatSR[Bernat Soldevila]
+- https://github.com/DamienZoldyck[Damien Laboute]
+- https://github.com/EtienneSalauze[Etienne Salauze]
+- https://github.com/YashLeBg[Mohammed Saïd Y. Anli-Yachourti]
+
+Tuteur/tutrice enseignant(e) de l'équipe:: mailto:jean-michel.bruel@univ-tlse2.fr[JMB]
+
+=== Contexte
+Fondée lors de la crise sanitaire de 2020, MalyArt est une entreprise Toulousaine de vente de produits d'art ( peintures, tableaux, dessins et matériel de dessin ) en ligne. 
+
+L'entreprise a donc besoin d'un site web offrant une vitrine de ses produits, ainsi qu'un espace de vente en ligne. Cela affirmera sa présence sur le marché et lui permettra de se développer au niveau national.
+
+Le site est disponible à l'adresse : http://193.54.227.208/~saephp05/index.php 
+
+== Navigation sur le site (client)
+
+=== Accueil 
+
+Lorsque l'utilisateur arrive sur le site, il voit la page d'accueil ci-dessous :
+
+image::Accueil.PNG[Accueil]
+
+Depuis cette page, il peut voir le logo ainsi que le nom de l'entreprise et un carrousel présentant le domaine d'activité de l'entreprise.
+En haut de la page, les différentes catégories sont présentées. L'utilisateur peut cliquer sur celles-ci pour rechercher un certain type de produit (les mieux notés, les produits en promotion...). Certaines catégories (peintures, dessins et matériels d'art) peuvent être affinées en sous-catégories, par exemple, dans la catégorie dessins, on peut rechercher uniquement les dessins au fusain après avoir passé son curseur sur la catégorie dessin. La barre de recherche permet de chercher un produit précisément.
+En bas de la page se trouvent les liens vers les différents réseaux sociaux de l'entreprise ainsi que les mentions légales du site.
+Enfin, le menu en haut à gauche de la page permet d'accéder à son compte ou à son panier. Si l'utilisateur n'est pas connecté, il sera d'abord redirigé vers la page de connexion. Sinon, il aura aussi la possiblité de se décnnecter depuis ce menu.
+
+=== Connexion
+
+Une fois sur la page de connexion, l'utilisateur doit rentrer son nom d'utilisateur et son mot de passe dans les champs adéquats puis valider en cliquant sur le bouton "Connexion". L'utilisateur peut aussi choisir de conserver son nom d'utilisateur pour sa prochaine connexion en cochant la case "Se souvenir de moi". 
+
+image::Connexion.PNG[Connexion]
+
+S'il ne possède pas de compte sur le site, il peut en créer un en cliquant sur le lien "inscrivez-vous". 
+
+=== Inscription
+
+Pour créer son compte, l'utilisateur doit remplir tous les champs (seul le champ "Complément" est facultatif) avec ses informations personnelles. Le nom d'utilisateur, le téléphone et l'adresse mail ne doivent pas être déjà utilisés par un autre compte. Une fois les champs correctement remplis, le compte peut être créé en cliquant sur le bouton "s'inscrire" et l'utlisateur est redirigé vers la page de connexion.
+
+image::Inscription.PNG[Inscription]
+
+=== Commander
+
+Arrivé sur la page présentant les articles, l'utilisateur peut choisir de trier les produits par prix croissant ou décroissant via le menu déroulant à gauche. 
+Cliquer sur un produit permet d'afficher ses détails. 
+
+image::Détails.PNG[Détails]
+
+Pour ajouter le produit au panier, appuyez sur le bouton "ajouter au panier" sous l'image du produit. Cliquez ensuite sur "OK" sur le pop-up de confirmation. Vous êtes maintenant sur la page de gestion du panier.
+
+=== Gestion du panier
+
+Pour augmenter ou diminuer la quantité d'un produit dans votre panier, utilisez les boutons "+" et "-" du produit concerné. Vous pouvez aussi directement taper le nombre dans la case de la quantité. Confirmez avec le bouton "save" ou annulez avec le bouton "cancel". Appuyer sur l'icône de poubelle permet de supprimer un produit de son panier (après confirmation via le pop-up). 
+
+image::Panier.PNG[Panier]
+
+Les prix totaux et sous-totaux sont mis à jour et indiqués sur la page.
+Cliquer sur le nom d'un produit permet de revenir aux détails de celui-ci.
+Validez la commande avec le bouton en bas à droite de la page.
+Le panier est aussi accessible si l'utilisateur est connecté depuis le menu situé en haut à droite. 
+
+=== Valider la commande
+
+Choisissez ou ajoutez une adresse de livraison via le menu déroulant. Si vous avez choisi d'ajouter une nouvelle adresse, remplissez les champs qui sont apparus (seul le champ complément est facultatif) et confirmez avec le bouton  
+Pour payer un produit avec une carte de crédit, remplissez les champs nécessaires (à gauche). De la même manière, pour payer avec Paypal, remplissez les champs correspondants (à droite). Une fois toutes les informations correctes, confirmez les informations avec le bouton "Payer".
+
+image::Commander.PNG[Commander]
+
+=== Modifier les informations du compte
+
+Une fois connecté, l'utilisateur peut accéder aux informations de son compte via le bouton "compte" accessible depuis le menu en haut à gauche.
+Il peut modifier ces informations et les valider avec le bouton "confirmer" sous le formulaire (attention cependant, aucun champ ne peut etre vide excepté le complément, le numéro de téléphone, le mail et le nom d'utilisateur doivent être uniques et les champs doivent respecter certains formats).
+
+image::Modifier.PNG[Modifier]
+
+=== Historique des commandes
+
+Sous les informations de son compte, le client peut visualiser son historique des commandes. Il peut voir : le numéro identifiant sa commande, la date de commande ainsi que son statut. 
+
+image::Modifier.PNG[Historique]
+
+=== Laisser un avis
+
+Une fois qu'un client a acheté un produit sur le site, il peut laisser un avis sur celui-ci. L'avis est accompagné d'une note de 1 à 5 étoiles et le client peut aussi ajouter une photo à son avis.
+
+image::Avis.PNG[Avis]
+
+== Utilisation du site (administrateur)
+
+=== Supprimer un avis
+
+image::Supprimer.PNG[Supprimer]
+
+=== Laisser un avis
+
+De la même facon que les autres utilisateurs, l'administrateur peut laisser un avis sous un produit pour répondre aux clients.
+
+=== Ajouter un produit
+
+Pour ajouter un nouvel article sur le site, l'administrateur choisit le type de produit qu'il veut ajouter (produit simple, composition ou produit d'une composition) via le bouton correspondant. Il remplit ensuite les champs et choisit la bonne catégorie de produit et une image. Cliquer sur "ajouter" valide l'ajout.
+
+image::Ajouter.PNG[Ajouter]
+
+=== Modifier un produit
+
+Un administrateur du site peut modifier les informations d'un produit en cliquant sur le bouton "modifier l'article". Ensuite, il peut remplacer les champs qu'il souhaite modifier ou changer l'image. Cliquer sur "modifier" confirme les changements. 
+
+image::Remplacer.PNG[Modifier]

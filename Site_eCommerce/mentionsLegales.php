@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mentions légales</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="include/logoRond.png" type="image/x-icon">
 </head>
 
 <body>
