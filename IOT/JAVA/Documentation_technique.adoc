@@ -18,6 +18,12 @@ Ainsi, les fonctionnalités de l'application sont les suivantes :
 - Configuration des seuils maximaux pour chaque données
 - Configuration du temps de pause entre deux relevés de données
 
+== Installation et utilisation de l’application
+
+// Mettre le lien vers le fichier documentation_utilisateur.adoc
+
+L'installation et l'utilisation de l'application sont expliquées dans le fichier https://github.com/IUT-Blagnac/sae-3-01-devapp-Equipe-5/blob/master/IOT/JAVA/Documentation_utilisateur.adoc[documentation utilisateur]
+
 == Structure de l'application
 
 La structure de l’application est répartie en plusieurs packages que voici :
@@ -142,12 +148,6 @@ Nous avons choisi d'utiliser l'architecture MVC car elle permet de séparer les 
 
 Nous avons choisi JavaFX pour la réalisation de l'interface graphique car il permet de créer des interfaces graphiques riches et modernes. De plus, il est très utilisé dans le développement d'applications Java.
 
-
-== Installation et utilisation de l’application
-
-// Mettre le lien vers le fichier documentation_utilisateur.adoc
-
-L'installation et l'utilisation de l'application sont expliquées dans le fichier https://github.com/IUT-Blagnac/sae-3-01-devapp-Equipe-5/blob/master/IOT/JAVA/Documentation_utilisateur.adoc[documentation utilisateur]
 
 
 
