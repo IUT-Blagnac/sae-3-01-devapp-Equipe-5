@@ -68,7 +68,7 @@ ____
 ____
 
 
-==== Visualisation de toutes les données d'une salle
+=== Visualisation de toutes les données d'une salle
 
 Notre client pourra visualiser toutes les données d'une salle. Pour cela, il devra sélectionner une salle dans la liste déroulante et cliquer sur le bouton "Afficher". Puis ensuite cliquer sur le bouton "All". Les données de la salle sélectionnée s'afficheront dans une nouvelle fenêtre.
 
@@ -98,7 +98,7 @@ ____
 ____
 
 
-==== Configuration des seuils maximaux pour chaque données
+=== Configuration des seuils maximaux pour chaque données
 
 Notre client pourra configurer les seuils maximaux pour chaque données. Pour cela, il devra cliquer sur le bouton "Configuration". Une nouvelle fenêtre s'ouvrira et il pourra modifier les seuils maximaux. Il devra ensuite cliquer sur le bouton "Confirmer" pour enregistrer les modifications.
 
@@ -118,7 +118,7 @@ ____
 • _configure.fxml_
 ____
 
-==== Configuration du temps de pause entre apres 10 minutes continues de prélevement de données
+=== Configuration du temps de pause entre apres 10 minutes continues de prélevement de données
 
 Notre client pourra configurer le temps de pause entre apres 10 minutes continues de prélevement de données. Pour cela, il devra cliquer sur le bouton "Configuration". Une nouvelle fenêtre s'ouvrira et il pourra modifier le temps de pause. Il devra ensuite cliquer sur le bouton "Confirmer" pour enregistrer les modifications.
 
