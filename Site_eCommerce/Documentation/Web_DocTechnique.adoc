@@ -44,5 +44,12 @@ Si tout n'est pas valide, un message d'erreur s'affiche, sinon, les requêtes SQ
 
 image::sql_compte[Modification des informations d'un compte code]
 
+=== Affichage de l'historique
+
+Cette partie du code permet d'afficher l'historique de commande du client
+
+image::historique[Historique de commande]
+
+
 
 
