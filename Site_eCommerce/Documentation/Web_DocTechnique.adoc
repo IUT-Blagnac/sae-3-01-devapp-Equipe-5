@@ -33,6 +33,10 @@ Le schéma d'enchaînement des pages du site est disponible https://github.com/I
 
 == Fonctionnalités du site
 
+=== Affichage des produits
+
+=== Ajout / modification de produits
+
 === Modification des informations d'un compte 
 
 Cette partie du code récupère les informations du compte connecté.
@@ -50,6 +54,43 @@ Cette partie du code permet d'afficher l'historique de commande du client
 
 image::historique[Historique de commande]
 
+=== Panier
+//@author Bernat SOLDEVILA
+Sur la page de https://github.com/IUT-Blagnac/sae-3-01-devapp-Equipe-5/blob/master/Site_eCommerce/panier.php[panier] accessible seulement si nous sommes connectés, nous avons plusieurs parties de code. +
+Nous avons une partie d'affichage des produits avec un formulaire pour modifier la quantité de chaque produit (cela est traité en début de fichier avec une requête SQL)
+
+Nous avons ensuite un formulaire de total à payer avec une autre requête sql, lors de la validation de formulaire (formulaire contenant des champs de type hidden) l'utilisateur est renvoié vers la page de paiement
+
+=== Paiement
+//@author Bernat SOLDEVILA
+
+Cette page de https://github.com/IUT-Blagnac/sae-3-01-devapp-Equipe-5/blob/master/Site_eCommerce/commander.php[paiement] comporte également plusieurs parties. +
+Nous avons nottament une partie d'affichage des produits comme pour dans le panier avec seule différence que les valeurs ne sont pas modifiables. +
+
+Nous avons ensuite une partie de choix d'adresses, l'utilisateur peut soit laisser l'adresse sélectionnée par défault soit peut en saisir une nouvelle. Pour saisir une nouvelle adresse, nous avons un formulaire qui lorsque validé, apres avoir fait des vérfications va faire appel à la procédure SQL `UpdateCommandeAdresse`. +
+
+Par la suite l'utilisateur est porté vers un double formulaire de paiement, si l'utilisateur sélectionne l'option de paiement avec paypal, le formulaire de paiement par paypal va apparaitre (Cela est fait avec du javascript). Dans le cas contraire si l'option selectionnée est de paiement par carte, le formulaire de paiement par carte apparait. + 
+
+Pour finir si tous les champs sont saisis, l'utilisateur va pouvoir valider sa commande. Si aucun problème de stock ou autre est trouvé lors de l'appel a `traitementCommande.php` une fenêtre d'alerte comme quoi la commande est validée va apparaitre.
+
+=== Connexion 
+//@author Bernat SOLDEVILA
+==== Formulaire
+Pour la page de formulaire nous avons simplement un formulaire avec deux champs (Nom d'utilisateur et mot de passe) et une case pour le cookie.
 
 
+==== Traitement
 
+Au niveau du traiement des données de connexion, les données sont récupérée avec `$_POST` et sont encapsulées avec `htmlentities()` pour s'éviter des surprises. + 
+Afin de comparer le mot de passe saisi et celui dans la base de données, nous chiffrons le mot de passe saisi en SHA256 et nous le comparons avec celui qui est dans la base de données avec le même nom d'utilisateur. + 
+Si nous avons un résultat après cette requête cela veut dire qui le nom d'utilisateur et le mot de passe correspondent, nous allons donc mettre les données de l'utilisateur dans la `$_SESSION`. Eventuellement si l'utilisateur l'a sélectionné ajouter un cookie pour se rappeller du nom d'utilisateur. + 
+Puis nous redirigeons vers la page d'ou l'utilisateur venait avec une redirection intelligente (redirection avec toutes les informations `$_GET` eventuelles)
+
+=== Inscription 
+//@author Bernat SOLDEVILA
+==== Formulaire
+Nous avons un grand formulaire avec trois sections, premiere section pour les données du client, deuxième pour son adresse et dernière pour son nom d'utilisateur et mot de passe. Ce mot de passe est demandé deux fois avec une script JavaScript pur check si il correspond à nos standards (>8 caractères, 1 numéro, 1 caractère spécial) et que les deux mots de passe correspondent. 
+
+==== Traitement 
+Pour le traitement de l'inscription nous avons encore une fois une utilisation de `htmlentities()` et une redirection intelligente. Nous avons également une multitude de check des formats de données (format du mail, format télefone ...) et un check pour s'assurer que les données sensées être uniques (mail, telefone, nom d'utilisateur) ne sont pas déjà présentes dans la base de données. + 
+Après cela, si toutes les données semblent être valides nous avons un appel à la procédure SQL `AjouterClient()` qui va s'occuper de l'ajout de l'utilisateur dans la base de données. En cas d'erreur, nous avons une redirection vers le formulaire avec un message d'erreur customisé qui va apparaitre en fonction de l'erreur. 
