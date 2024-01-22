@@ -2,8 +2,9 @@
 require_once('include/connect.inc.php');
 session_start();
 
-if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && isset($_POST['tel']) && isset($_POST['dtN']) && isset($_POST['username']) && isset($_POST['rue']) && isset($_POST['ville']) && isset($_POST['codeP']) && isset($_POST['pays']) ) {
-    // R�cup�ration des donn�es avec htmlentities 
+if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && isset($_POST['tel']) && isset($_POST['dtN']) && isset($_POST['username']) && isset($_POST['rue']) 
+&& isset($_POST['ville']) && isset($_POST['codeP']) && isset($_POST['pays']) ) {
+    // Récupération des données avec htmlentities 
     $nom = htmlentities($_POST['nom']);
     $prenom = htmlentities($_POST['prenom']);
     $mail = htmlentities($_POST['mail']);
@@ -16,10 +17,10 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && 
     $pays = htmlentities($_POST['pays']);
     
 
-    // V�rification de l'existence de champs facultatifs
+    // Vérification de l'existence de champs facultatifs
     $compl = isset($_POST['compl']) ? htmlentities($_POST['compl']) : null;
 
-    // On v�rifie que le nom d'utilisateur n'est pas d�j� utilis� (s'il a chang�)
+    // On vérifie que le nom d'utilisateur n'est pas déjà utilisé (s'il a changé)
     $request = $conn->prepare('SELECT * FROM Clients WHERE pseudo = :username AND :idClient != idClient');
     $request->bindParam(':username', $username);
     $request->bindParam(':idClient', $_SESSION['id']);
@@ -30,7 +31,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && 
         die();
     }
     
-    // On v�rifie que le num�ro de t�l�phone n'est pas d�j� utilis�
+    // On vérifie que le numéro de téléphone n'est pas déjà utilisé
     $request = $conn->prepare('SELECT * FROM Clients WHERE tel = :tel AND :idClient != idClient');
     $request->bindParam(':tel', $tel);
     $request->bindParam(':idClient', $_SESSION['id']);
@@ -41,7 +42,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && 
         die();
     }
 
-    // On v�rifie que l'adresse mail n'est pas d�j� utilis�e (si elle a chang�)
+    // On vérifie que l'adresse mail n'est pas déjà utilisée (si elle a changé)
     $request = $conn->prepare('SELECT * FROM Clients WHERE adresseMail = :mail AND :idClient != idClient ');
     $request->bindParam(':mail', $mail);
     $request->bindParam(':idClient', $_SESSION['id']);
@@ -52,29 +53,29 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && 
         die();
     }
 
-    // On v�rifie que l'adresse mail est valide
+    // On vérifie que l'adresse mail est valide
     if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
         header('Location: compte.php?erreur=mail');
         die();
     }
 
-    // On v�rifie que le num�ro de t�l�phone est valide
+    // On vérifie que le numéro de téléphone est valide
     if ($tel != '' && !preg_match("#^(\+|00)?33[1-9]([-. ]?[0-9]{2}){4}$|0[1-9]([-. ]?[0-9]{2}){4}$#", $tel)) {
         header('Location: compte.php?erreur=tel');
         die();
     }
 
-    // On v�rifie que la date de naissance est valide
+    // On vérifie que la date de naissance est valide
     if (!preg_match("#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#", $dtN)) {
         header('Location: compte.php?erreur=dtN');
         die();
     }
 
-    // Si tout est OK, on met � jour les informations dans la base de donn�es
+    // Si tout est OK, on met à jour les informations dans la base de données
    try {
     $conn->beginTransaction();
 
-    // Mise � jour de la table Adresses
+    // Mise à jour de la table Adresses
     $updateAddressQuery = 'UPDATE Adresses
                           SET rue = :rue, ville = :ville, codePostal = :codeP, 
                               complement = :compl, pays = :pays
@@ -89,7 +90,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && 
     $request->bindParam(':userId', $_SESSION['id'], PDO::PARAM_INT);
     $request->execute();
 
-    // Mise � jour de la table Clients
+    // Mise à jour de la table Clients
     $updateQuery = 'UPDATE Clients 
                     SET nom = :nom, prenom = :prenom, adresseMail = :mail, 
                         tel = :tel, dateNaissance = :dtN, pseudo = :username 
@@ -105,7 +106,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && 
     $request->bindParam(':userId', $_SESSION['id'], PDO::PARAM_INT);
     $request->execute();
 
-        // Si aucune exception n'est lev�e, valide la transaction
+        // Si aucune exception n'est levée, valide la transaction
         $conn->commit();
         $test=$_SESSION['id'];
         header('Location: compte.php?user='.$test);

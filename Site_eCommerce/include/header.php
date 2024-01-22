@@ -7,7 +7,7 @@
     <br>
     <form action="produits.php">
         <nav>
-            <a href="produits.php?categorie=MieuxNotés"> Les mieux notés</a></li>
+            <a href="produits.php?categorie=MieuxNotes"> Les mieux notés</a></li>
             <a href="produits.php?categorie=Promotions"> Promotions</a></li>
             <div class="dropdown">
                 <span><a href="produits.php?categorie=Peintures"> Peintures</a></li></span>

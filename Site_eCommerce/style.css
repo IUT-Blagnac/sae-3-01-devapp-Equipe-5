@@ -1,152 +1,573 @@
 @import url("https://fonts.googleapis.com/css?family=Playfair+Display&display=swap");
 
 body {
-    font-family: "Playfair Display", serif;
+  font-family: "Playfair Display", serif;
 }
 
-*{ margin: 0; }
-.conteneur{ 
-    margin: 0 auto; max-width: 1170px; 
+* {
+  margin: 0;
+}
+.conteneur {
+  margin: 0 auto;
+  max-width: 1170px;
+  overflow: hidden;
 }
 
 /*header*/
-header { 
-    background: #ffffff; padding: 5px; text-align: center; 
+header {
+  background: #ffffff;
+  padding: 5px;
+  text-align: center;
 }
-header  nav{ 
-    display: inline; 
+header nav {
+  display: inline;
 }
-header  a{ 
-    color: rgb(112, 1, 159); text-decoration: none; padding: 5px; 
+header a {
+  color: rgb(112, 1, 159);
+  text-decoration: none;
+  padding: 5px;
 }
-header  nav  a:hover{ 
-    background: #ffd0ff; 
-    border-radius: 10px;
-    
-}
-
-header #maly{
-    font-size: 70px;
-}
-
-header #logoMalyart{
-    position:absolute;
-    top:10px;
-    left:0px;
+header nav a:hover {
+  background: #ffd0ff;
+  border-radius: 10px;
 }
 
-header #searchbar{
-    padding:15px;
-    border-radius: 50px;
-    border-color: rgb(112, 1, 159);
+header #maly {
+  font-size: 70px;
 }
 
-  input[type=text] {
-     width: 30%;
-
+header #logoMalyart {
+  position: absolute;
+  top: 10px;
+  left: 0px;
 }
 
-header #searchbutton{    
-    position: absolute;
-    padding: 4px;
+header #searchbar {
+  padding: 15px;
+  border-radius: 50px;
+  border-color: rgb(112, 1, 159);
 }
 
-header #searchbutton:hover{
-    background: #ffd0ff; 
-    border-radius: 4px;
+input[type="text"] {
+  width: 30%;
+}
+
+header #searchbutton {
+  position: absolute;
+  padding: 4px;
+}
+
+header #searchbutton:hover {
+  background: #ffd0ff;
+  border-radius: 4px;
 }
 
 header .menu {
-    display: none;
-    position: absolute;
-    top: 15px;
-    right: 58px;
-    width: 200px; 
-    background-color: #fff; 
-    border: 1px solid #ccc; 
-    border-radius: 15px;
-    padding: 10px;
+  display: none;
+  position: absolute;
+  top: 15px;
+  right: 58px;
+  width: 200px; /* Changer la largeur du menu selon vos besoins */
+  background-color: #fff; /* Couleur de fond du menu */
+  border: 1px solid #ccc; /* Bordure pour le menu */
+  border-radius: 15px;
+  padding: 10px;
 }
 
 header #menu-toggle {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
 }
 
 header .menu.active {
-    display: block;
+  display: block;
 }
 
 header .menu-icon {
-    cursor: pointer;
-    font-size: 20px;
-    padding: 15px;
-    background-color: rgb(112, 1, 159);
-    color: #fff;
-    position: absolute;
-    top: 15px;
-    right: 10px;
-    border-radius: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 15px;
+  background-color: rgb(112, 1, 159);
+  color: #fff;
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  border-radius: 10px;
 }
 
 header .menu-icon:hover {
-    background-color: #ffd0ff;
-    color:black; 
+  background-color: #ffd0ff;
+  color: black;
 }
 
 header .menu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 header .menu ul li {
-    border-bottom: 1px solid rgb(112, 1, 159);
+  border-bottom: 1px solid rgb(112, 1, 159);
 }
 
 header .menu ul li a {
-    display: block;
-    padding: 15px;
-    text-decoration: none;
-    color: rgb(112, 1, 159);
+  display: block;
+  padding: 15px;
+  text-decoration: none;
+  color: rgb(112, 1, 159);
 }
 
 header .menu ul li a:hover {
-    background-color: #ffd0ff;
+  background-color: #ffd0ff;
+}
+
+header .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+header .dropdown-content {
+  display: none;
+  position: absolute;
+  margin-top: 5px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  min-width: 100%;
+  box-shadow: 0px 8px 16px 0px rgb(112, 1, 159);
+  z-index: 1;
+}
+
+header .dropdown-content a {
+  color: rgb(112, 1, 159);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+header .dropdown-content a:hover {
+  background-color: #ffd0ff;
+}
+
+header .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+header .dropdown:hover .dropbtn {
+  background-color: #3e8e41;
 }
 
 /*footer*/
 footer {
-    background: #ffffff; padding: 5px; text-align: center; 
+  background: #ffffff;
+  padding: 5px;
+  text-align: center;
 }
 
-footer a{
-    color: rgb(112, 1, 159); text-decoration: none; padding: 5px; 
+footer a {
+  color: rgb(112, 1, 159);
+  text-decoration: none;
+  padding: 5px;
 }
 
-footer ML:hover{
-    background: #ffd0ff; 
-    border-radius: 10px;
+footer ML:hover {
+  background: #ffd0ff;
+  border-radius: 10px;
 }
 
-footer .logo{
-    position: relative;
+footer .logo {
+  position: relative;
 }
 
-footer .logo:hover{
-    background: #ffd0ff; 
-    border-radius: 4px;
+footer .logo:hover {
+  background: #ffd0ff;
+  border-radius: 4px;
 }
 
-/* css pour produits.php */ 
+#bandeau {
+  height: 15px;
+  background-color: rgb(112, 1, 159);
+}
+
+/* Définition du carousel */
+.carousel {
+  position: relative;
+  /* Le carousel est positionné relativement à son parent */
+}
+/* Définition de l'élément contenant les diapositives */
+.carousel-inner {
+  display: flex;
+  /* Affiche les éléments en ligne */
+  overflow: hidden;
+  /* Cache les éléments qui dépassent */
+  height: 70vh;
+  /* Hauteur égale à 100% de la hauteur de la vue */
+  flex-wrap: nowrap;
+  /* Empêche les éléments de se placer sur plusieurs lignes */
+}
+/* Définition des diapositives */
+.slide {
+  flex: 0 0 100%;
+  /* Largeur de chaque diapositive est de 100% */
+  height: 100%;
+  /* Hauteur de chaque diapositive est de 100% */
+  transition: 0.5s ease-in-out;
+  /* Ajout d'une animation douce pour la transition entre les diapositives */
+}
+/* Définition de l'affichage de l'image de chaque diapositive */
+.slide img {
+  width: 100%;
+  /* Largeur de l'image est de 100% */
+  height: 100%;
+  /* Hauteur de l'image est de 100% */
+  object-fit: cover;
+  /* Couvre tout l'espace disponible */
+}
+/* Définition des boutons de contrôle du carousel */
+.carousel-controls {
+  position: absolute;
+  /* Les boutons sont absolument positionnés */
+  z-index: 5;
+  /* Ils sont placés au-dessus des autres éléments */
+  left: 2%;
+  /* La distance à gauche est de 10% */
+  right: 2%;
+  /* La distance à droite est de 10% */
+  top: 50%;
+  /* La distance du haut est de 50% */
+  display: flex;
+  /* Affiche les boutons en ligne */
+  justify-content: space-between;
+  /* Espacement égal entre les boutons */
+}
+/* Style des boutons de contrôle */
+.carousel-controls button {
+  padding: 5px;
+  /* Ajout de padding pour un meilleur contrôle */
+  background-color: #b300ff;
+  /* Arrière-plan  */
+  color: white;
+  border-radius: 10px;
+}
+
+.carousel-controls button:hover {
+  background-color: #70019f;
+}
+
+/* Définition des points de contrôle */
+.carousel-dots {
+  position: absolute;
+  /* Les points sont absolument positionnés */
+  z-index: 5;
+  /* Ils sont placés au-dessus des autres éléments */
+  left: 50%;
+  /* La distance à gauche est de 50% */
+  right: 50%;
+  /* La distance à droite est de 50% */
+  bottom: 10%;
+  /*La distance du bas est de 10% */
+  display: flex;
+  /* Affiche les points en ligne */
+  justify-content: center;
+  /* Centrage des points */
+}
+/* Style des points de contrôle */
+.carousel-dots .dot {
+  border-radius: 50%;
+  /* Les points sont en forme de cercle */
+  margin: 5px;
+  /* Ajout d'un margin pour un meilleur contrôle */
+  cursor: pointer;
+  /* Curseur en forme de main pour un meilleur contrôle */
+}
+/* Styles pour les points de navigation du carrousel */
+.carousel-dots .active {
+  /* Border de 10px pour le point actif */
+  border: 10px solid #70019f !important;
+  /* !important permet de surcharger les autres styles éventuels */
+}
+.carousel-dots .inactive {
+  /* Border de 10px pour les points inactifs */
+  border: 10px solid #b300ff;
+}
+
+/* CSS POUR produits.php */
 #filtrer {
-    width: 20%;
-    height: 100%;
-    /* centrer les éléments de la box */
-    display: flex;
-    box-sizing: border-box; /* Pour inclure la bordure et le padding dans la largeur */
-    padding: 20px;
-    margin-left: 7px;
-    border: 1px solid #ccc;
+  /* centrer les éléments de la box */
+  display: flex;
+  box-sizing: border-box; /* Pour inclure la bordure et le padding dans la largeur */
+  padding: 20px;
+  margin-left: 7px;
+  margin-right: 7px;
+  border: 1px solid #ccc;
+  background-color: #3f005b;
+  color: white;
+}
+
+.buttonFiltrer {
+  margin: 10px;
+  background-color: #3f005b;
+  color: white;
+  font-family: "Playfair Display", serif;
+  border-radius: 5px;
+}
+
+.buttonFiltrer:hover {
+  background-color: black;
+}
+
+#ajoutProduit {
+  margin-left: 50%;
+  background-color: #3f005b;
+  color: white;
+  font-family: "Playfair Display", serif;
+  border-radius: 5px;
+}
+
+#ajoutProduit:hover {
+  background-color: black;
+}
+
+#produits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.table-container {
+  flex: 0 0 calc(30% - 20px); /* 30% de large, avec une marge de 20px entre les produits */
+  margin: 10px; /* Marge autour de chaque produit */
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajout d'une ombre sous chaque produit */
+  transition: transform 0.3s ease;
+}
+
+.table-container:hover {
+  transform: scale(1.05); /* Effet de zoom au survol */
+}
+
+.image {
+  width: 200px;
+  max-height: 250px;
+  object-fit: cover;
+  height: auto;
+  transition: transform 0.3s ease; /* Ajoute une transition fluide */
+}
+
+/* Effet d'agrandissement au survol */
+.image:hover {
+  transform: scale(1.08); /* Agrandit l'image à 108% de sa taille normale */
+}
+
+.texteProduit {
+  color: black;
+  transition: font-size 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+/* Effet d'agrandissement au survol */
+.texteProduit:hover {
+  font-size: 103%;
+}
+
+.square {
+  margin-top: 2px;
+  width: 15px;
+  height: 15px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+/* css pour produit.php */
+#selected {
+  border-width: 3px;
+  border-color: rgb(112, 1, 159);
+}
+
+#imgProduit {
+  position: relative;
+  border-radius: 5px;
+  margin: 10px;
+  width: 400px;
+  height: auto;
+}
+
+#infoProduit {
+  position: relative;
+  text-align: right;
+}
+
+#couleur {
+  align-content: bottom;
+}
+
+#bRetour {
+  margin: 10px;
+  background-color: #3f005b;
+  color: white;
+  font-family: "Playfair Display", serif;
+  border-radius: 5px;
+}
+
+#bRetour:hover {
+  background-color: black;
+}
+
+#bModif {
+  margin: 10px;
+  background-color: #3f005b;
+  color: white;
+  font-family: "Playfair Display", serif;
+  border-radius: 5px;
+}
+
+#bModif:hover {
+  background-color: black;
+}
+
+#des {
+  text-align: center;
+}
+
+#stock {
+  margin-left: 10px;
+}
+
+#stock a {
+  color: rgb(112, 1, 159);
+  text-decoration: none;
+}
+
+#couleurs {
+  margin-left: 10px;
+}
+
+#bAjouter {
+  margin: 10px;
+  background-color: #3f005b;
+  color: white;
+  font-family: "Playfair Display", serif;
+  border-radius: 5px;
+}
+
+#bAjouter:hover {
+  background-color: black;
+}
+
+#bAjouter2 {
+  margin: 10px;
+  background-color: #3f005b;
+  color: white;
+  font-family: "Playfair Display", serif;
+  border-radius: 5px;
+}
+
+#bAjouter2:hover {
+  background-color: black;
+}
+
+#nom {
+  font-size: 50px;
+  margin: 10px;
+  margin-right: 50px;
+  text-align: center;
+}
+
+/* CSS POUR LES AVIS */
+
+.commentaires {
+  margin-left: 7px;
+  border-radius: 5px;
+}
+
+.rating {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  margin: 7px;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  font-size: 20px;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.rating label:hover,
+.rating input:checked ~ label,
+.rating input:hover ~ label {
+  color: #70019f;
+}
+
+.commentaire {
+  margin-left: 7px;
+}
+
+.avis {
+  position: relative;
+  border: 2px solid #000;
+  border-radius: 5px;
+  box-sizing: border-box;
+  width: 50%;
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  display: flex; /* Utilisation de flexbox pour aligner les éléments enfants côte à côte */
+  flex-direction: column; /* Afficher les éléments enfants en colonne */
+}
+
+.infoAvis {
+  margin-bottom: 10px; /* Ajout d'une marge en bas pour séparer la section d'informations du contenu */
+}
+
+.contentAvis {
+  display: flex; /* Utilisation de flexbox pour aligner les éléments enfants côte à côte */
+}
+
+.commentaireAvis {
+  flex: 1; /* L'espace flexible fait en sorte que le commentaire occupe tout l'espace disponible */
+}
+
+.imageAvis {
+  max-width: 150px;
+  max-height: 150px;
+  align-self: flex-end; /* Aligner l'image à la fin de la div parente */
+}
+
+.buttonAvis {
+  margin: 10px;
+  background-color: #3f005b;
+  color: white;
+  font-family: "Playfair Display", serif;
+  border-radius: 5px;
+}
+
+.buttonAvis:hover {
+  background-color: black;
+}
+
+.form-control {
+  width: 50%;
+  height: 100px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: none;
+}
+
+.buttonSupprimer {
+  margin: 10px;
+  background-color: #3f005b;
+  color: white;
+  font-family: "Playfair Display", serif;
+  border-radius: 5px;
+}
+
+.buttonSupprimer:hover {
+  background-color: black;
 }

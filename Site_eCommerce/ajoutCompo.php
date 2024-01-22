@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="./css/admin.css">
   
   <link rel="icon" href="include/logoRond.png" type="image/x-icon">
-  <title>Ajout Produit</title>
+  <title>Ajout Comopsition</title>
 </head>
 
 <body>
@@ -33,7 +33,7 @@
   <div class="global-container">
   <a href="index.php" id="maly"> MALYART </a>
   <form action="" method="POST" id='ajout-form' enctype="multipart/form-data">
-      <h2>Ajout</h2>
+      <h2>Ajout Composition</h2>
       <br>
       <div class="input-group">
         <input class="input" type="text" name="ref" id="ref" required>
@@ -43,11 +43,6 @@
       <div class="input-group">
         <input class="input" type="text" name="nom" id="nom" required>
         <label class="label" for="nom">Nom</label>
-      </div>
-      <br>
-      <div class="input-group">
-        <input class="input" type="text" name="aspect" id="aspect" required>
-        <label class="label" for="aspect">Aspect Technique</label>
       </div>
       <br>
       <div class="input-group">
@@ -106,7 +101,7 @@
       <button type="submit" name="submit" id='submit'>Ajouter</button>
     </form>
     <?php
-    if (isset($_POST['ref']) && isset($_POST['nom']) && isset($_POST['aspect']) && isset($_POST['categ']) && isset($_POST['color']) && isset($_POST['descrip']) && isset($_POST['prixO']) && isset($_POST['prixA']) && isset($_POST['stock']) && isset($_POST['submit'])) {
+    if (isset($_POST['ref']) && isset($_POST['nom']) && isset($_POST['categ']) && isset($_POST['color']) && isset($_POST['descrip']) && isset($_POST['prixO']) && isset($_POST['prixA']) && isset($_POST['stock']) && isset($_POST['submit'])) {
       $uploadedFilePath = $_FILES['image']['tmp_name'];
       // Obtenez les informations sur le fichier
       $infoFichier = pathinfo($_FILES['image']['name']);
@@ -115,7 +110,7 @@
       // Extensions autorisées
       $extensionsAutorisees = array('jpg');
 
-      $sql6 = "SELECT reference FROM Produits";
+      $sql6 = "SELECT reference FROM ProduitsFinaux";
       $pdostat6 = $conn->prepare($sql6);
       $pdostat6->execute();
       $referenceIdentique = false;
@@ -128,7 +123,6 @@
       }
       if ($referenceIdentique == false) {
         if (preg_match('/^.{1,40}$/', $_POST['nom'])) {
-          if (preg_match('/^.{1,250}$/', $_POST['aspect'])) {
             if (preg_match('/^.{1,250}$/', $_POST['descrip'])) {
               if (preg_match('/^(?:\d{1,4}(?:\.\d{1,2})?|\d{1,4})$/', $_POST['prixO'])){
                 if (preg_match('/^(?:\d{1,4}(?:\.\d{1,2})?|\d{1,4})$/', $_POST['prixA'])){
@@ -156,13 +150,6 @@
                       $sql1 = "INSERT INTO ProduitsFinaux VALUES ('$ref', '$nom', '$categorie')";
                       $pdostat1 = $conn->prepare($sql1);
                       $pdostat1->execute();
-                      $asp = $_POST['aspect'];
-                      $sql2 = "INSERT INTO Produits VALUES ('$ref', '$nom', '$asp')";
-                      $pdostat2 = $conn->prepare($sql2);  
-                      $pdostat2->execute();
-                      $sql7 = "INSERT INTO Composition VALUES ('$ref', '$ref')";
-                      $pdostat7 = $conn->prepare($sql7);
-                      $pdostat7->execute();
                       $des = $_POST['descrip'];
                       $prixO = $_POST['prixO'];
                       $prixA = $_POST['prixA'];
@@ -199,10 +186,6 @@
             else {
               echo " <br>La description est trop long (plus de 250 caractères).";
             } 
-          } 
-          else {
-            echo " <br>L'aspect technique est trop long (plus de 250 caractères).";
-          }
         } 
         else {
           echo " <br>Le nom est trop long (plus de 40 caractères).";

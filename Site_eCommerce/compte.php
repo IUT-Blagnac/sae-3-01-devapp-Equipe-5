@@ -78,6 +78,7 @@ if ($userInfo && $userInfo['adresse'] !== null) {
     <link rel="stylesheet" href="./css/voirCompte.css">
     <title>Mon compte</title>
     <script src="./js/functions.js"></script>
+    <link rel="icon" href="include/logoRond.png" type="image/x-icon">
 </head>
 <body>
     <?php 
@@ -145,14 +146,16 @@ if ($userInfo && $userInfo['adresse'] !== null) {
             $request->execute();
             $commandeInfo = $request->fetchAll(PDO::FETCH_ASSOC);
 
-            if(count($commandeInfo) > 0) {
+            if (count($commandeInfo) > 0) {
                 foreach ($commandeInfo as $commande) {
-                echo '<div class="historique">';
-                echo '<a href="commander.php?numCommande=' . $commande['numero'] . '">Numéro de commande : ' . $commande['numero'] . '</a><br>';
-                echo " Date de commande : " . $commande['date'] . "<br>";
-                echo " Statut : " . $commande['statut'] . "<br>";
-                echo "</div>";
-            }
+                    if ($commande['statut'] !== 'panier') {
+                        echo '<div class="historique">';
+                        echo '<a href="commander.php?numCommande=' . $commande['numero'] . '">Numéro de commande : ' . $commande['numero'] . '</a><br>';
+                        echo " Date de commande : " . $commande['date'] . "<br>";
+                        echo " Statut : " . $commande['statut'] . "<br>";
+                        echo "</div>";
+                    }
+                }
         } else {
             echo "Vous n'avez pas encore passé de commandes.";
             }

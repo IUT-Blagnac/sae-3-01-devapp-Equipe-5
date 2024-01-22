@@ -94,6 +94,7 @@ if (isset($_GET['erreur'])) {
         </div>
         <div class="column">
           <h3>Adresse </h3>
+          <br>
           <label for="rue">Rue :</label>
           <input type="text" id="rue" name="rue" required maxlength="40">
 

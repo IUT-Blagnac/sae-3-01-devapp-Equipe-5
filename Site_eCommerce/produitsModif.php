@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/admin.css">
   <title>Modification Produit</title>
+    <link rel="icon" href="include/logoRond.png" type="image/x-icon">
 </head>
 
 <body>
@@ -13,6 +14,15 @@
   session_start();
   include_once("include/connect.inc.php");
   if (isset($_SESSION['login']) && isset($_GET['reference']) && isset($_GET['couleur'])) {
+    $login = $_SESSION['login'];
+    $sql3 = "SELECT DISTINCT  isAdmin FROM Clients WHERE pseudo = '$login'";
+    $pdostat3 = $conn->prepare($sql3);
+    $pdostat3->execute();
+    $statut = $pdostat3->fetch(PDO::FETCH_ASSOC);
+    if ($statut['isAdmin'] == "true") {}
+  else{
+    echo '<script type="text/javascript">window.location.replace("index.php");</script>';
+  }
   }
   else {
     echo '<script type="text/javascript">window.location.replace("index.php");</script>';

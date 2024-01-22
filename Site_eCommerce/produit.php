@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produits - MalyArt</title>
+    <title>Produit - MalyArt</title>
     <link rel="stylesheet" href="style.css">
-    <!DOCTYPE html>
-    <html>
+    <link rel="icon" href="include/logoRond.png" type="image/x-icon">
+
 </head>
 
 <body>
@@ -59,6 +59,8 @@
     }
     echo '</td>';
     echo '</tr></table>';
+    echo '<p id="stock">  <a href="produits.php?categorie=' . $ligne['categorie'] . '"> <B>CATEGORIE DU PRODUIT</B> </a></p>';
+    echo '<br>';
     if ($ligne['nbStock'] == 0) {
         echo '<p id="stock"> Ce produit à été victime de son succès </p><br>';
     } else {
@@ -112,9 +114,9 @@
 
         if ($dejaAvis == false) {
             echo '<div class="commenter">';
-            echo '<form method="POST">';
+            echo '<form method="POST" enctype="multipart/form-data">';
             echo '<div class="rating">';
-            echo '<input type="radio" id="star5" name="rating" value="5">';
+            echo '<input type="radio" id="star5" name="rating" value="5" required>';
             echo '<label for="star5">&#9733;</label>';
             echo '<input type="radio" id="star4" name="rating" value="4">';
             echo '<label for="star4">&#9733;</label>';
@@ -125,9 +127,9 @@
             echo '<input type="radio" id="star1" name="rating" value="1">';
             echo '<label for="star1">&#9733;</label>';
             echo '</div><BR>';
-            echo '<textarea class="form-control" type="text" name="commentaire" placeholder="Votre commentaire ...">';
+            echo '<textarea class="form-control" type="text" name="commentaire" placeholder="Votre commentaire ..." maxlength="180" required>';
             echo '</textarea><BR>';
-            echo '<input type="file" name="image"><BR>';
+            echo '<input type="file" name="file" accept=".jpg"><BR>';
             echo '<button type="submit" name="avis" class="buttonAvis">Laisser un avis</button>';
             echo '</div>';
         }
@@ -137,50 +139,33 @@
         extract($_POST);
 
         $valid = true;
+        $depasseLimite = false;
 
         if (isset($_POST['avis'])) {
-            $commentaire = htmlentities(trim($commentaire));
+            $commentaire = htmlentities(trim($commentaire), ENT_QUOTES, 'UTF-8');
 
-            if (empty($commentaire) || empty($rating)) {
+            // Limite de caractères par mot
+            $maxCaractereParMot = 15;
+
+            // Découper le commentaire en mots
+            $mots = explode(' ', $commentaire);
+
+
+            foreach ($mots as $mot) {
+                if (mb_strlen($mot, 'UTF-8') > $maxCaractereParMot) {
+                    $depasseLimite = true;
+                    break;
+                }
+            }
+
+            if (empty($commentaire) || empty($rating) || $depasseLimite) {
                 $valid = false;
-                echo "<script>alert('Les champs rating et commentaire sont vides');</script>";
-                echo "<script>location.reload();</script>";
+                echo "<script>alert('Les mots ne peuvent pas avoir plus de 15 caratères !');</script>";
+                echo '<script>window.location.replace("produit.php?reference=' . $ref . '&couleur=' . $couleur . '");</script>';
             }
 
             if ($valid) {
-                if ($_FILES['image']['size'] != 0) {
-                    $uploadedFilePath = $_FILES['image']['tmp_name'];
 
-                    // Obtenez les informations sur le fichier
-                    $infoFichier = pathinfo($_FILES['image']['name']);
-
-                    // Récupérez l'extension du fichier
-                    $extension = $infoFichier['extension'];
-
-                    // Extensions autorisées
-                    $extensionsAutorisees = array('jpg');
-
-                    if (in_array($extension, $extensionsAutorisees)) {
-                        $newFileName = $_POST['ref'] . '.jpg';
-
-                        // Chemin où le fichier doit être enregistré
-                        $destination = 'imgAvis/' . $newFileName;
-
-                        // Vérifier si le fichier existe déjà
-                        if (file_exists($destination)) {
-                            // Supprimer le fichier existant
-                            unlink($destination);
-                        }
-
-                        // Copier le fichier téléchargé vers son nouvel emplacement avec le nouveau nom
-                        copy($uploadedFilePath, $destination);
-
-                        // Supprimer le fichier temporaire après avoir fait la copie
-                        unlink($uploadedFilePath);
-                    } else {
-                        echo "<br>Le fichier doit être au format jpg";
-                    }
-                }
                 try {
                     $date = date('Y/m/d H:i:s');
                     $req = $conn->prepare("INSERT INTO Avis (refProduit, idClient, note, commentaire, dateAjout) VALUES (:refProduit, :idClient, :note, :commentaire, :dateAjout)");
@@ -190,9 +175,32 @@
                     $req->bindParam(':commentaire', $commentaire);
                     $req->bindParam(':dateAjout', $date);
                     $req->execute();
-                    echo "<script>location.reload();</script>";
+
+                    // Vérifier si le fichier a été correctement téléchargé
+                    if (isset($_FILES['file']) && $_FILES["file"]["error"] == 0 && !empty($_FILES["file"]["name"])) {
+
+                        $reqLastId = $conn->prepare("SELECT MAX(idCommentaire) FROM Avis");
+                        $reqLastId->execute();
+                        $lastId = $reqLastId->fetch(PDO::FETCH_ASSOC);
+
+                        // Obtenir le dernier ID de commentaire
+                        $lastIdValue = $lastId["MAX(idCommentaire)"];
+
+                        // Vérifier le type de fichier (assurez-vous qu'il s'agit d'une image JPG)
+                        $allowedTypes = ["image/jpeg", "image/jpg"];
+                        if (in_array($_FILES["file"]["type"], $allowedTypes)) {
+
+                            // Définir le nom du fichier avec le dernier ID de commentaire
+                            $uploadDir = "imgAvis/"; // Répertoire où vous souhaitez stocker les fichiers téléchargés
+                            $uploadFile = $uploadDir . $lastIdValue . ".jpg";
+
+                            move_uploaded_file($_FILES["file"]["tmp_name"], $uploadFile);
+                        }
+                    }
+
+                    echo '<script>window.location.replace("produit.php?reference=' . $ref . '&couleur=' . $couleur . '");</script>';
                 } catch (PDOException $e) {
-                    echo $e->getMessage();
+                    echo '';
                 }
             }
         }
@@ -201,10 +209,49 @@
 
     echo '<br>';
 
+    
     foreach ($reqAvis as $avis) {
-        echo '<div id="avis">';
-        echo 'De ' . $avis['pseudo'] . ' | Le ' . $avis['dateAjout'] . ' | ' . $avis['note'] . '&#9733 <br>';
-        echo $avis['commentaire'] . '<br>';
+        try {
+            echo '<div class="avis">';
+            echo '<div class="infoAvis">';
+            echo 'De ' . $avis['pseudo'] . ' | Le ' . $avis['dateAjout'] . ' | ' . $avis['note'] . '&#9733;';
+            echo '</div>';
+            echo '<hr>';
+            echo '<br>';
+            echo '<div class="contentAvis">';
+            echo '<div class="commentaireAvis">';
+            echo $avis['commentaire'] . '<br>';
+            echo '</div>';
+            if (file_exists("imgAvis/" . $avis['idCommentaire'] . ".jpg")) {
+                echo '<img class="imageAvis" src="imgAvis/' . $avis['idCommentaire'] . '.jpg" alt="Avis Image" style="max-width: 150px; max-height: 150px; float: right;"> <br>';
+            }
+            echo '</div>';
+            echo '</div>';
+            if (isset($_SESSION['login']) && $avis['pseudo'] == $_SESSION['login'] || isset($statut) && $statut['isAdmin'] == "true") {
+                echo '<form method="POST">';
+                echo '<input type="hidden" name="idCommentaire" value="' . $avis['idCommentaire'] . '">';
+                echo '<input type="submit" name="supprimer" value="Supprimer" class="buttonSupprimer">';
+                echo '</form>';
+            }
+            echo '<br>';
+
+            if (isset($_POST['supprimer'])) {
+                $idCommentaire = $_POST['idCommentaire'];
+                $req = $conn->prepare("DELETE FROM Avis WHERE idCommentaire = :idCommentaire");
+                $req->bindParam(':idCommentaire', $idCommentaire);
+                $req->execute();
+                echo '<script>window.location.replace("produit.php?reference=' . $ref . '&couleur=' . $couleur . '");</script>';
+            }
+        } catch (PDOException $e) {
+            echo '';
+        }
+    }
+
+    if (empty($reqAvis)) {
+        echo '<div class="avis"';
+        echo 'div class="contentAvis"';
+        echo '<h2 id="stock"> Il n\'y a pas encore d\'avis pour ce produit </h2><br>';
+        echo '</div>';
         echo '</div>';
         echo '<br>';
     }
