@@ -12,7 +12,7 @@ Projet est réalisé par::
 - https://github.com/BernatSR[Bernat Soldevila]
 - https://github.com/DamienZoldyck[Damien Laboute]
 - https://github.com/EtienneSalauze[Etienne Salauze]
-- https://github.com/YashLeBg[MOHAMED SAID Y. Anli-Yachourti]
+- https://github.com/YashLeBg[Anli-Yachourti MOHAMED SAID Y.]
 
 Tuteur/tutrice enseignant(e) de l'équipe:: mailto:jean-michel.bruel@univ-tlse2.fr[JMB]
 
@@ -34,6 +34,21 @@ Le schéma d'enchaînement des pages du site est disponible https://github.com/I
 == Fonctionnalités du site
 
 === Affichage des produits
+// @author Anli-Yachourti MOHAMED SAID Y.
+
+Cette partie du code permet d'afficher les produits selon la catégorie ou sous-catégorie choisie par l'utilisateur.
+Les produits peuvent être filtrés par prix croissant ou décroissant.
+
+image::affichage_produits[affichage des produits]
+
+=== Affichage d'un produit
+// @author Anli-Yachourti MOHAMED SAID Y.
+
+Cette partie du code permet d'afficher un produit en particulier.
+Et en dessous de la description du produit, on peut voir les commentaires et avis des utilisateurs (si il y en a).
+Et si nous sommes connectés, nous pouvons ajouter un commentaire (si on a jamais commenté et noté pour ce produit).
+
+image::affichage_produit[affichage d'un produit]
 
 === Ajout / modification de produits
 
